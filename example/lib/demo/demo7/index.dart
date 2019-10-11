@@ -18,7 +18,7 @@ class _Demo7State extends State<Demo7> with SingleTickerProviderStateMixin {
 
   Animation process;
   AnimationController animationController;
-
+  int selectFirend = 0;
   @override
   void initState() { 
     super.initState();
@@ -173,13 +173,48 @@ class _Demo7State extends State<Demo7> with SingleTickerProviderStateMixin {
     );
   }
 
+  Widget renderLogo (int index,List<Map<String,dynamic>> data) {
+    Map<String,dynamic>item  = data[index];
+    return View(
+      styles: styles['firendLogo'],
+      children: <Widget>[
+        ImageView(url: item['logo'],styles: Styles(borderRadius: 50,width: 100,height: 100)),
+        TextView(item['name'],styles:Styles(fontSize: 30,color: 'black'))
+      ],
+    );
+  }
+  
   renderFirend () {
     List<Map<String,dynamic>> data = [
       {
         'name':'Sansa',
-        'logo':Image.asset('name')
+        'logo':Image.asset('assets/demo7/gena_sedgwick.jpg',fit: BoxFit.cover,)
+      },
+      {
+        'name':'Arya',
+        'logo':Image.asset('assets/demo7/jeenie_duhe.jpg',fit: BoxFit.cover,)
+      },
+      {
+        'name':'Daenerys',
+        'logo':Image.asset('assets/demo7/michelle_chong.jpg',fit: BoxFit.cover,)
+      },
+      {
+        'name':'Tryion',
+        'logo':Image.asset('assets/demo7/trish_ammons.jpg',fit: BoxFit.cover,)
       }
     ];
+    return View(
+      styles:Styles(flexDirection: 'column',marginTop: 50),
+      children: <Widget>[
+        TextView('Firend',styles: Styles(fontWeight: 'bold',fontSize: 30)),
+        View(
+          styles: styles['firend'],
+          children: [
+            ...data.asMap().keys.map((e)=>renderLogo(e,data)).toList()
+          ],
+        )
+      ],
+    );
   }
   
   renderBody () {
@@ -316,5 +351,15 @@ const Map<String,Styles> styles = {
     //     offset: Offset(0,1)
     //   )
     // ]
+  ),
+  'firend':Styles(
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 20
+  ),
+  'firendLogo':Styles(
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginRight: 30
   )
 };

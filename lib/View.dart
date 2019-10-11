@@ -182,7 +182,7 @@ class View extends StatelessWidget {
         children: newChildren,
       );
     } else if (filterData['body'] != null && filterData['body'].length > 0) {
-      return renderColumn(childrenList:[Stack(children:filterData['body'])]);
+      return renderColumn(childrenList:filterData['body']);
     } else {
       return null;
     }
@@ -202,7 +202,7 @@ class View extends StatelessWidget {
         children: newChildren,
       );
     } else if (filterData['body'] != null && filterData['body'].length > 0) {
-      return renderRow(childrenList: [Stack(children:filterData['body'])]);
+      return renderRow(childrenList: filterData['body']);
     } else {
       return null;
     }
