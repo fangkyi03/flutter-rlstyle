@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rlStyles/Router.dart';
-import 'package:rlStyles/Styles.dart';
-import 'package:rlStyles/View.dart';
 import 'package:rlStyles/main.dart';
 
 class Demo6 extends StatefulWidget {
@@ -174,7 +171,8 @@ const Map<String,Styles> styles = {
     height: double.infinity,
     position: 'rel',  
     padding: 50,
-    flexDirection: 'column'
+    flexDirection: 'column',
+    overflow: 'scroll'
   ),
   'logoTitle':Styles(
     width: 400,

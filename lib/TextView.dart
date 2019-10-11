@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:rlStyles/View.dart';
 import './ContainerView.dart';
 import './HexColor.dart';
 import './Tool.dart';
@@ -141,12 +142,11 @@ class TextView extends StatelessWidget {
     ScreenUtil.instance = ScreenUtil.getInstance()..init(context);
     // imgCook 案例 25文本无法居中
     if (styles != null ) {
-      return ContainerView(
+      return View(
           styles: styles,
           className: className,
           onClick: onClick,
-          type: 'Text',
-          child: renderText(),
+          children:[ renderText()],
       );
     }else {
       return Text(child);

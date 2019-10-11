@@ -113,7 +113,7 @@ class Styles extends Diagnosticable {
   final String borderStyle;
   final dynamic borderColor;
   final double opacity;
-  final String boxShadow;
+  final dynamic boxShadow;
   final String textAlign;
   final double minHeight;
   final double minWidth;
@@ -183,7 +183,7 @@ class Styles extends Diagnosticable {
     properties.add(DiagnosticsProperty<double>('borderWidth',borderWidth));
     properties.add(DiagnosticsProperty<String>('borderStyle',borderStyle));
     properties.add(DiagnosticsProperty<dynamic>('borderColor',borderColor));
-    properties.add(DiagnosticsProperty<String>('boxShadow',boxShadow));
+    properties.add(DiagnosticsProperty<dynamic>('boxShadow',boxShadow));
 
     properties.add(DiagnosticsProperty<double>('borderBottomLeftRadius',borderBottomLeftRadius));
     properties.add(DiagnosticsProperty<double>('borderBottomRightRadius',borderBottomRightRadius));

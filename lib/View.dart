@@ -17,7 +17,8 @@ class View extends StatelessWidget {
       this.children = const <Widget>[],
       this.jsonData,
       this.className,
-      this.isHaveNative = false
+      this.isHaveNative = false,
+      this.type
     }
   ):super( key: key);
   final Styles styles;
@@ -26,6 +27,7 @@ class View extends StatelessWidget {
   final Map<String, List<Widget>> jsonData;
   final String className;
   final bool isHaveNative;
+  final String type;
 
   Widget createContainer(Widget child) {
     return ContainerView(
@@ -33,6 +35,7 @@ class View extends StatelessWidget {
       child: child,
       onClick: onClick,
       className: className,
+      type: type,
     );
   }
 
@@ -179,7 +182,7 @@ class View extends StatelessWidget {
         children: newChildren,
       );
     } else if (filterData['body'] != null && filterData['body'].length > 0) {
-      return renderColumn(childrenList: filterData['body']);
+      return renderColumn(childrenList:[Stack(children:filterData['body'])]);
     } else {
       return null;
     }
@@ -199,7 +202,7 @@ class View extends StatelessWidget {
         children: newChildren,
       );
     } else if (filterData['body'] != null && filterData['body'].length > 0) {
-      return renderRow(childrenList: filterData['body']);
+      return renderRow(childrenList: [Stack(children:filterData['body'])]);
     } else {
       return null;
     }
@@ -346,7 +349,7 @@ class View extends StatelessWidget {
       case 'absolute':
         return renderPositioned();
       default:
-        return renderRelative();
+        return createView();
     }
   }
   

@@ -216,12 +216,43 @@ class ContainerView extends StatelessWidget {
     }
   }
 
+  getListBoxShadow () {
+    return styles.boxShadow;
+  }
+
+  BoxShadow tranStringBoxShadow (String item) {
+    print(item.split(RegExp(r'(\\S+)')));
+    return BoxShadow(
+      offset: Offset(0,1),
+    );
+  }
+
+  getLisStrigBoxShadow () {
+    return (styles.boxShadow as List<String>).map((e)=>tranStringBoxShadow(e)).toList();
+  }
+
+  getBoxShadow () {
+    if (styles.boxShadow != null) {
+      switch (getTypeOf(styles.boxShadow)) {
+        case 'List<BoxShadow>':
+          return getListBoxShadow();
+        case 'List<String>':  
+          return getLisStrigBoxShadow();
+        case 'String':
+          return tranStringBoxShadow(styles.boxShadow);
+      }
+     }else {
+      return null;
+    }
+  }
+
   Decoration getDecoration () {
     final Decoration decoration = BoxDecoration(  
       borderRadius: getBorderRadius(),
       color: getBackgroundColor(),
       border: getBorder(),
       gradient: getGradient(),
+      boxShadow: getBoxShadow()
     );
     return decoration;
   }
@@ -283,7 +314,7 @@ class ContainerView extends StatelessWidget {
         ],
       );
     } else {
-      return type == 'Text' ? renderRowColumn() : child;
+      return type != null && type == 'Text' ? renderRowColumn() : child;
     }
   }
 
@@ -448,7 +479,7 @@ class ContainerView extends StatelessWidget {
       case 'column':
         return renderColumn();
       default: 
-        return child;
+        return child ;
     }
   }
 

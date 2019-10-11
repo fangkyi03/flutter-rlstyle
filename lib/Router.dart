@@ -15,19 +15,37 @@ class NavigationOption {
     goBack(context);
   }
 
+  getAppBar (RouterConfig router,context) {
+    if (router.option != null) {
+      return router.option.appBar;
+    }else {
+      return  AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: ()=>onBackDown(context),
+        ),
+      );
+    }
+  }
+
+  getBackgroundColor (RouterConfig router,context) {
+    ThemeData themeData = Theme.of(context);
+    if (router.option != null && router.option.backgroundColor != null ) {
+      return router.option.backgroundColor;
+    }else {
+      return themeData.primaryColor;
+    }
+  }
+
   void navigate(BuildContext context,String routerName,{Map<String,dynamic> navigationParams = const {}}) {
-    if (routerConfig[routerName] != null) {
+    RouterConfig select = routerConfig[routerName];
+    if (select != null) {
       Navigator.of(context).push(new MaterialPageRoute(builder:(BuildContext context){
         return Scaffold(
-          // backgroundColor: Colors.red,
-          appBar: AppBar(
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: ()=>onBackDown(context),
-            ),
-          ),
+          backgroundColor: getBackgroundColor(select,context),
+          appBar:getAppBar(select,context),
           body: SafeArea(
-            child: routerConfig[routerName].screen(navigation,navigationParams),
+            child: select.screen(navigation,navigationParams),
           ),
         );
       }));
@@ -41,10 +59,14 @@ class NavigationOption {
 class RouterOption {
   RouterOption(
     {
-      this.routerName
+      this.routerName,
+      this.appBar,
+      this.backgroundColor
     }
   );
   final String routerName;
+  final AppBar appBar;
+  final Color backgroundColor;
 }
 
 class RouterConfig {
@@ -79,6 +101,8 @@ class Router extends StatelessWidget {
       appBar: AppBar(
         title: TextView('演示列表',styles: Styles(color: 'white',fontSize: 50)),
         centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
       ),
       body: SafeArea(child:routerData[keys[0]].screen(navigation,{}))
     ));

@@ -23,7 +23,7 @@ double getSize ({dynamic size,double defValue = 0.0}) {
     case 'double':
       mSize = (size as double);
   }
-  if (mSize != null && mSize > 0) {
+  if (mSize != null ) {
     return ScreenUtil.getInstance().setWidth(mSize);
   } else {
     return defValue;
