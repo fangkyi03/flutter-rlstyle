@@ -349,7 +349,7 @@ const Map<String,Styles> styles = {
     marginTop: 20,
   ),
   'process':Styles(
-    width: 200,
+    width: '100%',
     height: 30,
     backgroundColor: 'white',
     flexDirection: 'column',

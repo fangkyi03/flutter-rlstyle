@@ -164,7 +164,7 @@ class View extends StatelessWidget {
     } else if (styles.display == 'none') {
       return Container(width: 0, height: 0);
     } else {
-      return createContainer(Stack(children: children));
+      return createContainer(renderRow());
     }
   }
 

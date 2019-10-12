@@ -79,6 +79,7 @@ const Map<String,Styles> styles = {
   'Horizontal':Styles(
     width: double.infinity,
     height: 200,
+    backgroundColor: 'red',
     overflowX: 'scroll'
   ),
   'Vertical':Styles(
