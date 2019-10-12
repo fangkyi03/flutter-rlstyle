@@ -12,6 +12,7 @@ class ContainerView extends StatelessWidget {
     Key key,
     this.styles = const Styles(),
     this.child,
+    this.children,
     this.className,
     this.onClick,
     this.type = 'View'
@@ -22,7 +23,7 @@ class ContainerView extends StatelessWidget {
   final String className;
   final GestureTapCallback onClick;
   final String type;
-  
+  final List<Widget> children;  
   double getBorderWidth () {
     if (styles.borderWidth != null ) {
       return styles.borderWidth.toDouble();
@@ -541,9 +542,7 @@ class ContainerView extends StatelessWidget {
     if (getScrollState()) {
       return ScrollViewContainer(
         scrollDirection:getScrollDirection(),
-        children: <Widget>[
-          child
-        ],
+        children: children,
       );
     } else {
       return item;

@@ -26,8 +26,8 @@ class Demo5 extends StatelessWidget {
   renderHorizontal () {
     return View(
       styles: Styles(
+        backgroundColor: 'yellow',
         flexDirection: 'column',
-        alignItems: 'center'
       ),
       children: <Widget>[
         TextView('横向滚动',styles: Styles(fontSize: 50)),
@@ -78,7 +78,7 @@ const Map<String,Styles> styles = {
   ),
   'Horizontal':Styles(
     width: double.infinity,
-    height: 300,
+    height: 200,
     overflowX: 'scroll'
   ),
   'Vertical':Styles(

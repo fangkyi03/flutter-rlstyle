@@ -46,6 +46,7 @@ const Map<String,Styles> styles = {
     height: double.infinity
   ),
   'wrap':Styles(
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    position: 'rel'
   )
 };

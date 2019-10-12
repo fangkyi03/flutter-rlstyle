@@ -10,7 +10,7 @@ class Demo3 extends StatelessWidget {
   final NavigationOption navigation;
 
   List<Widget> renderView () {
-    List<dynamic> list = ['black','blue','yellow'];
+    List<dynamic> list = ['black','red','yellow'];
     return list.map((e){
       return View(
         styles: Styles(

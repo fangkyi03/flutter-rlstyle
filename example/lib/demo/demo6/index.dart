@@ -169,10 +169,9 @@ const Map<String,Styles> styles = {
   'main':Styles(
     width: double.infinity,
     height: double.infinity,
-    position: 'rel',  
-    padding: 50,
+    padding: 20,
     flexDirection: 'column',
-    overflow: 'scroll'
+    overflow: 'scroll',
   ),
   'logoTitle':Styles(
     width: 400,

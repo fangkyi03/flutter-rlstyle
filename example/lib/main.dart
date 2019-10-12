@@ -25,13 +25,21 @@ final Widget app = createRouter(router: {
     screen: (navigation,navigationParams)=>Demo3(navigation: navigation)
   ),
   'demo4':RouterConfig(
-    screen: (navigation,navigationParams)=>Demo4(navigation: navigation)
+    screen: (navigation,navigationParams)=>Demo4(navigation: navigation),
+    option: RouterOption(
+      appBar: null,
+      backgroundColor: Colors.white
+    )
   ),
   'demo5':RouterConfig(
     screen: (navigation,navigationParams)=>Demo5(navigation: navigation)
   ),
    'demo6':RouterConfig(
-    screen: (navigation,navigationParams)=>Demo6(navigation: navigation)
+    screen: (navigation,navigationParams)=>Demo6(navigation: navigation),
+    option: RouterOption(
+      appBar: null,
+      backgroundColor: Colors.white
+    )
   ),
   'demo7':RouterConfig(
     screen: (navigation,navigationParams)=>Demo7(navigation: navigation),

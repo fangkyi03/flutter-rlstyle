@@ -36,6 +36,7 @@ class View extends StatelessWidget {
       onClick: onClick,
       className: className,
       type: type,
+      children: children,
     );
   }
 
@@ -163,8 +164,7 @@ class View extends StatelessWidget {
     } else if (styles.display == 'none') {
       return Container(width: 0, height: 0);
     } else {
-      return createContainer(
-          children != null && children.length > 0 ? children[0] : null);
+      return createContainer(Stack(children: children));
     }
   }
 
@@ -174,15 +174,12 @@ class View extends StatelessWidget {
       final List<Widget> newChildren = [];
       newChildren.addAll(filterData['top']);
       if (filterData['body'].length > 0) {
-        newChildren.add(
-            createContainer(renderColumn(childrenList: filterData['body'])));
+        newChildren.add(createContainer(renderColumn(childrenList: filterData['body'])));
       }
       newChildren.addAll(filterData['foot']);
       return Stack(
         children: newChildren,
       );
-    } else if (filterData['body'] != null && filterData['body'].length > 0) {
-      return renderColumn(childrenList:filterData['body']);
     } else {
       return null;
     }
@@ -201,8 +198,6 @@ class View extends StatelessWidget {
       return Stack(
         children: newChildren,
       );
-    } else if (filterData['body'] != null && filterData['body'].length > 0) {
-      return renderRow(childrenList: filterData['body']);
     } else {
       return null;
     }
@@ -234,7 +229,7 @@ class View extends StatelessWidget {
       'top': top,
       'foot': foot,
       'body': body,
-      'show': top.length > 0 || foot.length > 0
+      'show': top.length > 0 || foot.length > 0 || body.length > 0
     };
   }
 
@@ -308,13 +303,24 @@ class View extends StatelessWidget {
     );
   }
 
+  Widget renderColumnRow () {
+    switch (styles.flexDirection) {
+      case 'row':
+        return renderRowStack();
+      case 'column':
+        return renderColumnStack();
+      default:
+        return Stack(children: children);
+    }
+  }
+
   Widget renderRelative() {
     if (styles.flexWrap != null && styles.flexWrap == 'wrap') {
       return createContainer(renderWrap());
-    }else if (styles.flexDirection == null || styles.flexDirection == 'row' || styles.flexDirection == 'row-reverse') {
-      return createContainer(renderRowStack());
+    }else if (styles.flexDirection == null ) {
+      return createContainer(Stack(children: children));
     } else {
-      return createContainer(renderColumnStack());
+      return createContainer(renderColumnRow());
     }
   }
 

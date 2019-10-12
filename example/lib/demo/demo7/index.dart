@@ -124,19 +124,24 @@ class _Demo7State extends State<Demo7> with SingleTickerProviderStateMixin {
           ],
         ),
         View(
-          styles: Styles(position: 'rel',flexDirection: 'column',justifyContent: 'center'),
+          styles: Styles(flex: 1,flexDirection: 'column',alignItems: "center",justifyContent: 'center'),
           children: <Widget>[
             View(
-              styles: styles['process'],
-            ),
-            View(
-              styles: Styles(
-                width: process.value * 300 * item['current'],
-                height: 30,
-                borderRadius: 15,
-                backgroundColor: 'red',
-                flexDirection: null
-              ),
+              styles: Styles(position: 'rel'),
+              children: <Widget>[
+                View(
+                  styles: styles['process'],
+                ),
+                View(
+                  styles: Styles(
+                    width: process.value * 200 * item['current'],
+                    height: 30,
+                    borderRadius: 15,
+                    backgroundColor: 'red',
+                    flexDirection: null
+                  ),
+                )
+              ],
             )
           ],
         )
@@ -173,12 +178,20 @@ class _Demo7State extends State<Demo7> with SingleTickerProviderStateMixin {
     );
   }
 
+  onSelectFirend (index) {
+    setState(() {
+      selectFirend = index;
+    });
+  }
+
   Widget renderLogo (int index,List<Map<String,dynamic>> data) {
-    Map<String,dynamic>item  = data[index];
+    Map<String,dynamic> item  = data[index];
+    bool isSelect = selectFirend == index;
     return View(
-      styles: styles['firendLogo'],
+      styles:styles['firendLogo'],
+      onClick: ()=>onSelectFirend(index),
       children: <Widget>[
-        ImageView(url: item['logo'],styles: Styles(borderRadius: 50,width: 100,height: 100)),
+        ImageView(url: item['logo'],styles: Styles(borderRadius: 50,width: 100,height: 100,borderColor: isSelect ? 'red': null,borderStyle: 'solid',borderWidth: 3)),
         TextView(item['name'],styles:Styles(fontSize: 30,color: 'black'))
       ],
     );
@@ -336,7 +349,7 @@ const Map<String,Styles> styles = {
     marginTop: 20,
   ),
   'process':Styles(
-    width: 300,
+    width: 200,
     height: 30,
     backgroundColor: 'white',
     flexDirection: 'column',
@@ -361,5 +374,12 @@ const Map<String,Styles> styles = {
     flexDirection: 'column',
     alignItems: 'center',
     marginRight: 30
+  ),
+  'firendSelectLogo':Styles(
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginRight: 30,
+    borderRadius: 30,
+
   )
 };
