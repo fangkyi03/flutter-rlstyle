@@ -43,7 +43,8 @@ const Map<String,Styles> styles = {
     backgroundColor: 'white',
     overflow: 'scroll',
     width: double.infinity,
-    height: double.infinity
+    height: double.infinity,
+    paddingBottom: 100
   ),
   'wrap':Styles(
     flexWrap: 'wrap',
