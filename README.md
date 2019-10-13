@@ -14,6 +14,9 @@ dependencies:
       url: git://github.com/fangkyi03/rlstyle.git
 ```
 
+# 示例
+示例代码 请直接运行本地example项目 内涵9个小demo
+
 # demo
 ```javaScript
 import 'package:flutter/material.dart';
