@@ -5,7 +5,9 @@
 添加rlStyle到您的pubspec.yaml
 ```javaScript
 dependencies:
-  rlStyle: 1.0.0
+  rlstyles:
+    git:
+      url: git://github.com/fangkyi03/rlstyle.git
 ```
 
 # demo

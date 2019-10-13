@@ -154,9 +154,11 @@ packages:
   rlstyles:
     dependency: "direct main"
     description:
-      path: ".."
-      relative: true
-    source: path
+      path: "."
+      ref: HEAD
+      resolved-ref: e8dd3ead67cd9f07ef28bba5d2211615d4d3ba55
+      url: "git://github.com/fangkyi03/rlstyle.git"
+    source: git
     version: "1.0.0+1"
   sky_engine:
     dependency: transitive
