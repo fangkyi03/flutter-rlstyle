@@ -1,10 +1,14 @@
 # rlStyle 
 可以使用类似rn的写法类写flutter 减少flutter的地狱嵌套
 
+# 备注
+flutter 因为翻墙关系 导致一直无法上传成功 所以只能改用git方式集成
+
 # 使用
 添加rlStyle到您的pubspec.yaml
 ```javaScript
 dependencies:
+  flutter_screenutil: ^0.5.3
   rlstyles:
     git:
       url: git://github.com/fangkyi03/rlstyle.git
@@ -16,32 +20,35 @@ import 'package:flutter/material.dart';
 import 'package:rlstyles/Router.dart';
 import 'package:rlstyles/Styles.dart';
 import 'package:rlstyles/View.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 class Demo1 extends StatelessWidget {
 
   const Demo1({this.navigation});
   final NavigationOption navigation;
+
+  renderView () {
+    List<dynamic> colorArr = ['blue','red','#f55fff','rgba(255,12,13,1)','rgb(12,5,78)',Colors.red,Colors.black.withOpacity(0.5),'linear-gradient(blue,red)'];
+    return View(
+      styles: styles['wrap'],
+      children: colorArr.map((f){
+        return View(
+          styles: Styles(
+            width: 300,
+            height: 300,
+            marginTop: 50,
+            marginLeft: 50,
+            marginRight: 10,
+            backgroundColor: f
+          ),
+        );
+      }).toList(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-
-    renderView () {
-      List<dynamic> colorArr = ['blue','red','#f55fff','rgba(255,12,13,1)','rgb(12,5,78)',Colors.red,Colors.black.withOpacity(0.5),'linear-gradient(blue,red)'];
-      return View(
-        styles: styles['wrap'],
-        children: colorArr.map((f){
-          return View(
-            styles: Styles(
-              width: 300,
-              height: 300,
-              marginTop: 50,
-              marginLeft: 50,
-              marginRight: 10,
-              backgroundColor: f
-            ),
-          );
-        }).toList(),
-      );
-    }
-
+    // 在整个项目初始化的地方 只需要初始化一次 填入设计稿尺寸即可
+    ScreenUtil.instance = ScreenUtil(width: 750, height: 1330);
     return View(
       styles: styles['main'],
       children: <Widget>[
