@@ -4,6 +4,9 @@
 # 备注
 flutter pub 因为翻墙关系 导致一直无法上传成功 所以只能改用git方式集成
 
+# demo演示视频
+[https://www.bilibili.com/video/av71131117](https://www.bilibili.com/video/av71131117)
+
 # 使用
 添加rlStyle到您的pubspec.yaml
 ```javaScript
