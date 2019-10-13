@@ -12,7 +12,7 @@ class ImageView extends StatelessWidget {
       this.styles = const Styles(), 
       this.url, 
       this.className,
-      this.children
+      this.children = const []
     }
   ) 
   : super(key: key);
@@ -20,6 +20,7 @@ class ImageView extends StatelessWidget {
   final dynamic url;
   final String className;
   final List<Widget> children;
+
   BoxFit getImageFit () {
     if (styles.backgroundSize != null ) {
       String type = getTypeOf(styles.backgroundSize);
@@ -66,7 +67,7 @@ class ImageView extends StatelessWidget {
       styles: styles,
       children: <Widget>[
         renderImage(),
-        ...children
+        ...(children.length > 0 ? children : [])
       ]
     );
   }
