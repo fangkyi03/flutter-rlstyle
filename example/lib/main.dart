@@ -7,10 +7,10 @@ import 'package:example/demo/demo6/index.dart';
 import 'package:example/demo/demo7/index.dart';
 import 'package:example/demo/demo8/index.dart';
 import 'package:flutter/material.dart';
-import 'package:rlStyles/Router.dart';
-import 'package:rlStyles/TextView.dart';
-import 'package:rlStyles/View.dart';
-import 'package:rlStyles/Styles.dart';
+import 'package:rlstyles/Router.dart';
+import 'package:rlstyles/TextView.dart';
+import 'package:rlstyles/View.dart';
+import 'package:rlstyles/Styles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 final Widget app = createRouter(router: {
   'main': RouterConfig(

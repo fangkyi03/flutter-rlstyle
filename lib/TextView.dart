@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rlStyles/View.dart';
+import 'package:rlstyles/View.dart';
 import './ContainerView.dart';
 import './HexColor.dart';
 import './Tool.dart';

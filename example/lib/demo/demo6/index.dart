@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rlStyles/main.dart';
+import 'package:rlstyles/main.dart';
 
 class Demo6 extends StatefulWidget {
   Demo6({Key key,this.navigation}) : super(key: key);

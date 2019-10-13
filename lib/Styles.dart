@@ -168,10 +168,12 @@ class Styles extends Diagnosticable {
     properties.add(DiagnosticsProperty<double>('minWidth',minWidth));
 
     // margin - padding
+    properties.add(DiagnosticsProperty<double>('margin',margin));
     properties.add(DiagnosticsProperty<double>('marginLeft',marginLeft));
     properties.add(DiagnosticsProperty<double>('marginTop',marginTop));
     properties.add(DiagnosticsProperty<double>('marginRight',marginRight));
     properties.add(DiagnosticsProperty<double>('marginBottom',marginBottom));
+    properties.add(DiagnosticsProperty<double>('padding',padding));
     properties.add(DiagnosticsProperty<double>('paddingLeft',paddingLeft));
     properties.add(DiagnosticsProperty<double>('paddingTop',paddingTop));
     properties.add(DiagnosticsProperty<double>('paddingRight',paddingRight));
@@ -186,6 +188,7 @@ class Styles extends Diagnosticable {
     properties.add(DiagnosticsProperty<String>('borderStyle',borderStyle));
     properties.add(DiagnosticsProperty<dynamic>('borderColor',borderColor));
     properties.add(DiagnosticsProperty<dynamic>('boxShadow',boxShadow));
+    properties.add(DiagnosticsProperty<double>('elevation',elevation));
 
     properties.add(DiagnosticsProperty<double>('borderBottomLeftRadius',borderBottomLeftRadius));
     properties.add(DiagnosticsProperty<double>('borderBottomRightRadius',borderBottomRightRadius));
@@ -224,7 +227,6 @@ class Styles extends Diagnosticable {
     properties.add(DiagnosticsProperty<String>('textDecoration',textDecoration));
     properties.add(DiagnosticsProperty<String>('textOverflow',textOverflow));
     properties.add(DiagnosticsProperty<String>('whiteSpace',whiteSpace));
-    properties.add(DiagnosticsProperty<String>('overflow',overflow));
     properties.add(DiagnosticsProperty<int>('lines',lines));
     properties.add(DiagnosticsProperty<String>('textAlign',textAlign));
     properties.add(DiagnosticsProperty<dynamic>('letterSpacing',letterSpacing));

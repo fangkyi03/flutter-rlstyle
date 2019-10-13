@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:rlStyles/main.dart';
+import 'package:rlstyles/main.dart';
 import './Tool.dart';
 import './View.dart';
 import './Styles.dart';

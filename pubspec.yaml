@@ -1,6 +1,6 @@
-name: rlStyles
-description: A new Flutter project.
-
+name: rlstyles
+description: 使用rn的写法来开发flutter减少地狱嵌套
+author: fangkyi03
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
 # followed by an optional build number separated by a +.

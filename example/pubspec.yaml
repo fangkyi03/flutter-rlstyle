@@ -24,7 +24,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   flutter_svg: ^0.14.0
-  rlStyles:
+  rlstyles:
     path: ../
 
 dev_dependencies:

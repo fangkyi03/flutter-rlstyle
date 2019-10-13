@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:rlStyles/Router.dart';
-import 'package:rlStyles/Styles.dart';
-import 'package:rlStyles/View.dart';
-import 'package:rlStyles/main.dart';
+import 'package:rlstyles/Router.dart';
+import 'package:rlstyles/Styles.dart';
+import 'package:rlstyles/View.dart';
+import 'package:rlstyles/main.dart';
 
 class Demo7 extends StatefulWidget {
 

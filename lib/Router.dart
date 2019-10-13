@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rlStyles/Styles.dart';
-import 'package:rlStyles/TextView.dart';
+import 'package:rlstyles/Styles.dart';
+import 'package:rlstyles/TextView.dart';
 
 NavigationOption navigation;
 

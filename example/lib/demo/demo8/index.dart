@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rlStyles/main.dart';
+import 'package:rlstyles/main.dart';
 
 class CustomClipPath extends CustomClipper<Path> {
 
