@@ -71,7 +71,8 @@ class Styles extends Diagnosticable {
       this.flexWrap,
       this.backgroundSize,
       this.margin,
-      this.padding
+      this.padding,
+      this.elevation
   });
   final String display;
   final dynamic color;
@@ -141,6 +142,7 @@ class Styles extends Diagnosticable {
   final dynamic backgroundSize;
   final double margin;
   final double padding;
+  final double elevation;
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);

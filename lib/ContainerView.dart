@@ -242,7 +242,12 @@ class ContainerView extends StatelessWidget {
         case 'String':
           return tranStringBoxShadow(styles.boxShadow);
       }
-     }else {
+     }else if (styles.elevation != null ) {
+       Color color = Colors.black.withOpacity(0.3);
+      return [
+        BoxShadow(offset: Offset(0,styles.elevation),color: color,blurRadius: 10)
+      ];
+    }else {
       return null;
     }
   }
@@ -315,7 +320,7 @@ class ContainerView extends StatelessWidget {
         ],
       );
     } else {
-      return type != null && type == 'Text' ? renderRowColumn() : child;
+      return type != null && type == 'Text' ? renderRowColumn() : child ;
     }
   }
 
@@ -484,9 +489,21 @@ class ContainerView extends StatelessWidget {
     }
   }
 
+  Widget renderElevation ({Widget childView}) {
+    return childView;
+    if (styles.elevation != null) {
+      return Material(
+        elevation: styles.elevation,
+        child: childView,
+      );
+    }else {
+      return childView;
+    }
+  }
+
   Widget renderClipBorderRadius () {
     return renderView(
-      childView:  ClipRRect(
+      childView: ClipRRect(
         borderRadius: getBorderRadius(),
         child:child
       )
