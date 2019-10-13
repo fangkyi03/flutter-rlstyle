@@ -342,7 +342,7 @@ class View extends StatelessWidget {
         bottom: styles.bottom != null ? getSize(size: styles.bottom) : null,
         width: styles.width != null ? getSize(size: styles.width) : null,
         height: styles.height != null ? getSize(size: styles.height) : null ,
-        child:Stack(children: <Widget>[renderPositionedChild()]) 
+        child:renderPositionedChild() 
     );
   }
 
