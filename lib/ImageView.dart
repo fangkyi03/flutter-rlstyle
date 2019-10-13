@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:rlStyles/main.dart';
 import './Tool.dart';
 import './View.dart';
 import './Styles.dart';
@@ -10,14 +11,15 @@ class ImageView extends StatelessWidget {
       Key key, 
       this.styles = const Styles(), 
       this.url, 
-      this.className
+      this.className,
+      this.children
     }
   ) 
   : super(key: key);
   final Styles styles;
   final dynamic url;
   final String className;
-
+  final List<Widget> children;
   BoxFit getImageFit () {
     if (styles.backgroundSize != null ) {
       String type = getTypeOf(styles.backgroundSize);
@@ -63,8 +65,9 @@ class ImageView extends StatelessWidget {
     return View(
       styles: styles,
       children: <Widget>[
-        renderImage()
-      ],
+        renderImage(),
+        ...children
+      ]
     );
   }
 

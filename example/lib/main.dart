@@ -53,7 +53,7 @@ final Widget app = createRouter(router: {
     screen: (navigation,navigationParams)=>Demo8(navigation: navigation),
     option: RouterOption(
       appBar: null,
-      backgroundColor: Colors.white
+      backgroundColor: Colors.transparent
     )
   ),
 });
