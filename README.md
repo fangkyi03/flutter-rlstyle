@@ -1,9 +1,6 @@
 # rlStyle 
 可以使用类似rn的写法类写flutter 减少flutter的地狱嵌套
 
-# 备注
-flutter pub 因为翻墙关系 导致一直无法上传成功 所以只能改用git方式集成
-
 # demo演示视频
 [https://www.bilibili.com/video/av71131117](https://www.bilibili.com/video/av71131117)
 
@@ -12,9 +9,7 @@ flutter pub 因为翻墙关系 导致一直无法上传成功 所以只能改用
 ```javaScript
 dependencies:
   flutter_screenutil: ^0.5.3
-  rlstyles:
-    git:
-      url: git://github.com/fangkyi03/rlstyle.git
+  rlstyles:^1.0.0
 ```
 
 # 示例
