@@ -11,9 +11,9 @@ dependencies:
 # demo
 ```javaScript
 import 'package:flutter/material.dart';
-import 'package:rlStyles/Router.dart';
-import 'package:rlStyles/Styles.dart';
-import 'package:rlStyles/View.dart';
+import 'package:rlstyles/Router.dart';
+import 'package:rlstyles/Styles.dart';
+import 'package:rlstyles/View.dart';
 class Demo1 extends StatelessWidget {
 
   const Demo1({this.navigation});
