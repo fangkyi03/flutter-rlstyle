@@ -2,7 +2,7 @@
 可以使用类似rn的写法类写flutter 减少flutter的地狱嵌套
 
 # 备注
-flutter 因为翻墙关系 导致一直无法上传成功 所以只能改用git方式集成
+flutter pub 因为翻墙关系 导致一直无法上传成功 所以只能改用git方式集成
 
 # 使用
 添加rlStyle到您的pubspec.yaml
