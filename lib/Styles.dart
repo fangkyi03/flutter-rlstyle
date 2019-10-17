@@ -157,6 +157,7 @@ class Styles extends Diagnosticable {
     properties.add(DiagnosticsProperty<String>('justifyContent',justifyContent));
     properties.add(DiagnosticsProperty<String>('alignItems',alignItems));
     properties.add(DiagnosticsProperty<int>('flex',flex));
+    properties.add(DiagnosticsProperty<String>('flexWrap',flexWrap));
 
     // box-size
     properties.add(DiagnosticsProperty<dynamic>('width',width));

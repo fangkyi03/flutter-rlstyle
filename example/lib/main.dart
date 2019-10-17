@@ -6,6 +6,7 @@ import 'package:example/demo/demo5/index.dart';
 import 'package:example/demo/demo6/index.dart';
 import 'package:example/demo/demo7/index.dart';
 import 'package:example/demo/demo8/index.dart';
+import 'package:example/demo/demo9/index.dart';
 import 'package:flutter/material.dart';
 import 'package:rlstyles/Router.dart';
 import 'package:rlstyles/TextView.dart';
@@ -56,6 +57,13 @@ final Widget app = createRouter(router: {
       backgroundColor: Colors.transparent
     )
   ),
+  'demo9':RouterConfig(
+    screen: (navigation,navigationParams)=>Demo9(navigation: navigation),
+    option: RouterOption(
+      appBar: null,
+      backgroundColor: Colors.transparent
+    )
+  ),
 });
 
 void main() {
@@ -78,7 +86,7 @@ class _MainState extends State<Main> {
   }
 
   renderList () {
-    List<String> data = ['颜色演示','flex布局演示','圆角','字体','滚动','登录特效','电影动画demo','裁剪曲线'];
+    List<String> data = ['颜色演示','flex布局演示','圆角','字体','滚动','登录特效','电影动画demo','裁剪曲线','flexWrap'];
     return data.asMap().keys.map((index){
       String item = data[index];
       return TextView(item,styles: Styles(color: 'black',fontSize: 50),onClick: ()=>onTextDown(index + 1));

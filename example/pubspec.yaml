@@ -25,8 +25,9 @@ dependencies:
   cupertino_icons: ^0.1.2
   flutter_svg: ^0.14.0
   rlstyles:
-    git:
-      url: git://github.com/fangkyi03/rlstyle.git
+    path: ../
+    # git:
+    #   url: git://github.com/fangkyi03/rlstyle.git
 
 dev_dependencies:
   flutter_test:

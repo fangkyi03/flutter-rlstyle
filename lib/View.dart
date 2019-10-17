@@ -164,7 +164,7 @@ class View extends StatelessWidget {
     } else if (styles.display == 'none') {
       return Container(width: 0, height: 0);
     } else {
-      return createContainer(renderRow());
+      return createContainer(getFlexWrapState() ? renderWrap() : renderRow());
     }
   }
 
@@ -314,8 +314,12 @@ class View extends StatelessWidget {
     }
   }
 
+  getFlexWrapState () {
+    return styles.flexWrap != null && styles.flexWrap == 'wrap';
+  }
+
   Widget renderRelative() {
-    if (styles.flexWrap != null && styles.flexWrap == 'wrap') {
+    if (getFlexWrapState()) {
       return createContainer(renderWrap());
     }else if (styles.flexDirection == null ) {
       return createContainer(Stack(children: children));
