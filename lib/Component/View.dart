@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import './ContainerView.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/painting.dart';
-import './Tool.dart';
+import '../Tool/base.dart';
 import './Styles.dart';
 
 class View extends StatelessWidget {
@@ -18,7 +18,7 @@ class View extends StatelessWidget {
       this.jsonData,
       this.className,
       this.isHaveNative = false,
-      this.type
+      this.type,
     }
   ):super( key: key);
   final Styles styles;
@@ -155,6 +155,18 @@ class View extends StatelessWidget {
     }
   }
 
+  Widget renderTextImageChild () {
+    if (type != null ) {
+      if ((type == 'Text' || type == 'Image') && children.length == 1) {
+        return children[0];
+      }else {
+        return renderRow();
+      }
+    }else {
+      return renderRow();
+    }
+  }
+
   Widget createView() {
     // 因为row子无法显示 所以去除display判断
     if (styles.flexDirection == 'row' || styles.flexDirection == 'row-reverse') {
@@ -164,7 +176,7 @@ class View extends StatelessWidget {
     } else if (styles.display == 'none') {
       return Container(width: 0, height: 0);
     } else {
-      return createContainer(getFlexWrapState() ? renderWrap() : renderRow());
+      return createContainer(getFlexWrapState() ? renderWrap() : renderTextImageChild());
     }
   }
 
@@ -203,10 +215,33 @@ class View extends StatelessWidget {
     }
   }
 
+  widgetSort (List<Widget> list) {
+    list.sort((dynamic a,dynamic b){
+      try {
+        if (a.styles != null && b.styles != null ) {
+          int number = (a.styles as Styles).zIndex.compareTo((b.styles as Styles).zIndex);
+          switch (number) {
+            case -1:
+              return 1;
+            case 1:
+              return -1;
+            default:
+              return 0;
+          }
+        } else {
+          return 0;
+        }
+      } catch (e) {
+        return 0;
+      }
+    });
+    return list;
+  }
+
   Map<String, dynamic> filterChildrenPosition() {
     final List<Widget> body = [];
-    final List<Widget> top = [];
-    final List<Widget> foot = [];
+    List<Widget> top = [];
+    List<Widget> foot = [];
     bool isHaveRelative = false;
     children.forEach((dynamic e) {
       try {
@@ -225,6 +260,9 @@ class View extends StatelessWidget {
         body.add(e);
       }
     });
+
+    widgetSort(top);
+    widgetSort(foot);
     return {
       'top': top,
       'foot': foot,
@@ -310,7 +348,7 @@ class View extends StatelessWidget {
       case 'column':
         return renderColumnStack();
       default:
-        return Stack(children: children);
+        return Stack(children: widgetSort(children));
     }
   }
 
@@ -322,7 +360,7 @@ class View extends StatelessWidget {
     if (getFlexWrapState()) {
       return createContainer(renderWrap());
     }else if (styles.flexDirection == null ) {
-      return createContainer(Stack(children: children));
+      return createContainer(Stack(children: widgetSort(children)));
     } else {
       return createContainer(renderColumnRow());
     }
@@ -368,15 +406,6 @@ class View extends StatelessWidget {
     ScreenUtil.instance = ScreenUtil.getInstance()..init(context);
     if (styles.display != null && styles.display == 'none') {
       return Container(width: 0, height: 0);
-    }
-    if (children != null && children.length == 1) {
-      if (styles != null && styles.flexDirection == null && styles.position == null) {
-        return createContainer(children[0]);
-      } else if (styles.display == null && styles.flexDirection == null) {
-        return createContainer(children[0]);
-      } else {
-        return renderView();
-      }
     }
     return renderView();
   }

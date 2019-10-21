@@ -1,4 +1,5 @@
 import 'package:example/demo/demo1/index.dart';
+import 'package:example/demo/demo10/index.dart';
 import 'package:example/demo/demo2/index.dart';
 import 'package:example/demo/demo3/index.dart';
 import 'package:example/demo/demo4/index.dart';
@@ -8,12 +9,19 @@ import 'package:example/demo/demo7/index.dart';
 import 'package:example/demo/demo8/index.dart';
 import 'package:example/demo/demo9/index.dart';
 import 'package:flutter/material.dart';
-import 'package:rlstyles/Router.dart';
-import 'package:rlstyles/TextView.dart';
-import 'package:rlstyles/View.dart';
-import 'package:rlstyles/Styles.dart';
+import 'package:rlstyles/main.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-final Widget app = createRouter(router: {
+
+// final Widget bottomTab = createBottomRoutrer(router:{
+//   'home':BottomRouterConfig(
+//     screen:(navigation,navi)=>Main()
+//   ),
+//   config:(){
+//     bottomBar:
+//   }
+// });
+
+final Widget app = createStackRouter(router: {
   'main': RouterConfig(
     screen:(navigation,navigationParams)=> Main(navigation: navigation),
   ),
@@ -28,7 +36,7 @@ final Widget app = createRouter(router: {
   ),
   'demo4':RouterConfig(
     screen: (navigation,navigationParams)=>Demo4(navigation: navigation),
-    option: RouterOption(
+    option: StackRouterOption(
       appBar: null,
       backgroundColor: Colors.white
     )
@@ -38,30 +46,37 @@ final Widget app = createRouter(router: {
   ),
    'demo6':RouterConfig(
     screen: (navigation,navigationParams)=>Demo6(navigation: navigation),
-    option: RouterOption(
+    option: StackRouterOption(
       appBar: null,
       backgroundColor: Colors.white
     )
   ),
   'demo7':RouterConfig(
     screen: (navigation,navigationParams)=>Demo7(navigation: navigation),
-    option: RouterOption(
+    option: StackRouterOption(
       appBar: null,
       backgroundColor: Colors.white
     )
   ),
   'demo8':RouterConfig(
     screen: (navigation,navigationParams)=>Demo8(navigation: navigation),
-    option: RouterOption(
+    option: StackRouterOption(
       appBar: null,
       backgroundColor: Colors.transparent
     )
   ),
   'demo9':RouterConfig(
     screen: (navigation,navigationParams)=>Demo9(navigation: navigation),
-    option: RouterOption(
+    option: StackRouterOption(
       appBar: null,
       backgroundColor: Colors.transparent
+    )
+  ),
+  'demo10':RouterConfig(
+    screen: (navigation,navigationParams)=>Demo10(navigation: navigation),
+    option: StackRouterOption(
+      appBar: null,
+      backgroundColor: Colors.transparent,
     )
   ),
 });
@@ -86,7 +101,7 @@ class _MainState extends State<Main> {
   }
 
   renderList () {
-    List<String> data = ['颜色演示','flex布局演示','圆角','字体','滚动','登录特效','电影动画demo','裁剪曲线','flexWrap'];
+    List<String> data = ['颜色演示','flex布局演示','圆角','字体','滚动','登录特效','电影动画demo','裁剪曲线','flexWrap','zIndex'];
     return data.asMap().keys.map((index){
       String item = data[index];
       return TextView(item,styles: Styles(color: 'black',fontSize: 50),onClick: ()=>onTextDown(index + 1));

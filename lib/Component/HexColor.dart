@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import './Tool.dart';
+import '../Tool/base.dart';
+
 class HexColor extends Color{
 
   static int _getColorFromHex(dynamic hexColor) {

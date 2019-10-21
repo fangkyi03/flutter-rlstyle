@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:rlstyles/main.dart';
-import './Tool.dart';
+import '../Tool/base.dart';
 import './View.dart';
 import './Styles.dart';
 
@@ -65,6 +65,7 @@ class ImageView extends StatelessWidget {
     if (styles == null ) return renderImage();
     return View(
       styles: styles,
+      type: 'Image',
       children: <Widget>[
         renderImage(),
         ...(children.length > 0 ? children : [])

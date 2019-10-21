@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rlstyles/ImageView.dart';
-import 'package:rlstyles/Router.dart';
-import 'package:rlstyles/Styles.dart';
-import 'package:rlstyles/TextView.dart';
-import 'package:rlstyles/View.dart';
+import 'package:rlstyles/main.dart';
 
 class Demo5 extends StatelessWidget {
 

@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:rlstyles/Router.dart';
-import 'package:rlstyles/Styles.dart';
-import 'package:rlstyles/View.dart';
 import 'package:rlstyles/main.dart';
 
 class Demo7 extends StatefulWidget {

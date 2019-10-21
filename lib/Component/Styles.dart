@@ -72,7 +72,8 @@ class Styles extends Diagnosticable {
       this.backgroundSize,
       this.margin,
       this.padding,
-      this.elevation
+      this.elevation,
+      this.zIndex = 1
   });
   final String display;
   final dynamic color;
@@ -143,6 +144,7 @@ class Styles extends Diagnosticable {
   final double margin;
   final double padding;
   final double elevation;
+  final int zIndex;
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
@@ -157,6 +159,7 @@ class Styles extends Diagnosticable {
     properties.add(DiagnosticsProperty<String>('justifyContent',justifyContent));
     properties.add(DiagnosticsProperty<String>('alignItems',alignItems));
     properties.add(DiagnosticsProperty<int>('flex',flex));
+    properties.add(DiagnosticsProperty<int>('zIndex',zIndex));
     properties.add(DiagnosticsProperty<String>('flexWrap',flexWrap));
 
     // box-size

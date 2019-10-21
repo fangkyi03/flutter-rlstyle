@@ -1,10 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rlstyles/View.dart';
-import './ContainerView.dart';
+import './View.dart';
 import './HexColor.dart';
-import './Tool.dart';
+import '../Tool/base.dart';
 import './Styles.dart';
 
 class TextView extends StatelessWidget {
@@ -146,6 +145,7 @@ class TextView extends StatelessWidget {
           styles: styles,
           className: className,
           onClick: onClick,
+          type: 'Text',
           children:[ renderText()],
       );
     }else {

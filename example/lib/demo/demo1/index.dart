@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rlstyles/Router.dart';
-import 'package:rlstyles/Styles.dart';
-import 'package:rlstyles/View.dart';
+import 'package:rlstyles/main.dart';
 class Demo1 extends StatelessWidget {
 
   const Demo1({this.navigation});

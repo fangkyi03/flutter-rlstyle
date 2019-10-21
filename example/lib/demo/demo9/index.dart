@@ -46,6 +46,9 @@ const Map<String,Styles> styles = {
   backgroundColor: 'red',
   flexDirection: 'column',
   alignItems: 'center',
-  justifyContent: 'center'
+  justifyContent: 'center',
+  color: 'white',
+  fontSize: 40,
+  borderRadius: 100
 )
 };

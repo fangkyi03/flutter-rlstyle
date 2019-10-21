@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rlstyles/Styles.dart';
-import 'package:rlstyles/TextView.dart';
 
 NavigationOption navigation;
 
@@ -56,8 +54,8 @@ class NavigationOption {
   }
 }
 
-class RouterOption {
-  RouterOption(
+class StackRouterOption {
+  StackRouterOption(
     {
       this.routerName,
       this.appBar,
@@ -75,7 +73,7 @@ class RouterConfig {
     this.option
   });
   final screelBack screen;
-  final RouterOption option;
+  final StackRouterOption option;
 }
 typedef screelBack = Widget Function(NavigationOption navigationOption,Map<String,dynamic> navigationParams);
 
@@ -99,7 +97,6 @@ class Router extends StatelessWidget {
     ScreenUtil.instance = ScreenUtil(width: 750, height: 1330);
     return  MaterialApp( home: Scaffold(
       appBar: AppBar(
-        title: TextView('演示列表',styles: Styles(color: 'white',fontSize: 50)),
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -110,15 +107,10 @@ class Router extends StatelessWidget {
 }
 
 // 创建容器页面
-Widget createRouter({Map<String,RouterConfig> router,Map<String,String> option}) {
+Widget createStackRouter({Map<String,RouterConfig> router,Map<String,String> option}) {
   if (router.isNotEmpty) {
     return Router(routerData:router,optionData: option);
   }else {
     return Container(width: 0,height: 0);
   }
-}
-
-// 创建底部tab
-Widget createrBottomTaber({Map<String,String> routerConfig,Map<String,String> routerNavigationConfig}) {
-
 }
