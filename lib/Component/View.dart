@@ -408,6 +408,8 @@ class View extends StatelessWidget {
         scrollDirection: getGridScrollDirection(),
         crossAxisCount: styles.gridCount,
         children: children,
+        padding: EdgeInsets.all(0),
+        childAspectRatio: styles.gridChildAspectRatio
       )
     );
   }

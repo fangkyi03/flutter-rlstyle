@@ -19,16 +19,16 @@ class _Demo12State extends State<Demo12>  with TickerProviderStateMixin{
       styles: styles['main'],
       children: <Widget>[
         View(
-          styles: Styles(width: '100%',backgroundColor: 'red',height: 400,flexDirection: 'row',position: 'grid',gridCount: 2),
+          styles: Styles(width: '100%',backgroundColor: 'red',height: 600,position: 'grid',gridCount: 2,padding: 20),
           children: <Widget>[
             View(
-              styles: Styles(height: 200,backgroundColor: 'blue'),
+              styles: Styles(backgroundColor: 'blue'),
               children: <Widget>[
                 TextView('1')
               ],
             ),
             View(
-              styles: Styles(height: 200,backgroundColor: 'blue'),
+              styles: Styles(backgroundColor: 'blue'),
               children: <Widget>[
                 TextView('2')
               ],
@@ -45,7 +45,8 @@ const Map<String,Styles> styles = {
   width: 750,
   height: 1330,
   position: 'rel',
-  backgroundColor: 'white'
+  backgroundColor: 'white',
+  paddingTop: 200
 ),
 'bk':Styles(
   width: double.infinity,
