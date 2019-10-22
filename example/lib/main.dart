@@ -1,5 +1,7 @@
 import 'package:example/demo/demo1/index.dart';
 import 'package:example/demo/demo10/index.dart';
+import 'package:example/demo/demo11/index.dart';
+import 'package:example/demo/demo12/index.dart';
 import 'package:example/demo/demo2/index.dart';
 import 'package:example/demo/demo3/index.dart';
 import 'package:example/demo/demo4/index.dart';
@@ -79,6 +81,20 @@ final Widget app = createStackRouter(router: {
       backgroundColor: Colors.transparent,
     )
   ),
+  'demo11':RouterConfig(
+    screen: (navigation,navigationParams)=>Demo11(navigation: navigation),
+    option: StackRouterOption(
+      appBar: null,
+      backgroundColor: Colors.transparent,
+    )
+  ),
+  'demo12':RouterConfig(
+    screen: (navigation,navigationParams)=>Demo12(navigation: navigation),
+    option: StackRouterOption(
+      appBar: null,
+      backgroundColor: Colors.transparent,
+    )
+  ),
 });
 
 void main() {
@@ -101,7 +117,7 @@ class _MainState extends State<Main> {
   }
 
   renderList () {
-    List<String> data = ['颜色演示','flex布局演示','圆角','字体','滚动','登录特效','电影动画demo','裁剪曲线','flexWrap','zIndex'];
+    List<String> data = ['颜色演示','flex布局演示','圆角','字体','滚动','登录特效','电影动画demo','裁剪曲线','flexWrap','zIndex','电商demo','百分比布局'];
     return data.asMap().keys.map((index){
       String item = data[index];
       return TextView(item,styles: Styles(color: 'black',fontSize: 50),onClick: ()=>onTextDown(index + 1));

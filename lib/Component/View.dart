@@ -157,13 +157,17 @@ class View extends StatelessWidget {
 
   Widget renderTextImageChild () {
     if (type != null ) {
-      if ((type == 'Text' || type == 'Image') && children.length == 1) {
+      if (children.length == 1) {
         return children[0];
       }else {
         return renderRow();
       }
     }else {
-      return renderRow();
+      if (children.length > 0) {
+        return renderRow();
+      }else {
+        return null;
+      }
     }
   }
 
@@ -406,6 +410,15 @@ class View extends StatelessWidget {
     ScreenUtil.instance = ScreenUtil.getInstance()..init(context);
     if (styles.display != null && styles.display == 'none') {
       return Container(width: 0, height: 0);
+    }
+    if (children != null && children.length == 1) {
+      if (styles != null && styles.flexDirection == null && styles.position == null) {
+        return createContainer(children[0]);
+      } else if (styles.display == null && styles.flexDirection == null) {
+        return createContainer(children[0]);
+      } else {
+        return renderView();
+      }
     }
     return renderView();
   }

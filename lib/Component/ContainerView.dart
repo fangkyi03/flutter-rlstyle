@@ -366,6 +366,15 @@ class ContainerView extends StatelessWidget {
    if (getTypeOf(styles.height) == '%') {
       mHeight = double.parse((styles.height as String).replaceAll('%', '')) / 100;
     }
+    // return LayoutBuilder(
+    //   builder: (BuildContext context, BoxConstraints constraints) {
+    //     return Container(
+    //       width: mWidth != null ? constraints.maxWidth * mWidth : null,
+    //       height: mHeight != null ? constraints.maxHeight * mHeight : null,
+    //       child: getContainer(childView: childView ?? child),
+    //     );
+    //   },
+    // );
     return FractionallySizedBox(
       widthFactor: mWidth ?? 0.0,
       heightFactor: mHeight ?? null,
