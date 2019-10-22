@@ -393,12 +393,12 @@ class View extends StatelessWidget {
   }
 
   getGridScrollDirection () {
-    if (styles.flexDirection == null ) return Axis.horizontal;
+    if (styles.flexDirection == null ) return Axis.vertical;
     switch (styles.flexDirection) {
       case 'row':
-        return Axis.horizontal;
-      case 'column':
         return Axis.vertical;
+      case 'column':
+        return Axis.horizontal;
     }
   }
 

@@ -19,7 +19,7 @@ class _Demo12State extends State<Demo12>  with TickerProviderStateMixin{
       styles: styles['main'],
       children: <Widget>[
         View(
-          styles: Styles(width: '100%',backgroundColor: 'red',height: 400,flexDirection: 'row',position: 'grid',gridCount: 5),
+          styles: Styles(width: '100%',backgroundColor: 'red',height: 400,flexDirection: 'row',position: 'grid',gridCount: 2),
           children: <Widget>[
             View(
               styles: Styles(height: 200,backgroundColor: 'blue'),
@@ -30,7 +30,7 @@ class _Demo12State extends State<Demo12>  with TickerProviderStateMixin{
             View(
               styles: Styles(height: 200,backgroundColor: 'blue'),
               children: <Widget>[
-                TextView('1')
+                TextView('2')
               ],
             )
           ]
