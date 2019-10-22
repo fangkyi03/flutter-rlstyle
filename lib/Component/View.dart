@@ -392,6 +392,26 @@ class View extends StatelessWidget {
     );
   }
 
+  getGridScrollDirection () {
+    if (styles.flexDirection == null ) return Axis.horizontal;
+    switch (styles.flexDirection) {
+      case 'row':
+        return Axis.horizontal;
+      case 'column':
+        return Axis.vertical;
+    }
+  }
+
+  renderGrid () {
+    return createContainer(
+      GridView.count(
+        scrollDirection: getGridScrollDirection(),
+        crossAxisCount: styles.gridCount,
+        children: children,
+      )
+    );
+  }
+
   Widget renderView() {
     switch (styles != null ? styles.position : '') {
       case 'rel':
@@ -400,6 +420,8 @@ class View extends StatelessWidget {
       case 'abs':
       case 'absolute':
         return renderPositioned();
+      case 'grid':
+        return renderGrid();
       default:
         return createView();
     }

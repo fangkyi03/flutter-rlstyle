@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rlstyles/main.dart';
 
 class Demo12 extends StatefulWidget {
@@ -13,25 +14,26 @@ class _Demo12State extends State<Demo12>  with TickerProviderStateMixin{
 
   @override 
   Widget build(BuildContext context) {
+    ScreenUtil.instance = ScreenUtil(width: 750,height: 1330);
     return View(
       styles: styles['main'],
       children: <Widget>[
         View(
-          styles: Styles(
-            width: 400,
-            height: 500,
-            // flexDirection: 'row',
-            backgroundColor: 'red'
-          ),
+          styles: Styles(width: '100%',backgroundColor: 'red',height: 400,flexDirection: 'row',position: 'grid',gridCount: 5),
           children: <Widget>[
             View(
-              styles: Styles(
-                width: '10%',
-                height: 100,
-                backgroundColor: 'blue'
-              ),
+              styles: Styles(height: 200,backgroundColor: 'blue'),
+              children: <Widget>[
+                TextView('1')
+              ],
+            ),
+            View(
+              styles: Styles(height: 200,backgroundColor: 'blue'),
+              children: <Widget>[
+                TextView('1')
+              ],
             )
-          ],
+          ]
         )
       ]
     );

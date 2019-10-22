@@ -500,14 +500,6 @@ class ContainerView extends StatelessWidget {
 
   Widget renderElevation ({Widget childView}) {
     return childView;
-    if (styles.elevation != null) {
-      return Material(
-        elevation: styles.elevation,
-        child: childView,
-      );
-    }else {
-      return childView;
-    }
   }
 
   Widget renderClipBorderRadius () {

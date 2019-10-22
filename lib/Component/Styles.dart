@@ -73,7 +73,11 @@ class Styles extends Diagnosticable {
       this.margin,
       this.padding,
       this.elevation,
-      this.zIndex = 1
+      this.zIndex = 1,
+      this.gridCount,
+      this.gridChildAspectRatio,
+      this.gridCrossAxisSpacing,
+      this.gridMainAxisSpacing
   });
   final String display;
   final dynamic color;
@@ -145,6 +149,11 @@ class Styles extends Diagnosticable {
   final double padding;
   final double elevation;
   final int zIndex;
+  final int gridCount;
+  final double gridMainAxisSpacing;
+  final double gridCrossAxisSpacing;
+  final double gridChildAspectRatio;
+
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
@@ -239,6 +248,12 @@ class Styles extends Diagnosticable {
     properties.add(DiagnosticsProperty<String>('overflow',overflow));
     properties.add(DiagnosticsProperty<String>('overflowY',overflowY));
     properties.add(DiagnosticsProperty<String>('overflowX',overflowX));
+
+    // grid 
+    properties.add(DiagnosticsProperty<int>('gridCount',gridCount));
+    properties.add(DiagnosticsProperty<double>('gridChildAspectRatio',gridChildAspectRatio));
+    properties.add(DiagnosticsProperty<double>('gridMainAxisSpacing',gridMainAxisSpacing));
+    properties.add(DiagnosticsProperty<double>('gridCrossAxisSpacing',gridCrossAxisSpacing));
   }
 
   @override

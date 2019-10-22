@@ -16,7 +16,7 @@ dependencies:
 ```
 
 # 示例
-示例代码 请直接运行本地example项目 内涵9个小demo
+示例代码 请直接运行本地example项目 内涵9个小demo 增加grid案例
 
 # demo
 ```javaScript
@@ -147,7 +147,7 @@ left | double | left:10
 right | double | right:10
 top | double | top:10
 bottom | double | bottom:10
-position | String | rel,relative,abs,absolute,(rel = relative abs = absolute)
+position | String | rel,relative,abs,absolute,(rel = relative abs = absolute),grid
 
 # background
 名称 | 类型 | 参数写法
@@ -172,6 +172,14 @@ textAlign | String | start left center right justify
 overflow | String | scroll 纵向滑动
 overflowY | String | scroll 纵向滑动
 overflowX | String | scroll 横向滑动
+
+# grid
+名称 | 类型 | 参数写法
+-|-|-
+gridCount | int | 一行子元素数量
+gridMainAxisSpacing | double | 主轴上下间距
+gridCrossAxisSpacing | double | 副轴上下间距
+gridChildAspectRatio | double | 子元素比例
 
 
 # 暂不支持属性
