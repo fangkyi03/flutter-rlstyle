@@ -1,5 +1,5 @@
 name: rlstyles
-description: 使用rn的写法来开发flutter减少地狱嵌套
+description: Using the writing method of RN to develop fluent to reduce the nesting of hell
 author: fangkyi02 <469373256@qq.com>
 homepage: https://github.com/fangkyi03/rlstyle.git
 # The following defines the version and build number for your application.
@@ -12,7 +12,7 @@ homepage: https://github.com/fangkyi03/rlstyle.git
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.0+1
+version: 1.0.1
 
 environment:
   sdk: ">=2.2.2 <3.0.0"
@@ -24,7 +24,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
-  flutter_screenutil: ^0.5.3
+  flutter_screenutil: ^0.6.0
 
 dev_dependencies:
   flutter_test:
