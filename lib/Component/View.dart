@@ -155,6 +155,31 @@ class View extends StatelessWidget {
     }
   }
 
+  bool getScrollState () {
+    if (styles.overflow != null && styles.overflow == 'scroll') {
+      return true;
+    }else if (styles.overflowX != null && styles.overflowX == 'scroll') {
+      return true;
+    }else if (styles.overflowY != null && styles.overflowY == 'scroll') {
+      return true;
+    }else {
+      return false;
+    }
+  }
+
+  Axis getScrollDirection () {
+    if (styles.overflow != null && styles.overflow == 'scroll') {
+      return Axis.vertical;
+    }
+    if (styles.overflowY != null && styles.overflowY == 'scroll') {
+      return Axis.vertical;
+    }
+    if (styles.overflowX != null && styles.overflowX == 'scroll') {
+      return Axis.horizontal;
+    }
+    return Axis.vertical;
+  }
+
   Widget renderTextImageChild () {
     if (type != null ) {
       if (children.length == 1) {
@@ -164,8 +189,16 @@ class View extends StatelessWidget {
       }
     }else {
       if (children.length > 0) {
-        return renderRow();
-      }else {
+        if (getScrollState()) {
+          if (getScrollDirection() == Axis.horizontal) {
+            return renderRow();
+          }else {
+            return renderColumn();
+          }
+        }else {
+          return renderRow();
+        }
+       }else {
         return null;
       }
     }
@@ -177,8 +210,6 @@ class View extends StatelessWidget {
       return createContainer(renderRow());
     } else if (styles.flexDirection == 'column' || styles.flexDirection == 'column-reverse') {
       return createContainer(renderColumn());
-    } else if (styles.display == 'none') {
-      return Container(width: 0, height: 0);
     } else {
       return createContainer(getFlexWrapState() ? renderWrap() : renderTextImageChild());
     }
