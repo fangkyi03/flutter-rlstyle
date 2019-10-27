@@ -88,21 +88,17 @@ final Widget app = createStackRouter(router: {
       backgroundColor: Colors.transparent,
     )
   ),
-  'demo12':RouterConfig(
-    screen: (navigation,navigationParams)=>Demo12(navigation: navigation),
-    option: StackRouterOption(
-      appBar: null,
-      backgroundColor: Colors.transparent,
-    )
-  ),
+  // 'demo12':RouterConfig(
+  //   screen: (navigation,navigationParams)=>Demo12(navigation: navigation),
+  //   option: StackRouterOption(
+  //     appBar: null,
+  //     backgroundColor: Colors.transparent,
+  //   )
+  // ),
 });
 
 void main() {
-  runApp(MaterialApp(
-    home: Scaffold(
-      body: Demo12(),
-    ),
-  ));
+  runApp(app);
 }
 
 class Main extends StatefulWidget {
@@ -121,7 +117,7 @@ class _MainState extends State<Main> {
   }
 
   renderList () {
-    List<String> data = ['颜色演示','flex布局演示','圆角','字体','滚动','登录特效','电影动画demo','裁剪曲线','flexWrap','zIndex','电商demo','grid'];
+    List<String> data = ['颜色演示','flex布局演示','圆角','字体','滚动','登录特效','电影动画demo','裁剪曲线','flexWrap','zIndex'];
     return data.asMap().keys.map((index){
       String item = data[index];
       return TextView(item,styles: Styles(color: 'black',fontSize: 50),onClick: ()=>onTextDown(index + 1));
