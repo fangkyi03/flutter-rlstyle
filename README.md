@@ -5,14 +5,11 @@
 [https://www.bilibili.com/video/av71131117](https://www.bilibili.com/video/av71131117)
 
 # 使用
-翻墙原因 上传pub有问题 可以使用git方式
 添加rlStyle到您的pubspec.yaml
 ```javaScript
 dependencies:
   flutter_screenutil: ^0.5.3
-  rlstyles:
-    git:
-      url: git://github.com/fangkyi03/rlstyle.git
+  rlstyles: ^1.0.2
 ```
 
 # 示例
