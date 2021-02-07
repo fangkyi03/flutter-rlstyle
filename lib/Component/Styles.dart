@@ -1,10 +1,8 @@
 import 'package:flutter/foundation.dart';
 
-
-class Styles extends Diagnosticable {
+class Styles {
   const Styles(
-      {
-      this.display = 'block',
+      {this.display = 'block',
       this.flexDirection,
       this.backgroundColor,
       this.backgroundImage,
@@ -77,8 +75,7 @@ class Styles extends Diagnosticable {
       this.gridCount,
       this.gridChildAspectRatio,
       this.gridCrossAxisSpacing,
-      this.gridMainAxisSpacing
-  });
+      this.gridMainAxisSpacing});
   final String display;
   final dynamic color;
   final dynamic width;
@@ -153,109 +150,4 @@ class Styles extends Diagnosticable {
   final double gridMainAxisSpacing;
   final double gridCrossAxisSpacing;
   final double gridChildAspectRatio;
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..defaultDiagnosticsTreeStyle = DiagnosticsTreeStyle.whitespace
-      ..emptyBodyDescription = '<no decorations specified>';
-      
-    // flex
-    properties.add(DiagnosticsProperty<String>('display',display));
-    properties.add(DiagnosticsProperty<dynamic>('color',color));
-    properties.add(DiagnosticsProperty<String>('flexDirection',flexDirection));
-    properties.add(DiagnosticsProperty<String>('justifyContent',justifyContent));
-    properties.add(DiagnosticsProperty<String>('alignItems',alignItems));
-    properties.add(DiagnosticsProperty<int>('flex',flex));
-    properties.add(DiagnosticsProperty<int>('zIndex',zIndex));
-    properties.add(DiagnosticsProperty<String>('flexWrap',flexWrap));
-
-    // box-size
-    properties.add(DiagnosticsProperty<dynamic>('width',width));
-    properties.add(DiagnosticsProperty<dynamic>('height',height));
-    properties.add(DiagnosticsProperty<double>('maxWidth',maxWidth));
-    properties.add(DiagnosticsProperty<double>('maxHeight',maxHeight));
-    properties.add(DiagnosticsProperty<String>('boxSizing',boxSizing));
-    properties.add(DiagnosticsProperty<double>('minHeight',minHeight));
-    properties.add(DiagnosticsProperty<double>('minWidth',minWidth));
-
-    // margin - padding
-    properties.add(DiagnosticsProperty<double>('margin',margin));
-    properties.add(DiagnosticsProperty<double>('marginLeft',marginLeft));
-    properties.add(DiagnosticsProperty<double>('marginTop',marginTop));
-    properties.add(DiagnosticsProperty<double>('marginRight',marginRight));
-    properties.add(DiagnosticsProperty<double>('marginBottom',marginBottom));
-    properties.add(DiagnosticsProperty<double>('padding',padding));
-    properties.add(DiagnosticsProperty<double>('paddingLeft',paddingLeft));
-    properties.add(DiagnosticsProperty<double>('paddingTop',paddingTop));
-    properties.add(DiagnosticsProperty<double>('paddingRight',paddingRight));
-    properties.add(DiagnosticsProperty<double>('paddingBottom',paddingBottom));
-
-    //box 
-    properties.add(DiagnosticsProperty<double>('opacity',opacity));
-
-    // border
-    properties.add(DiagnosticsProperty<double>('borderRadius',borderRadius));
-    properties.add(DiagnosticsProperty<double>('borderWidth',borderWidth));
-    properties.add(DiagnosticsProperty<String>('borderStyle',borderStyle));
-    properties.add(DiagnosticsProperty<dynamic>('borderColor',borderColor));
-    properties.add(DiagnosticsProperty<dynamic>('boxShadow',boxShadow));
-    properties.add(DiagnosticsProperty<double>('elevation',elevation));
-
-    properties.add(DiagnosticsProperty<double>('borderBottomLeftRadius',borderBottomLeftRadius));
-    properties.add(DiagnosticsProperty<double>('borderBottomRightRadius',borderBottomRightRadius));
-    properties.add(DiagnosticsProperty<double>('borderTopLeftRadius',borderTopLeftRadius));
-    properties.add(DiagnosticsProperty<double>('borderTopRightRadius',borderTopRightRadius));
-
-    properties.add(DiagnosticsProperty<String>('borderLeftStyle',borderLeftStyle));
-    properties.add(DiagnosticsProperty<dynamic>('borderLeftColor',borderLeftColor));
-    properties.add(DiagnosticsProperty<double>('borderLeftWidth',borderLeftWidth));
-    properties.add(DiagnosticsProperty<String>('borderRightStyle',borderRightStyle));
-    properties.add(DiagnosticsProperty<dynamic>('borderRightColor',borderRightColor));
-    properties.add(DiagnosticsProperty<double>('borderRightWidth',borderRightWidth));
-    properties.add(DiagnosticsProperty<String>('borderTopStyle',borderTopStyle));
-    properties.add(DiagnosticsProperty<dynamic>('borderTopColor',borderTopColor));
-    properties.add(DiagnosticsProperty<double>('borderTopWidth',borderTopWidth));
-    properties.add(DiagnosticsProperty<double>('borderBottomWidth',borderBottomWidth));
-    properties.add(DiagnosticsProperty<dynamic>('borderBottomColor',borderBottomColor));
-    properties.add(DiagnosticsProperty<String>('borderBottomStyle',borderBottomStyle));
-
-    // postion 
-    properties.add(DiagnosticsProperty<double>('left',left));
-    properties.add(DiagnosticsProperty<double>('top',top));
-    properties.add(DiagnosticsProperty<double>('right',right));
-    properties.add(DiagnosticsProperty<double>('bottom',bottom));
-    properties.add(DiagnosticsProperty<String>('position',position));
-
-    // background
-    properties.add(DiagnosticsProperty<String>('backgroundImage',backgroundImage));
-    properties.add(DiagnosticsProperty<dynamic>('backgroundColor',backgroundColor));
-
-    // font
-    properties.add(DiagnosticsProperty<dynamic>('fontWeight',fontWeight));
-    properties.add(DiagnosticsProperty<String>('fontFamily',fontFamily));
-    properties.add(DiagnosticsProperty<double>('fontSize',fontSize));
-    properties.add(DiagnosticsProperty<dynamic>('lineHeight',lineHeight));
-    properties.add(DiagnosticsProperty<String>('textDecoration',textDecoration));
-    properties.add(DiagnosticsProperty<String>('textOverflow',textOverflow));
-    properties.add(DiagnosticsProperty<String>('whiteSpace',whiteSpace));
-    properties.add(DiagnosticsProperty<int>('lines',lines));
-    properties.add(DiagnosticsProperty<String>('textAlign',textAlign));
-    properties.add(DiagnosticsProperty<dynamic>('letterSpacing',letterSpacing));
-
-    // scroll
-    properties.add(DiagnosticsProperty<String>('overflow',overflow));
-    properties.add(DiagnosticsProperty<String>('overflowY',overflowY));
-    properties.add(DiagnosticsProperty<String>('overflowX',overflowX));
-
-    // grid 
-    properties.add(DiagnosticsProperty<int>('gridCount',gridCount));
-    properties.add(DiagnosticsProperty<double>('gridChildAspectRatio',gridChildAspectRatio));
-    properties.add(DiagnosticsProperty<double>('gridMainAxisSpacing',gridMainAxisSpacing));
-    properties.add(DiagnosticsProperty<double>('gridCrossAxisSpacing',gridCrossAxisSpacing));
-  }
-
-  @override
-  String toStringShort() => '$runtimeType';
 }
