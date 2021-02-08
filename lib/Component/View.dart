@@ -43,12 +43,14 @@ class View extends StatelessWidget {
   Widget renderRow(List<Widget> childrenList) {
     if (childrenList != null) {
       return Row(
+          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: getJustifyContent(mStyles),
           crossAxisAlignment: getAlignItems(mStyles),
           textDirection: getRowDirection(mStyles),
           children: childrenList);
     } else {
       return Row(
+          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: getJustifyContent(mStyles),
           crossAxisAlignment: getAlignItems(mStyles),
           textDirection: getRowDirection(mStyles),
@@ -68,6 +70,7 @@ class View extends StatelessWidget {
   Widget renderColumn(List<Widget> childrenList) {
     if (childrenList != null) {
       return Column(
+          // mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: getJustifyContent(mStyles),
           crossAxisAlignment: getAlignItems(mStyles),
           textDirection: TextDirection.ltr,
@@ -75,6 +78,7 @@ class View extends StatelessWidget {
           children: childrenList.map((e) => this.getRLChild(e)).toList());
     } else {
       return Column(
+          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: getJustifyContent(mStyles),
           crossAxisAlignment: getAlignItems(mStyles),
           textDirection: TextDirection.ltr,
@@ -91,17 +95,18 @@ class View extends StatelessWidget {
     Widget element = mStyles.flexDirection == 'row'
         ? this.renderRow(mTree)
         : this.renderColumn(mTree);
+    // return element;
     return Container(
       child: element,
-      width: double.infinity,
-      height: double.infinity,
+      // width: double.infinity,
+      // height: double.infinity,
     );
   }
 
-  List<Widget> renderChildren(List<Widget> children) {
+  Widget renderChildren(List<Widget> children) {
     List<Widget> mAbsolute = [];
     List<Widget> mTree = [];
-    List<Widget> mElement = [];
+    if (children.length == 0) return renderEmpty();
     children.forEach((element) {
       dynamic select = (element as dynamic);
       Type runtimeType = element.runtimeType;
@@ -111,15 +116,23 @@ class View extends StatelessWidget {
         mTree.add(element);
       }
     });
-    if (mTree.length > 0) {
-      mElement.add(this.renderChildreTree(mTree));
+    if (mAbsolute.length == 0) {
+      if (mTree.length > 0) {
+        return this.renderChildreTree(mTree);
+      } else {
+        return renderEmpty();
+      }
+    } else {
+      return Stack(
+        children: [
+          this.renderChildreTree(mTree),
+        ],
+      );
     }
-    mElement.addAll(mAbsolute);
-    return mElement.toList();
   }
 
   renderStack(List<Widget> children) {
-    return Stack(children: this.renderChildren(children));
+    return this.renderChildren(children);
   }
 
   renderContainer(Widget child) {

@@ -12,7 +12,7 @@ class StylesMap extends Styles {
     arr.forEach((element) {
       obj = {...obj, ...classMap[element]};
     });
-    return StylesMap.formMap(obj);
+    return obj;
   }
 
   static formMap(Map mapData) {
