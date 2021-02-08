@@ -1,9 +1,7 @@
 import 'package:example/demo/demo1/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil_init.dart';
-import 'package:rlstyles/Component/StylesMap.dart';
 import 'package:rlstyles/main.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 // final Widget bottomTab = createBottomRoutrer(router:{
 //   'home':BottomRouterConfig(
 //     screen:(navigation,navi)=>Main()
@@ -35,26 +33,6 @@ class Main extends StatefulWidget {
 }
 
 class _MainState extends State<Main> {
-  onTextDown(int index) {
-    widget.navigation.navigate(context, 'demo' + index.toString());
-  }
-
-  renderList() {
-    List<String> data = [
-      '颜色演示',
-    ];
-    return data.asMap().keys.map((index) {
-      String item = data[index];
-      return TextView(item,
-          styles: Styles(color: 'black', fontSize: 50),
-          onClick: () => onTextDown(index + 1));
-    }).toList();
-  }
-
-  renderView() {
-    return View(styles: styles['main'], children: renderList());
-  }
-
   renderMain() {
     return MaterialApp(
         home: Scaffold(
@@ -68,11 +46,18 @@ class _MainState extends State<Main> {
       ],
       styles: Styles(
           width: 100,
-          height: 44,
+          height: 80,
           backgroundColor: 'red',
           justifyContent: 'center',
+          flexDirection: 'row',
+          display: 'flex',
+          position: 'rel',
           alignItems: 'center',
-          borderRadius: 10),
+          borderRadius: 10,
+          borderStyle: 'solid',
+          borderWidth: 1.0,
+          borderColor: 'blue',
+          padding: 10.0),
     ))));
   }
 

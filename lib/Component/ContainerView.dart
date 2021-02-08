@@ -14,7 +14,8 @@ class ContainerView extends StatelessWidget {
       this.children,
       this.className,
       this.onClick,
-      this.type = 'View'})
+      this.type = 'View',
+      this.isChild})
       : super(key: key);
 
   final Styles styles;
@@ -23,6 +24,7 @@ class ContainerView extends StatelessWidget {
   final GestureTapCallback onClick;
   final String type;
   final List<Widget> children;
+  final bool isChild;
   double getBorderWidth() {
     if (styles.borderWidth != null) {
       return styles.borderWidth.toDouble();
@@ -279,7 +281,7 @@ class ContainerView extends StatelessWidget {
     final Decoration decoration = BoxDecoration(
         borderRadius: getBorderRadius(),
         color: getBackgroundColor(),
-        border: getBorder(),
+        border: isChild ? null : getBorder(),
         gradient: getGradient(),
         boxShadow: getBoxShadow());
     return decoration;

@@ -7,6 +7,7 @@ export './Component/ScrollView.dart';
 export './Component/ContainerView.dart';
 export './Component/CssRule.dart';
 export 'package:flutter_screenutil/flutter_screenutil.dart';
+export 'package:flutter_screenutil/screenutil_init.dart';
 // 工具
 export './Tool/base.dart';
 export './Component/StylesMap.dart';

@@ -26,7 +26,7 @@ class View extends StatelessWidget {
   final bool isHaveNative;
   final String type;
 
-  Widget createContainer(Widget child) {
+  Widget createContainer(Widget child, {isChild = false}) {
     return ContainerView(
       styles: styles,
       child: child,
@@ -34,6 +34,7 @@ class View extends StatelessWidget {
       className: className,
       type: type,
       children: children,
+      isChild: isChild,
     );
   }
 
@@ -217,8 +218,9 @@ class View extends StatelessWidget {
       final List<Widget> newChildren = [];
       newChildren.addAll(filterData['top']);
       if (filterData['body'].length > 0) {
-        newChildren.add(
-            createContainer(renderColumn(childrenList: filterData['body'])));
+        newChildren.add(createContainer(
+            renderColumn(childrenList: filterData['body']),
+            isChild: true));
       }
       newChildren.addAll(filterData['foot']);
       return Stack(
@@ -235,8 +237,9 @@ class View extends StatelessWidget {
       final List<Widget> newChildren = [];
       newChildren.addAll(filterData['top']);
       if (filterData['body'].length > 0) {
-        newChildren
-            .add(createContainer(renderRow(childrenList: filterData['body'])));
+        newChildren.add(createContainer(
+            renderRow(childrenList: filterData['body']),
+            isChild: true));
       }
       // id=2123修改先后顺序
       newChildren.addAll(filterData['foot']);
