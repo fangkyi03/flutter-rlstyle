@@ -8,19 +8,16 @@ import '../Tool/base.dart';
 import './Styles.dart';
 
 class View extends StatelessWidget {
-
-  const View(
-    {
-      Key key,
-      this.styles = const Styles(),
-      this.onClick,
-      this.children = const <Widget>[],
-      this.jsonData,
-      this.className,
-      this.isHaveNative = false,
-      this.type,
-    }
-  ):super( key: key);
+  const View({
+    Key key,
+    this.styles = const Styles(),
+    this.onClick,
+    this.children = const <Widget>[],
+    this.jsonData,
+    this.className,
+    this.isHaveNative = false,
+    this.type,
+  }) : super(key: key);
   final Styles styles;
   final GestureTapCallback onClick;
   final List<Widget> children;
@@ -86,10 +83,10 @@ class View extends StatelessWidget {
     if (styles.flexDirection != null) {
       if (styles.flexDirection == 'column-reverse') {
         return VerticalDirection.up;
-      }else {
+      } else {
         return VerticalDirection.down;
       }
-    }else {
+    } else {
       return VerticalDirection.down;
     }
   }
@@ -98,49 +95,45 @@ class View extends StatelessWidget {
     if (styles.flexDirection != null) {
       if (styles.flexDirection == 'row-reverse') {
         return TextDirection.rtl;
-      }else {
+      } else {
         return TextDirection.ltr;
       }
-    }else {
+    } else {
       return TextDirection.ltr;
     }
   }
 
   Widget renderColumn({List<Widget> childrenList}) {
-    if (childrenList != null ) {
+    if (childrenList != null) {
       return Column(
-        mainAxisAlignment: getJustifyContent(),
-        crossAxisAlignment: getAlignItems(),
-        textDirection: TextDirection.ltr,
-        verticalDirection:getColumnDirection(),
-        children: childrenList
-      );
-    }else {
+          mainAxisAlignment: getJustifyContent(),
+          crossAxisAlignment: getAlignItems(),
+          textDirection: TextDirection.ltr,
+          verticalDirection: getColumnDirection(),
+          children: childrenList);
+    } else {
       return Column(
-        mainAxisAlignment: getJustifyContent(),
-        crossAxisAlignment: getAlignItems(),
-        textDirection: TextDirection.ltr,
-        verticalDirection:getColumnDirection(),
-        children: children
-      );
+          mainAxisAlignment: getJustifyContent(),
+          crossAxisAlignment: getAlignItems(),
+          textDirection: TextDirection.ltr,
+          verticalDirection: getColumnDirection(),
+          children: children);
     }
   }
 
   Widget renderRow({List<Widget> childrenList}) {
     if (childrenList != null) {
       return Row(
-        mainAxisAlignment: getJustifyContent(),
-        crossAxisAlignment: getAlignItems(),
-        textDirection: getRowDirection(),
-        children: childrenList
-      );
+          mainAxisAlignment: getJustifyContent(),
+          crossAxisAlignment: getAlignItems(),
+          textDirection: getRowDirection(),
+          children: childrenList);
     } else {
       return Row(
-        mainAxisAlignment: getJustifyContent(),
-        crossAxisAlignment: getAlignItems(),
-        textDirection: getRowDirection(),
-        children: children
-      );
+          mainAxisAlignment: getJustifyContent(),
+          crossAxisAlignment: getAlignItems(),
+          textDirection: getRowDirection(),
+          children: children);
     }
   }
 
@@ -155,19 +148,19 @@ class View extends StatelessWidget {
     }
   }
 
-  bool getScrollState () {
+  bool getScrollState() {
     if (styles.overflow != null && styles.overflow == 'scroll') {
       return true;
-    }else if (styles.overflowX != null && styles.overflowX == 'scroll') {
+    } else if (styles.overflowX != null && styles.overflowX == 'scroll') {
       return true;
-    }else if (styles.overflowY != null && styles.overflowY == 'scroll') {
+    } else if (styles.overflowY != null && styles.overflowY == 'scroll') {
       return true;
-    }else {
+    } else {
       return false;
     }
   }
 
-  Axis getScrollDirection () {
+  Axis getScrollDirection() {
     if (styles.overflow != null && styles.overflow == 'scroll') {
       return Axis.vertical;
     }
@@ -180,25 +173,25 @@ class View extends StatelessWidget {
     return Axis.vertical;
   }
 
-  Widget renderTextImageChild () {
-    if (type != null ) {
+  Widget renderTextImageChild() {
+    if (type != null) {
       if (children.length == 1) {
         return children[0];
-      }else {
+      } else {
         return renderRow();
       }
-    }else {
+    } else {
       if (children.length > 0) {
         if (getScrollState()) {
           if (getScrollDirection() == Axis.horizontal) {
             return renderRow();
-          }else {
+          } else {
             return renderColumn();
           }
-        }else {
+        } else {
           return renderRow();
         }
-       }else {
+      } else {
         return null;
       }
     }
@@ -206,12 +199,15 @@ class View extends StatelessWidget {
 
   Widget createView() {
     // 因为row子无法显示 所以去除display判断
-    if (styles.flexDirection == 'row' || styles.flexDirection == 'row-reverse') {
+    if (styles.flexDirection == 'row' ||
+        styles.flexDirection == 'row-reverse') {
       return createContainer(renderRow());
-    } else if (styles.flexDirection == 'column' || styles.flexDirection == 'column-reverse') {
+    } else if (styles.flexDirection == 'column' ||
+        styles.flexDirection == 'column-reverse') {
       return createContainer(renderColumn());
     } else {
-      return createContainer(getFlexWrapState() ? renderWrap() : renderTextImageChild());
+      return createContainer(
+          getFlexWrapState() ? renderWrap() : renderTextImageChild());
     }
   }
 
@@ -221,7 +217,8 @@ class View extends StatelessWidget {
       final List<Widget> newChildren = [];
       newChildren.addAll(filterData['top']);
       if (filterData['body'].length > 0) {
-        newChildren.add(createContainer(renderColumn(childrenList: filterData['body'])));
+        newChildren.add(
+            createContainer(renderColumn(childrenList: filterData['body'])));
       }
       newChildren.addAll(filterData['foot']);
       return Stack(
@@ -238,7 +235,8 @@ class View extends StatelessWidget {
       final List<Widget> newChildren = [];
       newChildren.addAll(filterData['top']);
       if (filterData['body'].length > 0) {
-        newChildren.add(createContainer(renderRow(childrenList: filterData['body'])));
+        newChildren
+            .add(createContainer(renderRow(childrenList: filterData['body'])));
       }
       // id=2123修改先后顺序
       newChildren.addAll(filterData['foot']);
@@ -250,11 +248,13 @@ class View extends StatelessWidget {
     }
   }
 
-  widgetSort (List<Widget> list) {
-    list.sort((dynamic a,dynamic b){
+  widgetSort(List<Widget> list) {
+    list.sort((dynamic a, dynamic b) {
       try {
-        if (a.styles != null && b.styles != null ) {
-          int number = (a.styles as Styles).zIndex.compareTo((b.styles as Styles).zIndex);
+        if (a.styles != null && b.styles != null) {
+          int number = (a.styles as Styles)
+              .zIndex
+              .compareTo((b.styles as Styles).zIndex);
           switch (number) {
             case -1:
               return 1;
@@ -280,7 +280,10 @@ class View extends StatelessWidget {
     bool isHaveRelative = false;
     children.forEach((dynamic e) {
       try {
-        if (getTypeOf(e).indexOf('Positioned') != -1 || e.styles != null && (e.styles.position == 'absolute' || e.styles.position == 'abs') ) {
+        if (getTypeOf(e).indexOf('Positioned') != -1 ||
+            e.styles != null &&
+                (e.styles.position == 'absolute' ||
+                    e.styles.position == 'abs')) {
           if (isHaveRelative) {
             foot.add(e);
           } else {
@@ -306,8 +309,8 @@ class View extends StatelessWidget {
     };
   }
 
-  Axis getWrapDirection () {
-    if (styles.flexDirection != null ) {
+  Axis getWrapDirection() {
+    if (styles.flexDirection != null) {
       switch (styles.flexDirection) {
         case 'column':
           return Axis.vertical;
@@ -316,13 +319,13 @@ class View extends StatelessWidget {
         default:
           return Axis.horizontal;
       }
-    }else {
+    } else {
       return Axis.horizontal;
     }
   }
 
-  WrapAlignment getWrapAlignMent () {
-    if (styles.justifyContent != null ) {
+  WrapAlignment getWrapAlignMent() {
+    if (styles.justifyContent != null) {
       switch (styles.justifyContent) {
         case 'flex-start':
           return WrapAlignment.start;
@@ -339,13 +342,13 @@ class View extends StatelessWidget {
         default:
           return WrapAlignment.start;
       }
-    }else {
+    } else {
       return WrapAlignment.start;
     }
   }
 
-  WrapAlignment getWrapRunAlignment () {
-    if (styles.alignItems != null ) {
+  WrapAlignment getWrapRunAlignment() {
+    if (styles.alignItems != null) {
       switch (styles.alignItems) {
         case 'flex-start':
           return WrapAlignment.start;
@@ -362,12 +365,12 @@ class View extends StatelessWidget {
         default:
           return WrapAlignment.start;
       }
-    }else {
+    } else {
       return WrapAlignment.start;
     }
   }
 
-  Widget renderWrap () {
+  Widget renderWrap() {
     return Wrap(
       direction: getWrapDirection(),
       alignment: getWrapAlignMent(),
@@ -376,7 +379,7 @@ class View extends StatelessWidget {
     );
   }
 
-  Widget renderColumnRow () {
+  Widget renderColumnRow() {
     switch (styles.flexDirection) {
       case 'row':
         return renderRowStack();
@@ -387,14 +390,14 @@ class View extends StatelessWidget {
     }
   }
 
-  getFlexWrapState () {
+  getFlexWrapState() {
     return styles.flexWrap != null && styles.flexWrap == 'wrap';
   }
 
   Widget renderRelative() {
     if (getFlexWrapState()) {
       return createContainer(renderWrap());
-    }else if (styles.flexDirection == null ) {
+    } else if (styles.flexDirection == null) {
       return createContainer(Stack(children: widgetSort(children)));
     } else {
       return createContainer(renderColumnRow());
@@ -407,7 +410,7 @@ class View extends StatelessWidget {
     // if (children.length == 1) {
     //   return children[0];
     // } else {
-    //   return 
+    //   return
     // }
   }
 
@@ -418,13 +421,12 @@ class View extends StatelessWidget {
         right: styles.right != null ? getSize(size: styles.right) : null,
         bottom: styles.bottom != null ? getSize(size: styles.bottom) : null,
         width: styles.width != null ? getSize(size: styles.width) : null,
-        height: styles.height != null ? getSize(size: styles.height) : null ,
-        child:renderPositionedChild() 
-    );
+        height: styles.height != null ? getSize(size: styles.height) : null,
+        child: renderPositionedChild());
   }
 
-  getGridScrollDirection () {
-    if (styles.flexDirection == null ) return Axis.vertical;
+  getGridScrollDirection() {
+    if (styles.flexDirection == null) return Axis.vertical;
     switch (styles.flexDirection) {
       case 'row':
         return Axis.vertical;
@@ -433,16 +435,13 @@ class View extends StatelessWidget {
     }
   }
 
-  renderGrid () {
-    return createContainer(
-      GridView.count(
+  renderGrid() {
+    return createContainer(GridView.count(
         scrollDirection: getGridScrollDirection(),
         crossAxisCount: styles.gridCount,
         children: children,
         padding: EdgeInsets.all(0),
-        childAspectRatio: styles.gridChildAspectRatio
-      )
-    );
+        childAspectRatio: styles.gridChildAspectRatio));
   }
 
   Widget renderView() {
@@ -459,15 +458,16 @@ class View extends StatelessWidget {
         return createView();
     }
   }
-  
+
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.instance = ScreenUtil.getInstance()..init(context);
     if (styles.display != null && styles.display == 'none') {
       return Container(width: 0, height: 0);
     }
     if (children != null && children.length == 1) {
-      if (styles != null && styles.flexDirection == null && styles.position == null) {
+      if (styles != null &&
+          styles.flexDirection == null &&
+          styles.position == null) {
         return createContainer(children[0]);
       } else if (styles.display == null && styles.flexDirection == null) {
         return createContainer(children[0]);

@@ -7,23 +7,18 @@ import '../Tool/base.dart';
 import './Styles.dart';
 
 class TextView extends StatelessWidget {
-  const TextView(
-    this.child,
-    {
-      Key key, 
-      this.styles, 
-      this.className,
-      this.onClick
-    }
-  ) : super(key: key);
+  const TextView(this.child,
+      {Key key, this.styles, this.className, this.onClick})
+      : super(key: key);
   final Styles styles;
   final String child;
   final String className;
   final GestureTapCallback onClick;
 
   FontWeight getWeight() {
-    if (styles.fontWeight == null ) return FontWeight.normal;
-    if (getTypeOf(styles.fontWeight) == 'String' && styles.fontWeight == 'bold') {
+    if (styles.fontWeight == null) return FontWeight.normal;
+    if (getTypeOf(styles.fontWeight) == 'String' &&
+        styles.fontWeight == 'bold') {
       return FontWeight.bold;
     }
     final double mfontWeight = getSize(size: styles.fontWeight);
@@ -129,8 +124,10 @@ class TextView extends StatelessWidget {
         decoration: getTextDecoration(),
         // // height: getLineHeight(),
         color: HexColor(styles.color ?? '#FF000000'),
-        fontFamily:styles.fontFamily,
-        fontSize: styles.fontSize != null ? ScreenUtil.getInstance().setSp(styles.fontSize) : ScreenUtil.getInstance().setSp(16),
+        fontFamily: styles.fontFamily,
+        fontSize: styles.fontSize != null
+            ? ScreenUtil().setSp(styles.fontSize)
+            : ScreenUtil().setSp(16),
         fontWeight: getWeight(),
       ),
     );
@@ -138,17 +135,16 @@ class TextView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.instance = ScreenUtil.getInstance()..init(context);
     // imgCook 案例 25文本无法居中
-    if (styles != null ) {
+    if (styles != null) {
       return View(
-          styles: styles,
-          className: className,
-          onClick: onClick,
-          type: 'Text',
-          children:[ renderText()],
+        styles: styles,
+        className: className,
+        onClick: onClick,
+        type: 'Text',
+        children: [renderText()],
       );
-    }else {
+    } else {
       return Text(child);
     }
   }
@@ -156,8 +152,9 @@ class TextView extends StatelessWidget {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty<String>('className',className ,showName: true, expandableValue:true,defaultValue: null));
-    properties.add(DiagnosticsProperty<Styles>('styles',styles ,showName: true,defaultValue: null));
+    properties.add(DiagnosticsProperty<String>('className', className,
+        showName: true, expandableValue: true, defaultValue: null));
+    properties.add(DiagnosticsProperty<Styles>('styles', styles,
+        showName: true, defaultValue: null));
   }
-  
 }

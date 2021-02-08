@@ -1,9 +1,7 @@
-import 'package:flutter/foundation.dart';
-
 class Styles {
   const Styles(
-      {this.display = 'block',
-      this.flexDirection,
+      {this.display = 'display',
+      this.flexDirection = 'column',
       this.backgroundColor,
       this.backgroundImage,
       this.width,
@@ -24,7 +22,7 @@ class Styles {
       this.top,
       this.right,
       this.bottom,
-      this.position,
+      this.position = 'rel',
       this.maxHeight,
       this.maxWidth,
       this.fontSize,

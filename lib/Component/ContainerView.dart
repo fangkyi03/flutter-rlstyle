@@ -7,66 +7,69 @@ import './Styles.dart';
 import '../Tool/base.dart';
 
 class ContainerView extends StatelessWidget {
-
-  const ContainerView({
-    Key key,
-    this.styles = const Styles(),
-    this.child,
-    this.children,
-    this.className,
-    this.onClick,
-    this.type = 'View'
-  }):super(key:key);
+  const ContainerView(
+      {Key key,
+      this.styles = const Styles(),
+      this.child,
+      this.children,
+      this.className,
+      this.onClick,
+      this.type = 'View'})
+      : super(key: key);
 
   final Styles styles;
   final Widget child;
   final String className;
   final GestureTapCallback onClick;
   final String type;
-  final List<Widget> children;  
-  double getBorderWidth () {
-    if (styles.borderWidth != null ) {
+  final List<Widget> children;
+  double getBorderWidth() {
+    if (styles.borderWidth != null) {
       return styles.borderWidth.toDouble();
-    }else {
-      return getSize(size:styles.borderLeftWidth) + getSize(size:styles.borderRightWidth) ;
+    } else {
+      return getSize(size: styles.borderLeftWidth) +
+          getSize(size: styles.borderRightWidth);
     }
   }
 
-  double getMarginWidth () {
-    return getSize(size:styles.marginLeft) + getSize(size:styles.marginRight);
+  double getMarginWidth() {
+    return getSize(size: styles.marginLeft) + getSize(size: styles.marginRight);
   }
 
-  double getMarginHeight () {
-    return getSize(size:styles.marginTop) + getSize(size:styles.marginBottom);
+  double getMarginHeight() {
+    return getSize(size: styles.marginTop) + getSize(size: styles.marginBottom);
   }
 
-  double getPaddingWidth () {
-    return getSize(size:styles.paddingLeft) + getSize(size:styles.paddingRight);
+  double getPaddingWidth() {
+    return getSize(size: styles.paddingLeft) +
+        getSize(size: styles.paddingRight);
   }
 
-  double getPaddingHeight () {
-    return getSize(size:styles.paddingTop) + getSize(size:styles.paddingBottom);
+  double getPaddingHeight() {
+    return getSize(size: styles.paddingTop) +
+        getSize(size: styles.paddingBottom);
   }
 
-  double getWidth () {
+  double getWidth() {
     if (getTypeOf(styles.width) == '%') {
       return null;
-    }else {
-      return getSize(size: styles.width,defValue: 0.0);;
+    } else {
+      return getSize(size: styles.width, defValue: 0.0);
+      ;
       // final int mBorderWidth = getBorderWidth().toInt();
       // final int mMarginWidth = getMarginWidth().toInt();
       // final int mPaddingWidth = getPaddingWidth().toInt();
     }
   }
 
-  double getHeight () {
+  double getHeight() {
     if (getTypeOf(styles.height) == '%') {
       return null;
-    }else {
+    } else {
       // final int mBorderWidth = getBorderWidth().toInt();
       // final int mMarginWidth = getMarginWidth().toInt();
       // final int mPaddingWidth = getPaddingWidth().toInt();
-      return getSize(size: styles.height,defValue: 0.0);
+      return getSize(size: styles.height, defValue: 0.0);
     }
     // final int mHeight = styles.height ?? 0;
     // // final int mBorderWidth = getBorderWidth().toInt();
@@ -75,49 +78,46 @@ class ContainerView extends StatelessWidget {
     // return getSize(size:mHeight ,defValue: 0.0);
   }
 
-  double getDoubleSize ({double size = 0,double defValue = 0.0}) {
+  double getDoubleSize({double size = 0, double defValue = 0.0}) {
     if (size != null) {
-      return ScreenUtil.getInstance().setWidth(size);
+      return ScreenUtil().setWidth(size);
     } else {
       return defValue;
     }
   }
 
-
-  EdgeInsets getPadding () {
+  EdgeInsets getPadding() {
     final newPadding = EdgeInsets.only(
-      left: getSize(size:styles.paddingLeft,defValue: 0.0),
-      top:getSize(size:styles.paddingTop,defValue: 0.0),
-      right: getSize(size:styles.paddingRight,defValue: 0.0),
-      bottom: getSize(size:styles.paddingBottom,defValue: 0.0)
-    );
-    if (styles.padding != null ) {
+        left: getSize(size: styles.paddingLeft, defValue: 0.0),
+        top: getSize(size: styles.paddingTop, defValue: 0.0),
+        right: getSize(size: styles.paddingRight, defValue: 0.0),
+        bottom: getSize(size: styles.paddingBottom, defValue: 0.0));
+    if (styles.padding != null) {
       return EdgeInsets.all(styles.padding);
-    }else if (!newPadding.isNonNegative) {
+    } else if (!newPadding.isNonNegative) {
       return EdgeInsets.all(0);
-    }else {
+    } else {
       return newPadding;
     }
   }
 
-  EdgeInsets getMargin () {
+  EdgeInsets getMargin() {
     final newMargin = EdgeInsets.only(
-      left: getSize(size:styles.marginLeft,defValue: 0.0),
-      top:getSize(size:styles.marginTop,defValue: 0.0),
-      right: getSize(size:styles.marginRight,defValue: 0.0),
-      bottom: getSize(size:styles.marginBottom,defValue: 0.0)
-    );
-    if (styles.margin != null ) {
+        left: getSize(size: styles.marginLeft, defValue: 0.0),
+        top: getSize(size: styles.marginTop, defValue: 0.0),
+        right: getSize(size: styles.marginRight, defValue: 0.0),
+        bottom: getSize(size: styles.marginBottom, defValue: 0.0));
+    if (styles.margin != null) {
       return EdgeInsets.all(styles.margin);
-    }else if (!newMargin.isNonNegative) {
+    } else if (!newMargin.isNonNegative) {
       return EdgeInsets.all(0);
-    }else {
+    } else {
       return newMargin;
     }
   }
 
-  BorderStyle getBorderStyle (String style) {
-    if (style == null ) return BorderStyle.none;
+  BorderStyle getBorderStyle(String style) {
+    if (style == null) return BorderStyle.none;
     switch (style) {
       case 'solid':
         return BorderStyle.solid;
@@ -128,142 +128,164 @@ class ContainerView extends StatelessWidget {
     }
   }
 
-  Color getBorderColor () {
+  Color getBorderColor() {
     if (styles.borderColor != null) {
       return HexColor(styles.borderColor);
-    }else {
+    } else {
       return Colors.black;
     }
   }
 
-  BorderSide getLeftBorder () {
-    if (styles.borderLeftColor != null && styles.borderLeftWidth != null && styles.borderLeftStyle != null ) {
-      return BorderSide(color: HexColor(styles.borderLeftColor),style: getBorderStyle(styles.borderLeftStyle),width: getSize(size:styles.borderLeftWidth));
-    }else {
+  BorderSide getLeftBorder() {
+    if (styles.borderLeftColor != null &&
+        styles.borderLeftWidth != null &&
+        styles.borderLeftStyle != null) {
+      return BorderSide(
+          color: HexColor(styles.borderLeftColor),
+          style: getBorderStyle(styles.borderLeftStyle),
+          width: getSize(size: styles.borderLeftWidth));
+    } else {
       return BorderSide.none;
     }
   }
 
-  BorderSide getTopBorder () {
-    if (styles.borderTopWidth != null && styles.borderTopStyle != null && styles.borderTopColor != null ) {
-      return BorderSide(color: HexColor(styles.borderTopColor),style: getBorderStyle(styles.borderTopStyle),width: getSize(size: styles.borderTopWidth));
-    }else {
+  BorderSide getTopBorder() {
+    if (styles.borderTopWidth != null &&
+        styles.borderTopStyle != null &&
+        styles.borderTopColor != null) {
+      return BorderSide(
+          color: HexColor(styles.borderTopColor),
+          style: getBorderStyle(styles.borderTopStyle),
+          width: getSize(size: styles.borderTopWidth));
+    } else {
       return BorderSide.none;
     }
   }
 
-  BorderSide getRightBorder () {
-    if (styles.borderRightStyle != null && styles.borderRightWidth != null && styles.borderRightColor != null ) {
-      return BorderSide(color: HexColor(styles.borderRightColor),style: getBorderStyle(styles.borderRightStyle),width: getSize(size:styles.borderRightWidth));
-    }else { 
+  BorderSide getRightBorder() {
+    if (styles.borderRightStyle != null &&
+        styles.borderRightWidth != null &&
+        styles.borderRightColor != null) {
+      return BorderSide(
+          color: HexColor(styles.borderRightColor),
+          style: getBorderStyle(styles.borderRightStyle),
+          width: getSize(size: styles.borderRightWidth));
+    } else {
       return BorderSide.none;
     }
   }
 
-  BorderSide getBottomBorder () {
-    if (styles.borderBottomColor != null && styles.borderBottomStyle != null && styles.borderBottomWidth != null ) {
-      return BorderSide(color: HexColor(styles.borderBottomColor),style: getBorderStyle(styles.borderBottomStyle),width: getSize(size: styles.borderBottomWidth));
-    }else {
+  BorderSide getBottomBorder() {
+    if (styles.borderBottomColor != null &&
+        styles.borderBottomStyle != null &&
+        styles.borderBottomWidth != null) {
+      return BorderSide(
+          color: HexColor(styles.borderBottomColor),
+          style: getBorderStyle(styles.borderBottomStyle),
+          width: getSize(size: styles.borderBottomWidth));
+    } else {
       return BorderSide.none;
     }
   }
 
-  BoxBorder getBorder () {
-    if (styles.borderWidth != null && styles.borderColor != null && styles.borderStyle != null) {
+  BoxBorder getBorder() {
+    if (styles.borderWidth != null &&
+        styles.borderColor != null &&
+        styles.borderStyle != null) {
       return Border.all(
-        color: HexColor(styles.borderColor),
-        style: getBorderStyle(styles.borderStyle),
-        width: getSize(size: styles.borderWidth)
-      );
-    }else {
+          color: HexColor(styles.borderColor),
+          style: getBorderStyle(styles.borderStyle),
+          width: getSize(size: styles.borderWidth));
+    } else {
       return Border(
-        left: getLeftBorder(),
-        top:getTopBorder(),
-        right:getRightBorder(),
-        bottom:getBottomBorder()
-      );
+          left: getLeftBorder(),
+          top: getTopBorder(),
+          right: getRightBorder(),
+          bottom: getBottomBorder());
     }
   }
 
-  BorderRadius getBorderRadius () {
-    if (styles.borderRadius != null ) {
-      return BorderRadius.all(Radius.circular(getSize(size: styles.borderRadius)));
-    }else if (
-      styles.borderTopLeftRadius != null || styles.borderBottomLeftRadius != null || 
-      styles.borderBottomRightRadius != null || styles.borderTopRightRadius != null
-    ){
+  BorderRadius getBorderRadius() {
+    if (styles.borderRadius != null) {
+      return BorderRadius.all(
+          Radius.circular(getSize(size: styles.borderRadius)));
+    } else if (styles.borderTopLeftRadius != null ||
+        styles.borderBottomLeftRadius != null ||
+        styles.borderBottomRightRadius != null ||
+        styles.borderTopRightRadius != null) {
       return BorderRadius.only(
-        topLeft: Radius.circular(getSize(size: styles.borderTopLeftRadius)),
-        topRight: Radius.circular(getSize(size: styles.borderTopRightRadius)),
-        bottomLeft: Radius.circular(getSize(size: styles.borderBottomLeftRadius)),
-        bottomRight: Radius.circular(getSize(size: styles.borderBottomRightRadius))
-      );
-    }else {
+          topLeft: Radius.circular(getSize(size: styles.borderTopLeftRadius)),
+          topRight: Radius.circular(getSize(size: styles.borderTopRightRadius)),
+          bottomLeft:
+              Radius.circular(getSize(size: styles.borderBottomLeftRadius)),
+          bottomRight:
+              Radius.circular(getSize(size: styles.borderBottomRightRadius)));
+    } else {
       return null;
     }
   }
 
-  getBackgroundColor () {
-    if (
-      styles.backgroundColor != null && 
-      getTypeOf(styles.backgroundColor) == 'String' && 
-      (styles.backgroundColor as String).indexOf('linear-gradient') != - 1
-    ) {
+  getBackgroundColor() {
+    if (styles.backgroundColor != null &&
+        getTypeOf(styles.backgroundColor) == 'String' &&
+        (styles.backgroundColor as String).indexOf('linear-gradient') != -1) {
       return null;
-    }else if (styles.backgroundColor != null ){
+    } else if (styles.backgroundColor != null) {
       return HexColor(styles.backgroundColor);
-    }else {
+    } else {
       return null;
     }
   }
 
-  getListBoxShadow () {
+  getListBoxShadow() {
     return styles.boxShadow;
   }
 
-  BoxShadow tranStringBoxShadow (String item) {
+  BoxShadow tranStringBoxShadow(String item) {
     print(item.split(RegExp(r'(\\S+)')));
     return BoxShadow(
-      offset: Offset(0,1),
+      offset: Offset(0, 1),
     );
   }
 
-  getLisStrigBoxShadow () {
-    return (styles.boxShadow as List<String>).map((e)=>tranStringBoxShadow(e)).toList();
+  getLisStrigBoxShadow() {
+    return (styles.boxShadow as List<String>)
+        .map((e) => tranStringBoxShadow(e))
+        .toList();
   }
 
-  getBoxShadow () {
+  getBoxShadow() {
     if (styles.boxShadow != null) {
       switch (getTypeOf(styles.boxShadow)) {
         case 'List<BoxShadow>':
           return getListBoxShadow();
-        case 'List<String>':  
+        case 'List<String>':
           return getLisStrigBoxShadow();
         case 'String':
           return tranStringBoxShadow(styles.boxShadow);
       }
-     }else if (styles.elevation != null ) {
-       Color color = Colors.black.withOpacity(0.3);
+    } else if (styles.elevation != null) {
+      Color color = Colors.black.withOpacity(0.3);
       return [
-        BoxShadow(offset: Offset(0,styles.elevation),color: color,blurRadius: 10)
+        BoxShadow(
+            offset: Offset(0, styles.elevation), color: color, blurRadius: 10)
       ];
-    }else {
+    } else {
       return null;
     }
   }
 
-  Decoration getDecoration () {
-    final Decoration decoration = BoxDecoration(  
-      borderRadius: getBorderRadius(),
-      color: getBackgroundColor(),
-      border: getBorder(),
-      gradient: getGradient(),
-      boxShadow: getBoxShadow()
-    );
+  Decoration getDecoration() {
+    final Decoration decoration = BoxDecoration(
+        borderRadius: getBorderRadius(),
+        color: getBackgroundColor(),
+        border: getBorder(),
+        gradient: getGradient(),
+        boxShadow: getBoxShadow());
     return decoration;
   }
 
-  getDirection (String direction) {
+  getDirection(String direction) {
     switch (direction) {
       case 'top':
         return Alignment.bottomLeft;
@@ -272,21 +294,20 @@ class ContainerView extends StatelessWidget {
     }
   }
 
-  Gradient getGradient () {
-    if (styles.backgroundImage != null && styles.backgroundImage.indexOf('linear-gradient') != -1) {
+  Gradient getGradient() {
+    if (styles.backgroundImage != null &&
+        styles.backgroundImage.indexOf('linear-gradient') != -1) {
       return HexColor.getLineGradient(styles.backgroundImage);
-    }else if (
-      styles.backgroundColor != null && 
-      getTypeOf(styles.backgroundColor) == 'String' && 
-      (styles.backgroundColor as String ).indexOf('linear-gradient') != -1
-    ){
+    } else if (styles.backgroundColor != null &&
+        getTypeOf(styles.backgroundColor) == 'String' &&
+        (styles.backgroundColor as String).indexOf('linear-gradient') != -1) {
       return HexColor.getLineGradient(styles.backgroundColor);
-    }else {
+    } else {
       return null;
     }
   }
 
-  Axis getScrollDirection () {
+  Axis getScrollDirection() {
     if (styles.overflow != null && styles.overflow == 'scroll') {
       return Axis.vertical;
     }
@@ -299,72 +320,76 @@ class ContainerView extends StatelessWidget {
     return Axis.vertical;
   }
 
-  bool getScrollState () {
+  bool getScrollState() {
     if (styles.overflow != null && styles.overflow == 'scroll') {
       return true;
-    }else if (styles.overflowX != null && styles.overflowX == 'scroll') {
+    } else if (styles.overflowX != null && styles.overflowX == 'scroll') {
       return true;
-    }else if (styles.overflowY != null && styles.overflowY == 'scroll') {
+    } else if (styles.overflowY != null && styles.overflowY == 'scroll') {
       return true;
-    }else {
+    } else {
       return false;
     }
   }
 
-  Widget renderChildren (child) {
+  Widget renderChildren(child) {
     if (getScrollState()) {
       return ScrollViewContainer(
-        scrollDirection:getScrollDirection(),
-        children: <Widget>[
-          child
-        ],
+        scrollDirection: getScrollDirection(),
+        children: <Widget>[child],
       );
     } else {
-      return type != null && type == 'Text' ? renderRowColumn() : child ;
+      return type != null && type == 'Text' ? renderRowColumn() : child;
     }
   }
 
-  getPercentageState () {
-    if (getTypeOf(styles.width) == '%' || getTypeOf(styles.height) == '%' ) {
+  getPercentageState() {
+    if (getTypeOf(styles.width) == '%' || getTypeOf(styles.height) == '%') {
       return true;
-    }else {
+    } else {
       return false;
     }
   }
 
-  getContaionMaxMin () {
+  getContaionMaxMin() {
     if (getPercentageState()) {
       return null;
-    }else {
+    } else {
       return BoxConstraints(
-          minWidth:  styles.minWidth != null ?   styles.minWidth.toDouble() : getWidth(),
-          minHeight:  styles.minHeight != null ?  styles.minHeight.toDouble() : getHeight(),
-          maxWidth: styles.maxWidth != null ? styles.maxWidth.toDouble() :  double.infinity,
-          maxHeight: styles.maxHeight != null ? styles.maxHeight.toDouble() : double.infinity
-        );
+          minWidth:
+              styles.minWidth != null ? styles.minWidth.toDouble() : getWidth(),
+          minHeight: styles.minHeight != null
+              ? styles.minHeight.toDouble()
+              : getHeight(),
+          maxWidth: styles.maxWidth != null
+              ? styles.maxWidth.toDouble()
+              : double.infinity,
+          maxHeight: styles.maxHeight != null
+              ? styles.maxHeight.toDouble()
+              : double.infinity);
     }
   }
 
-  getContainer ({Widget childView}) {
+  getContainer({Widget childView}) {
     return Container(
         margin: getMargin(),
         padding: getPadding(),
         width: styles.width != null ? getWidth() : null,
-        height: styles.height != null  ? getHeight() : null,
-        decoration:getDecoration(),
+        height: styles.height != null ? getHeight() : null,
+        decoration: getDecoration(),
         constraints: getContaionMaxMin(),
-        child:renderChildren(childView ?? child)
-      );
+        child: renderChildren(childView ?? child));
   }
 
-  getPercentage ({Widget childView}) {
+  getPercentage({Widget childView}) {
     double mWidth;
     double mHeight;
     if (getTypeOf(styles.width) == '%') {
       mWidth = double.parse((styles.width as String).replaceAll('%', '')) / 100;
     }
-   if (getTypeOf(styles.height) == '%') {
-      mHeight = double.parse((styles.height as String).replaceAll('%', '')) / 100;
+    if (getTypeOf(styles.height) == '%') {
+      mHeight =
+          double.parse((styles.height as String).replaceAll('%', '')) / 100;
     }
     // return LayoutBuilder(
     //   builder: (BuildContext context, BoxConstraints constraints) {
@@ -385,19 +410,22 @@ class ContainerView extends StatelessWidget {
   getHaveGesture() {
     if (onClick != null) {
       return true;
-    }else {
+    } else {
       return false;
     }
   }
 
-  Widget renderView ({Widget childView}) {
+  Widget renderView({Widget childView}) {
     if (getHaveGesture()) {
       return GestureDetector(
-        onTap:onClick,
-        child: getPercentageState() ? getPercentage(childView: childView) : getContainer(childView: childView)
-      );
-    }else {
-      return getPercentageState() ? getPercentage(childView: childView) : getContainer(childView: childView);
+          onTap: onClick,
+          child: getPercentageState()
+              ? getPercentage(childView: childView)
+              : getContainer(childView: childView));
+    } else {
+      return getPercentageState()
+          ? getPercentage(childView: childView)
+          : getContainer(childView: childView);
     }
   }
 
@@ -447,10 +475,10 @@ class ContainerView extends StatelessWidget {
     if (styles.flexDirection != null) {
       if (styles.flexDirection == 'column-reverse') {
         return VerticalDirection.up;
-      }else {
+      } else {
         return VerticalDirection.down;
       }
-    }else {
+    } else {
       return VerticalDirection.down;
     }
   }
@@ -459,22 +487,21 @@ class ContainerView extends StatelessWidget {
     if (styles.flexDirection != null) {
       if (styles.flexDirection == 'row-reverse') {
         return TextDirection.rtl;
-      }else {
+      } else {
         return TextDirection.ltr;
       }
-    }else {
+    } else {
       return TextDirection.ltr;
     }
   }
 
   Widget renderColumn({List<Widget> childrenList}) {
     return Column(
-      mainAxisAlignment: getJustifyContent(),
-      crossAxisAlignment: getAlignItems(),
-      textDirection: TextDirection.ltr,
-      verticalDirection:getColumnDirection(),
-      children: childrenList ?? [child]
-    );
+        mainAxisAlignment: getJustifyContent(),
+        crossAxisAlignment: getAlignItems(),
+        textDirection: TextDirection.ltr,
+        verticalDirection: getColumnDirection(),
+        children: childrenList ?? [child]);
   }
 
   Widget renderRow({List<Widget> childrenList}) {
@@ -482,46 +509,41 @@ class ContainerView extends StatelessWidget {
         mainAxisAlignment: getJustifyContent(),
         crossAxisAlignment: getAlignItems(),
         textDirection: getRowDirection(),
-        children: childrenList ?? [child]
-    );
+        children: childrenList ?? [child]);
   }
-  
-  Widget renderRowColumn () {
-    if (styles.flexDirection == null ) return child;
+
+  Widget renderRowColumn() {
+    if (styles.flexDirection == null) return child;
     switch (styles.flexDirection) {
       case 'row':
         return renderRow();
       case 'column':
         return renderColumn();
-      default: 
-        return child ;
+      default:
+        return child;
     }
   }
 
-  Widget renderElevation ({Widget childView}) {
+  Widget renderElevation({Widget childView}) {
     return childView;
   }
 
-  Widget renderClipBorderRadius () {
+  Widget renderClipBorderRadius() {
     return renderView(
-      childView: ClipRRect(
-        borderRadius: getBorderRadius(),
-        child:child
-      )
-    );
+        childView: ClipRRect(borderRadius: getBorderRadius(), child: child));
   }
 
-  Widget renderOpacity (Widget child) {
-    if (styles.opacity != null ) {
+  Widget renderOpacity(Widget child) {
+    if (styles.opacity != null) {
       return Opacity(
         opacity: styles.opacity,
         child: child,
       );
-    }else {
+    } else {
       return child;
     }
   }
-  
+
   getFlexDirection() {
     if (styles.flexDirection != null) {
       switch (styles.flexDirection) {
@@ -536,22 +558,16 @@ class ContainerView extends StatelessWidget {
   }
 
   Widget renderFlex(Widget child) {
-    if (styles.display != null && styles.display == 'flex' && styles.flex != null ) {
+    if (styles.display != null &&
+        styles.display == 'flex' &&
+        styles.flex != null) {
       return Flex(
         direction: getFlexDirection(),
-        children: <Widget>[
-          Expanded(
-              flex: styles.flex ?? 1,
-              child: child
-          )
-        ],
+        children: <Widget>[Expanded(flex: styles.flex ?? 1, child: child)],
       );
     } else if (styles.flex != null) {
-      return Expanded(
-          flex: styles.flex ?? 1,
-          child: child
-      );
-    }else {
+      return Expanded(flex: styles.flex ?? 1, child: child);
+    } else {
       return child;
     }
   }
@@ -559,7 +575,7 @@ class ContainerView extends StatelessWidget {
   renderScroll(Widget item) {
     if (getScrollState()) {
       return ScrollViewContainer(
-        scrollDirection:getScrollDirection(),
+        scrollDirection: getScrollDirection(),
         children: children,
       );
     } else {
@@ -569,11 +585,10 @@ class ContainerView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.instance = ScreenUtil.getInstance()..init(context);
     Widget child;
-    if (styles.borderRadius != null ) {
+    if (styles.borderRadius != null) {
       child = renderClipBorderRadius();
-    }else {
+    } else {
       child = renderView();
     }
     return renderOpacity(renderFlex(child));
@@ -582,7 +597,9 @@ class ContainerView extends StatelessWidget {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty<String>('className',className ,showName: true, expandableValue:true,defaultValue: null));
-    properties.add(DiagnosticsProperty<Styles>('styles',styles ,showName: true,defaultValue: null));
+    properties.add(DiagnosticsProperty<String>('className', className,
+        showName: true, expandableValue: true, defaultValue: null));
+    properties.add(DiagnosticsProperty<Styles>('styles', styles,
+        showName: true, defaultValue: null));
   }
 }
