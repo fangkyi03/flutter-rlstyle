@@ -6,77 +6,64 @@ import './View.dart';
 import './Styles.dart';
 
 class ImageView extends StatelessWidget {
-  const ImageView(
-    {
-      Key key, 
-      this.styles = const Styles(), 
-      this.url, 
+  ImageView(
+      {Key key,
+      this.styles,
+      this.url,
       this.className,
-      this.children = const []
-    }
-  ) 
-  : super(key: key);
-  final Styles styles;
+      this.children = const []}) {
+    this.mStyles = StylesMap.formMap(this.styles ?? {});
+  }
+  Map styles;
+  Styles mStyles;
   final dynamic url;
   final String className;
   final List<Widget> children;
 
-  BoxFit getImageFit () {
-    if (styles.backgroundSize != null ) {
-      String type = getTypeOf(styles.backgroundSize);
-      if (type == 'BoxFit') {
-        return styles.backgroundSize;
-      }else {
-        switch (type) {
-          case 'contain':
-            return BoxFit.contain;
-          case 'cover':
-            return BoxFit.cover;
-          case 'fill':
-            return BoxFit.fill;
-          case 'fitHeight':
-            return BoxFit.fitHeight;
-          case 'fitWidth':
-            return BoxFit.fitWidth;
-          case 'scaleDown':
-            return BoxFit.scaleDown;
-          default:
-            return BoxFit.none;
-        }
+  BoxFit getImageFit() {
+    if (mStyles.backgroundSize != null) {
+      switch (mStyles.backgroundSize) {
+        case 'contain':
+          return BoxFit.contain;
+        case 'cover':
+          return BoxFit.cover;
+        case 'fill':
+          return BoxFit.fill;
+        case 'fitHeight':
+          return BoxFit.fitHeight;
+        case 'fitWidth':
+          return BoxFit.fitWidth;
+        case 'scaleDown':
+          return BoxFit.scaleDown;
+        default:
+          return BoxFit.contain;
       }
-    }else {
-      return BoxFit.none;
+    } else {
+      return BoxFit.contain;
     }
   }
 
-  renderImage () {
-    String type = getTypeOf(url);
-    if (type == 'Image') {
-      return url;
-    }else if (type == 'String'){
-      return Image.network(url,fit: getImageFit(),);
-    }else {
-      return null;
+  renderImage() {
+    if (url != null) {
+      if (url.runtimeType.toString() == 'String' &&
+          (url as String).indexOf('http') != -1) {
+        return Image.network(
+          url,
+          fit: getImageFit(),
+        );
+      }
+    } else {
+      return Image.asset(
+        url,
+        fit: getImageFit(),
+      );
     }
   }
+
+  setStyle(Map newStyles) {}
 
   @override
   Widget build(BuildContext context) {
-    if (styles == null ) return renderImage();
-    return View(
-      styles: styles,
-      type: 'Image',
-      children: <Widget>[
-        renderImage(),
-        ...(children.length > 0 ? children : [])
-      ]
-    );
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty<String>('className', className,showName: true, expandableValue: true, defaultValue: null));
-    properties.add(DiagnosticsProperty<Styles>('styles', styles,showName: true, defaultValue: null));
+    return View(styles: styles, children: [renderImage()]);
   }
 }

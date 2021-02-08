@@ -1,4 +1,3 @@
-import 'package:example/demo/demo1/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil_init.dart';
 import 'package:rlstyles/main.dart';
@@ -10,14 +9,6 @@ import 'package:rlstyles/main.dart';
 //     bottomBar:
 //   }
 // });
-
-final Widget app = createStackRouter(router: {
-  'main': RouterConfig(
-    screen: (navigation, navigationParams) => Main(navigation: navigation),
-  ),
-  'demo1': RouterConfig(
-      screen: (navigation, navigationParams) => Demo1(navigation: navigation)),
-});
 
 void main() {
   runApp(Main());
@@ -36,29 +27,37 @@ class _MainState extends State<Main> {
   renderMain() {
     return MaterialApp(
         home: Scaffold(
-            body: Center(
-                child: View(
+            body: View(
+      styles: {
+        CssRule.display: 'flex',
+        CssRule.position: 'rel',
+        CssRule.flexDirection: 'column',
+        CssRule.height: 1000,
+        CssRule.width: 360,
+        CssRule.backgroundColor: 'blue',
+        CssRule.alignItems: 'center',
+        CssRule.justifyContent: 'center',
+        CssRule.paddingTop: 50.0,
+        CssRule.paddingBottom: 50.0,
+        CssRule.fontSize: 25.0,
+        CssRule.color: 'white',
+        CssRule.fontWeight: 'bold'
+      },
       children: [
-        TextView(
-          '测试1',
-          styles: Styles(fontSize: 15),
-        )
+        ImageView(
+          url:
+              'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.pconline.com.cn%2Fimages%2Fupload%2Fupc%2Ftx%2Fsoftbbs%2F1003%2F07%2Fc0%2F3134443_1267900790753_1024x1024soft.jpg&refer=http%3A%2F%2Fimg.pconline.com.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1615377250&t=f5e5a26b21746e1b37275f8110bc00d8',
+          styles: {
+            CssRule.width: 100,
+            CssRule.height: 100,
+            CssRule.marginBottom: 10.0,
+            CssRule.backgroundSize: 'contain'
+          },
+        ),
+        TextView('测试123123'),
+        TextView('123131312312321312')
       ],
-      styles: Styles(
-          width: 100,
-          height: 80,
-          backgroundColor: 'red',
-          justifyContent: 'center',
-          flexDirection: 'row',
-          display: 'flex',
-          position: 'rel',
-          alignItems: 'center',
-          borderRadius: 10,
-          borderStyle: 'solid',
-          borderWidth: 1.0,
-          borderColor: 'blue',
-          padding: 10.0),
-    ))));
+    )));
   }
 
   @override

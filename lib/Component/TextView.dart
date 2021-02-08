@@ -1,28 +1,29 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import './View.dart';
+import 'package:rlstyles/Component/StylesMap.dart';
 import './HexColor.dart';
 import '../Tool/base.dart';
 import './Styles.dart';
 
 class TextView extends StatelessWidget {
-  const TextView(this.child,
-      {Key key, this.styles, this.className, this.onClick})
-      : super(key: key);
-  final Styles styles;
+  TextView(this.child, {Key key, this.styles, this.className, this.onClick}) {
+    this.mStyles = StylesMap.formMap(this.styles ?? {});
+  }
+  Map<String, dynamic> styles;
+  Styles mStyles;
   final String child;
   final String className;
   final GestureTapCallback onClick;
 
   FontWeight getWeight() {
-    if (styles.fontWeight == null) return FontWeight.normal;
-    if (getTypeOf(styles.fontWeight) == 'String' &&
-        styles.fontWeight == 'bold') {
+    if (mStyles.fontWeight == null) return FontWeight.normal;
+    if (getTypeOf(mStyles.fontWeight) == 'String' &&
+        mStyles.fontWeight == 'bold') {
       return FontWeight.bold;
     }
-    final double mfontWeight = getSize(size: styles.fontWeight);
-    if (styles.fontWeight == null) {
+    final double mfontWeight = getSize(size: mStyles.fontWeight);
+    if (mStyles.fontWeight == null) {
       return FontWeight.normal;
     } else if (mfontWeight == 100.0) {
       return FontWeight.w100;
@@ -48,7 +49,7 @@ class TextView extends StatelessWidget {
   }
 
   TextOverflow getOverFlow() {
-    switch (styles.textOverflow) {
+    switch (mStyles.textOverflow) {
       case 'clip':
         return TextOverflow.clip;
       case 'ellipsis':
@@ -61,7 +62,7 @@ class TextView extends StatelessWidget {
   }
 
   bool getSoftWrap() {
-    switch (styles.whiteSpace) {
+    switch (mStyles.whiteSpace) {
       case 'pre':
         return false;
       case 'nowrap':
@@ -74,15 +75,15 @@ class TextView extends StatelessWidget {
   }
 
   double getLineHeight() {
-    if (styles.lineHeight != null) {
-      return double.parse(styles.lineHeight.replaceAll('px', ''));
+    if (mStyles.lineHeight != null) {
+      return double.parse(mStyles.lineHeight.replaceAll('px', ''));
     } else {
       return 0.0;
     }
   }
 
   TextDecoration getTextDecoration() {
-    switch (styles.textDecoration) {
+    switch (mStyles.textDecoration) {
       case 'none':
         return TextDecoration.none;
       case 'overline':
@@ -97,7 +98,7 @@ class TextView extends StatelessWidget {
   }
 
   TextAlign getTextAlign() {
-    switch (styles.textAlign) {
+    switch (mStyles.textAlign) {
       case 'start':
         return TextAlign.start;
       case 'left':
@@ -113,6 +114,11 @@ class TextView extends StatelessWidget {
     }
   }
 
+  setStyle(Map newStyles) {
+    Map obj = {...newStyles, ...styles ?? {}};
+    mStyles = StylesMap.formMap(obj ?? {});
+  }
+
   Widget renderText() {
     return Text(
       child,
@@ -120,13 +126,13 @@ class TextView extends StatelessWidget {
       softWrap: getSoftWrap(),
       textAlign: getTextAlign(),
       style: TextStyle(
-        letterSpacing: styles.letterSpacing,
+        letterSpacing: mStyles.letterSpacing,
         decoration: getTextDecoration(),
         // // height: getLineHeight(),
-        color: HexColor(styles.color ?? '#FF000000'),
-        fontFamily: styles.fontFamily,
-        fontSize: styles.fontSize != null
-            ? ScreenUtil().setSp(styles.fontSize)
+        color: HexColor(mStyles.color ?? '#FF000000'),
+        fontFamily: mStyles.fontFamily,
+        fontSize: mStyles.fontSize != null
+            ? ScreenUtil().setSp(mStyles.fontSize)
             : ScreenUtil().setSp(16),
         fontWeight: getWeight(),
       ),
@@ -135,26 +141,6 @@ class TextView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // imgCook 案例 25文本无法居中
-    if (styles != null) {
-      return View(
-        styles: styles,
-        className: className,
-        onClick: onClick,
-        type: 'Text',
-        children: [renderText()],
-      );
-    } else {
-      return Text(child);
-    }
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty<String>('className', className,
-        showName: true, expandableValue: true, defaultValue: null));
-    properties.add(DiagnosticsProperty<Styles>('styles', styles,
-        showName: true, defaultValue: null));
+    return this.renderText();
   }
 }

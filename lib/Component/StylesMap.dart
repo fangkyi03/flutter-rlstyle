@@ -17,8 +17,8 @@ class StylesMap extends Styles {
 
   static formMap(Map mapData) {
     return Styles(
-        display: mapData['display'],
-        flexDirection: mapData['flexDirection'],
+        display: mapData['display'] ?? 'flex',
+        flexDirection: mapData['flexDirection'] ?? 'column',
         color: mapData['color'],
         width: mapData['width'],
         height: mapData['height'],

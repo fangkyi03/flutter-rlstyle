@@ -1,4 +1,5 @@
 class CssRule {
+  static const flex = 'flex';
   static const height = 'height';
   static const display = 'display';
   static const color = 'color';
@@ -51,7 +52,7 @@ class CssRule {
   static const borderRightStyle = 'borderRightStyle';
   static const borderRightColor = 'borderRightColor';
   static const borderRightWidth = 'borderRightWidth';
-  static const borderTopStyle  = 'borderTopStyle';
+  static const borderTopStyle = 'borderTopStyle';
   static const borderTopColor = 'borderTopColor';
   static const borderTopWidth = 'borderTopWidth';
   static const borderBottomStyle = 'borderBottomStyle';
