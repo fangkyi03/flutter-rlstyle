@@ -17,7 +17,7 @@ class View extends StatelessWidget {
   final Styles className;
   Styles mStyles;
   View({this.children, this.styles, this.type, this.className}) {
-    mStyles = StylesMap.formMap(styles);
+    mStyles = StylesMap.formMap(styles ?? {});
   }
 
   renderEmpty() {
@@ -25,7 +25,7 @@ class View extends StatelessWidget {
   }
 
   getTypeOf(runtimeType) {
-    List<String> filterArr = ['TextView', 'ImageView'];
+    List<String> filterArr = ['TextView', 'ImageView', 'View'];
     return filterArr.indexOf(runtimeType.toString()) != -1;
   }
 
@@ -47,14 +47,14 @@ class View extends StatelessWidget {
           mainAxisAlignment: getJustifyContent(mStyles),
           crossAxisAlignment: getAlignItems(mStyles),
           textDirection: getRowDirection(mStyles),
-          children: childrenList);
+          children: childrenList.map((e) => this.getRLChild(e)).toList());
     } else {
       return Row(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: getJustifyContent(mStyles),
           crossAxisAlignment: getAlignItems(mStyles),
           textDirection: getRowDirection(mStyles),
-          children: children);
+          children: childrenList.map((e) => this.getRLChild(e)).toList());
     }
   }
 
@@ -83,7 +83,7 @@ class View extends StatelessWidget {
           crossAxisAlignment: getAlignItems(mStyles),
           textDirection: TextDirection.ltr,
           verticalDirection: getDirection(mStyles),
-          children: children);
+          children: childrenList.map((e) => this.getRLChild(e)).toList());
     }
   }
 
@@ -91,19 +91,34 @@ class View extends StatelessWidget {
     return Flex(direction: getFlexDirection(mStyles), children: [child]);
   }
 
-  Widget renderChildreTree(List<Widget> mTree) {
+  Widget renderChildreTree(List<Widget> mTree, {isContainer = false}) {
     Widget element = mStyles.flexDirection == 'row'
         ? this.renderRow(mTree)
         : this.renderColumn(mTree);
-    // return element;
-    return Container(
-      child: element,
-      // width: double.infinity,
-      // height: double.infinity,
-    );
+    return renderContainer(element);
+    // return Container(
+    //   child: element,
+    //   // width: double.infinity,
+    //   // height: double.infinity,
+    // );
   }
 
-  Widget renderChildren(List<Widget> children) {
+  setStyle(Map newStyle) {}
+
+  Widget renderAbsolute(child) {
+    if (this.getTypeOf(child)) {
+      return Positioned(
+          left: child.mStyles.left,
+          right: child.mStyles.right,
+          top: child.mStyles.top,
+          bottom: child.mStyles.bottom,
+          child: child);
+    } else {
+      return child;
+    }
+  }
+
+  Map getChildren(List<Widget> children) {
     List<Widget> mAbsolute = [];
     List<Widget> mTree = [];
     if (children.length == 0) return renderEmpty();
@@ -116,34 +131,51 @@ class View extends StatelessWidget {
         mTree.add(element);
       }
     });
-    if (mAbsolute.length == 0) {
-      if (mTree.length > 0) {
-        return this.renderChildreTree(mTree);
+    return {'mAbsolute': mAbsolute, 'mTree': mTree};
+  }
+
+  renderStack(List<Widget> children) {
+    return renderStackContainer(Stack(children: children));
+  }
+
+  renderStackContainer(Widget child) {
+    return Opacity(
+      child: Container(
+          width: mStyles.width != null ? getWidth(mStyles) : null,
+          height: mStyles.height != null ? getHeight(mStyles) : null,
+          child: child),
+      opacity: mStyles.opacity,
+    );
+  }
+
+  renderContainer(Widget child) {
+    return Opacity(
+      child: Container(
+          margin: getMargin(mStyles),
+          padding: getPadding(mStyles),
+          width: mStyles.width != null ? getWidth(mStyles) : null,
+          height: mStyles.height != null ? getHeight(mStyles) : null,
+          decoration: getDecoration(mStyles),
+          constraints: getContaionMaxMin(mStyles),
+          child: child),
+      opacity: mStyles.opacity,
+    );
+  }
+
+  renderChildrenView() {
+    Map childData = getChildren(children);
+    if (childData['mAbsolute'].length == 0) {
+      if (childData['mTree'].length > 0) {
+        return this.renderChildreTree(childData['mTree']);
       } else {
         return renderEmpty();
       }
     } else {
-      return Stack(
-        children: [
-          this.renderChildreTree(mTree),
-        ],
-      );
+      return renderStack([
+        this.renderChildreTree(childData['mTree']),
+        ...(childData['mAbsolute'].map((e) => this.renderAbsolute(e)).toList())
+      ]);
     }
-  }
-
-  renderStack(List<Widget> children) {
-    return this.renderChildren(children);
-  }
-
-  renderContainer(Widget child) {
-    return Container(
-        margin: getMargin(mStyles),
-        padding: getPadding(mStyles),
-        width: mStyles.width != null ? getWidth(mStyles) : null,
-        height: mStyles.height != null ? getHeight(mStyles) : null,
-        decoration: getDecoration(mStyles),
-        constraints: getContaionMaxMin(mStyles),
-        child: child);
   }
 
   @override
@@ -151,7 +183,7 @@ class View extends StatelessWidget {
     if (mStyles.display == 'none') {
       return this.renderEmpty();
     } else if (this.children != null && this.children.length > 0) {
-      return this.renderContainer(this.renderStack(this.children));
+      return this.renderChildrenView();
     } else {
       return this.renderContainer(null);
     }

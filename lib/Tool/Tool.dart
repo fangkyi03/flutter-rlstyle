@@ -98,23 +98,22 @@ getPercentageState(styles) {
 
 // 获取容器最大最小宽度
 getContaionMaxMin(styles) {
+  return BoxConstraints(
+      minWidth: styles.minWidth != null
+          ? styles.minWidth.toDouble()
+          : getWidth(styles),
+      minHeight: styles.minHeight != null
+          ? styles.minHeight.toDouble()
+          : getHeight(styles),
+      maxWidth: styles.maxWidth != null
+          ? styles.maxWidth.toDouble()
+          : double.infinity,
+      maxHeight: styles.maxHeight != null
+          ? styles.maxHeight.toDouble()
+          : double.infinity);
   if (getPercentageState(styles)) {
     return null;
-  } else {
-    return BoxConstraints(
-        minWidth: styles.minWidth != null
-            ? styles.minWidth.toDouble()
-            : getWidth(styles),
-        minHeight: styles.minHeight != null
-            ? styles.minHeight.toDouble()
-            : getHeight(styles),
-        maxWidth: styles.maxWidth != null
-            ? styles.maxWidth.toDouble()
-            : double.infinity,
-        maxHeight: styles.maxHeight != null
-            ? styles.maxHeight.toDouble()
-            : double.infinity);
-  }
+  } else {}
 }
 
 // 获取边框宽度
@@ -355,13 +354,12 @@ getPercentage({Widget childView, Styles styles}) {
 
 // 设置边框
 Decoration getDecoration(Styles styles) {
-  final Decoration decoration = BoxDecoration(
+  return BoxDecoration(
       borderRadius: getBorderRadius(styles),
       color: getBackgroundColor(styles),
       border: getBorder(styles),
       gradient: getGradient(styles),
       boxShadow: getBoxShadow(styles));
-  return decoration;
 }
 
 // 获取渐变色

@@ -128,7 +128,7 @@ class TextView extends StatelessWidget {
       style: TextStyle(
         letterSpacing: mStyles.letterSpacing,
         decoration: getTextDecoration(),
-        // // height: getLineHeight(),
+        // height: getLineHeight(),
         color: HexColor(mStyles.color ?? '#FF000000'),
         fontFamily: mStyles.fontFamily,
         fontSize: mStyles.fontSize != null
