@@ -123,10 +123,10 @@ class View extends StatelessWidget {
   Widget renderAbsolute(child) {
     if (this.getTypeOf(child)) {
       return Positioned(
-          left: child.mStyles.left,
-          right: child.mStyles.right,
-          top: child.mStyles.top,
-          bottom: child.mStyles.bottom,
+          left:getSize(size:child.mStyles.left),
+          right: getSize(size:child.mStyles.right),
+          top: getSize(size:child.mStyles.top),
+          bottom: getSize(size:child.mStyles.bottom),
           child: child);
     } else {
       return child;

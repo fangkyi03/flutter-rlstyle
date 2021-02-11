@@ -6,6 +6,7 @@ import './HexColor.dart';
 import '../Tool/base.dart';
 import './Styles.dart';
 
+// ignore: must_be_immutable
 class TextView extends StatelessWidget {
   TextView(this.child, {Key key, this.styles, this.className, this.onClick}) {
     this.mStyles = StylesMap.formMap(this.styles ?? {});
@@ -134,7 +135,7 @@ class TextView extends StatelessWidget {
         color: HexColor(mStyles.color ?? '#FF000000'),
         fontFamily: mStyles.fontFamily,
         fontSize: mStyles.fontSize != null
-            ? ScreenUtil().setSp(mStyles.fontSize)
+            ? ScreenUtil().setSp(getSize(size:mStyles.fontSize))
             : ScreenUtil().setSp(16),
         fontWeight: getWeight(),
       ),

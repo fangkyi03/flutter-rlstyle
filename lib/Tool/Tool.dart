@@ -143,9 +143,6 @@ getContaionMaxMin(styles) {
       maxHeight: styles.maxHeight != null
           ? styles.maxHeight.toDouble()
           : double.infinity);
-  if (getPercentageState(styles)) {
-    return null;
-  } else {}
 }
 
 // 获取边框宽度

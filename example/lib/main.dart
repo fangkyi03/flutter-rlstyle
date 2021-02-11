@@ -28,7 +28,7 @@ class _MainState extends State<Main> {
     return MaterialApp(
         home: Scaffold(
             body: View(
-                styles: {
+        styles: {
           CssRule.flexWrap: 'wrap',
           CssRule.flexDirection: 'row',
           CssRule.backgroundColor: 'red',
@@ -37,17 +37,19 @@ class _MainState extends State<Main> {
           CssRule.width: 210,
           CssRule.height: 800
         },
-                children: List.generate(10, (index) => null)
-                    .map((e) => View(styles: {
-                          CssRule.width: 100,
-                          CssRule.height: 100,
-                          CssRule.backgroundColor: 'blue',
-                          CssRule.justifyContent: 'center',
-                          CssRule.alignItems: 'center'
-                        }, children: [
-                          TextView('测试')
-                        ]))
-                    .toList())));
+        children: List.generate(10, (index) => null)
+        .map((e) => View(styles: {
+              CssRule.width: 100,
+              CssRule.height: 100,
+              CssRule.backgroundColor: 'blue',
+              CssRule.justifyContent: 'center',
+              CssRule.alignItems: 'center'
+            }, children: [
+              TextView('测试')
+            ]))
+        .toList())
+        )
+      );
   }
 
   @override
