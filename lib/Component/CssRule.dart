@@ -6,6 +6,8 @@ class CssRule {
   static const width = 'width';
   static const flexDirection = 'flexDirection';
   static const flexWrap = 'flexWrap';
+  static const flexWrapSpacing = 'flexWrapSpacing';
+  static const flexWrapRunSpacing = 'flexWrapRunSpacing';
   static const justifyContent = 'justifyContent';
   static const alignItems = 'alignItems';
   static const borderRadius = 'borderRadius';

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rlstyles/Component/StylesMap.dart';
 import 'package:rlstyles/Tool/Tool.dart';
+import 'package:rlstyles/main.dart';
 import './Styles.dart';
 
 class ViewProps {
@@ -92,10 +93,28 @@ class View extends StatelessWidget {
     return Flex(direction: getFlexDirection(mStyles), children: [child]);
   }
 
+  renderWrap(List<Widget> mChildren) {
+    return Wrap(
+      spacing: getSize(size: mStyles.flexWrapSpacing),
+      runSpacing: getSize(size: mStyles.flexWrapRunSpacing),
+      direction:
+          mStyles.flexDirection == 'column' ? Axis.vertical : Axis.horizontal,
+      crossAxisAlignment: getWrapJustifyContent(mStyles),
+      alignment: getWrapAlignItems(mStyles),
+      textDirection: getRowDirection(mStyles),
+      children: mChildren,
+    );
+  }
+
   Widget renderChildreTree(List<Widget> mTree, {isContainer = false}) {
-    Widget element = mStyles.flexDirection == 'row'
-        ? this.renderRow(mTree)
-        : this.renderColumn(mTree);
+    Widget element;
+    if (mStyles.flexWrap != null) {
+      element = renderWrap(mTree);
+    } else {
+      element = mStyles.flexDirection == 'row'
+          ? renderRow(mTree)
+          : renderColumn(mTree);
+    }
     return renderContainer(element);
   }
 

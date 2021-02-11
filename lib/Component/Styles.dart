@@ -65,6 +65,8 @@ class Styles {
       this.overflowY,
       this.transform,
       this.flexWrap,
+      this.flexWrapSpacing,
+      this.flexWrapRunSpacing,
       this.backgroundSize,
       this.margin,
       this.padding,
@@ -80,6 +82,8 @@ class Styles {
   final dynamic height;
   final String flexDirection;
   final String flexWrap;
+  final dynamic flexWrapSpacing;
+  final dynamic flexWrapRunSpacing;
   final String justifyContent;
   final String alignItems;
   final double borderRadius;

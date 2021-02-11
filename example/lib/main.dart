@@ -28,36 +28,26 @@ class _MainState extends State<Main> {
     return MaterialApp(
         home: Scaffold(
             body: View(
-      styles: {
-        CssRule.display: 'flex',
-        CssRule.position: 'rel',
-        CssRule.flexDirection: 'column',
-        CssRule.height: 1000,
-        CssRule.width: 360,
-        CssRule.backgroundColor: 'blue',
-        CssRule.alignItems: 'center',
-        CssRule.justifyContent: 'center',
-        CssRule.paddingTop: 50.0,
-        CssRule.paddingBottom: 50.0,
-        CssRule.fontSize: 25.0,
-        CssRule.color: 'white',
-        CssRule.fontWeight: 'bold'
-      },
-      children: [
-        ImageView(
-          url:
-              'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.pconline.com.cn%2Fimages%2Fupload%2Fupc%2Ftx%2Fsoftbbs%2F1003%2F07%2Fc0%2F3134443_1267900790753_1024x1024soft.jpg&refer=http%3A%2F%2Fimg.pconline.com.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1615377250&t=f5e5a26b21746e1b37275f8110bc00d8',
-          styles: {
-            CssRule.width: 100,
-            CssRule.height: 100,
-            CssRule.marginBottom: 10.0,
-            CssRule.backgroundSize: 'contain'
-          },
-        ),
-        TextView('测试123123'),
-        TextView('123131312312321312')
-      ],
-    )));
+                styles: {
+          CssRule.flexWrap: 'wrap',
+          CssRule.flexDirection: 'row',
+          CssRule.backgroundColor: 'red',
+          CssRule.flexWrapRunSpacing: 1,
+          CssRule.flexWrapSpacing: 1,
+          CssRule.width: 210,
+          CssRule.height: 800
+        },
+                children: List.generate(10, (index) => null)
+                    .map((e) => View(styles: {
+                          CssRule.width: 100,
+                          CssRule.height: 100,
+                          CssRule.backgroundColor: 'blue',
+                          CssRule.justifyContent: 'center',
+                          CssRule.alignItems: 'center'
+                        }, children: [
+                          TextView('测试')
+                        ]))
+                    .toList())));
   }
 
   @override

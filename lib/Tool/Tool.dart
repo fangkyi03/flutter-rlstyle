@@ -4,6 +4,22 @@ import 'package:rlstyles/Component/HexColor.dart';
 import 'package:rlstyles/Component/Styles.dart';
 import 'package:rlstyles/Tool/base.dart';
 
+// 获取wrap主轴方向
+WrapCrossAlignment getWrapJustifyContent(styles) {
+  if (styles.justifyContent != null) {
+    switch (styles.justifyContent) {
+      case 'flex-start':
+        return WrapCrossAlignment.start;
+      case 'center':
+        return WrapCrossAlignment.center;
+      case 'flex-end':
+        return WrapCrossAlignment.end;
+    }
+  } else {
+    return WrapCrossAlignment.start;
+  }
+}
+
 // 获取主轴方向
 MainAxisAlignment getJustifyContent(styles) {
   if (styles.justifyContent != null) {
@@ -45,6 +61,22 @@ CrossAxisAlignment getAlignItems(styles) {
     }
   } else {
     return CrossAxisAlignment.start;
+  }
+}
+
+// 获取次轴方向
+WrapAlignment getWrapAlignItems(styles) {
+  if (styles.alignItems != null) {
+    switch (styles.alignItems) {
+      case 'flex-start':
+        return WrapAlignment.start;
+      case 'center':
+        return WrapAlignment.center;
+      case 'flex-end':
+        return WrapAlignment.end;
+    }
+  } else {
+    return WrapAlignment.start;
   }
 }
 

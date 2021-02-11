@@ -23,6 +23,8 @@ class StylesMap extends Styles {
         width: mapData['width'],
         height: mapData['height'],
         flexWrap: mapData['flexWrap'],
+        flexWrapSpacing: mapData['flexWrapSpacing'] ?? 0.0,
+        flexWrapRunSpacing: mapData['flexWrapRunSpacing'] ?? 0.0,
         justifyContent: mapData['justifyContent'],
         alignItems: mapData['alignItems'],
         borderRadius: mapData['borderRadius'],
