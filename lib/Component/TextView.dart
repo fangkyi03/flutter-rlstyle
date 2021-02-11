@@ -115,8 +115,10 @@ class TextView extends StatelessWidget {
   }
 
   setStyle(Map newStyles) {
-    Map obj = {...newStyles, ...styles ?? {}};
-    mStyles = StylesMap.formMap(obj ?? {});
+    if (newStyles != null) {
+      Map obj = {...newStyles, ...styles ?? {}};
+      mStyles = StylesMap.formMap(obj ?? {});
+    }
   }
 
   Widget renderText() {

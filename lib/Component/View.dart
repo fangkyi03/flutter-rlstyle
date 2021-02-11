@@ -16,7 +16,8 @@ class View extends StatelessWidget {
   final String type;
   final Styles className;
   Styles mStyles;
-  View({this.children, this.styles, this.type, this.className}) {
+  final GestureTapCallback onClick;
+  View({this.children, this.styles, this.type, this.className, this.onClick}) {
     mStyles = StylesMap.formMap(styles ?? {});
   }
 
@@ -178,14 +179,21 @@ class View extends StatelessWidget {
     }
   }
 
+  renderGestureDetector(Widget child) {
+    return GestureDetector(
+      onTap: onClick,
+      child: child,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     if (mStyles.display == 'none') {
       return this.renderEmpty();
     } else if (this.children != null && this.children.length > 0) {
-      return this.renderChildrenView();
+      return this.renderGestureDetector(this.renderChildrenView());
     } else {
-      return this.renderContainer(null);
+      return this.renderGestureDetector(this.renderContainer(null));
     }
   }
 }
