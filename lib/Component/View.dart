@@ -97,11 +97,6 @@ class View extends StatelessWidget {
         ? this.renderRow(mTree)
         : this.renderColumn(mTree);
     return renderContainer(element);
-    // return Container(
-    //   child: element,
-    //   // width: double.infinity,
-    //   // height: double.infinity,
-    // );
   }
 
   setStyle(Map newStyle) {}
