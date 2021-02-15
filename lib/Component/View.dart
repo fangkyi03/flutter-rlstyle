@@ -38,7 +38,9 @@ class View extends StatelessWidget {
         (select.mStyles.position == 'abs' ||
             select.mStyles.position == 'absolute')) {
       return true;
-    } else {
+    } else if (runtimeType.toString().toLowerCase().indexOf('position') != -1) {
+      return true;
+    }else {
       return false;
     }
   }
