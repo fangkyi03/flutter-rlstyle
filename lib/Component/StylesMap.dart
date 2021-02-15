@@ -20,6 +20,7 @@ class StylesMap extends Styles {
         display: mapData['display'] ?? 'flex',
         flexDirection: mapData['flexDirection'] ?? 'column',
         color: mapData['color'],
+        flex:mapData['flex'],
         width: mapData['width'],
         height: mapData['height'],
         flexWrap: mapData['flexWrap'],

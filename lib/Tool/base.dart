@@ -35,7 +35,7 @@ String getTypeOf(dynamic data) {
   }
 }
 
-double getSize({dynamic size, dynamic defValue = 0.0}) {
+double getSize({dynamic size, dynamic defValue = 0.0,isTransform = true}) {
   if (size == null) return defValue;
   final type = getTypeOf(size);
   double mSize;
@@ -50,7 +50,11 @@ double getSize({dynamic size, dynamic defValue = 0.0}) {
       mSize = (size as double);
   }
   if (mSize != null) {
-    return ScreenUtil().setWidth(mSize);
+    if (isTransform) {
+      return ScreenUtil().setWidth(mSize);
+    }else {
+      return mSize;
+    }
   } else {
     return defValue;
   }

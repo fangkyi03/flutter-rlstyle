@@ -93,7 +93,11 @@ class View extends StatelessWidget {
   }
 
   Widget renderFlex(Widget child) {
-    return Flex(direction: getFlexDirection(mStyles), children: [child]);
+    if (mStyles.flex != null) {
+      return Expanded(child: child,flex: mStyles.flex);
+    }else {
+      return child;
+    }
   }
 
   renderWrap(List<Widget> mChildren) {
@@ -205,19 +209,6 @@ class View extends StatelessWidget {
 
   renderPosition(Widget child) { 
     return child;
-    if (mStyles.position == 'abs') {
-      return Positioned(
-        child: child,
-        left: getSize(size:mStyles.left,defValue: null),
-        right: getSize(size:mStyles.right,defValue: null),
-        bottom: getSize(size:mStyles.bottom,defValue: null),
-        top: getSize(size:mStyles.top,defValue: null),
-        width: mStyles.width != null ? getWidth(mStyles) : null,
-        height: mStyles.height != null ? getHeight(mStyles) : null,
-      );
-    }else {
-      return child;
-    }
   }
 
   @override
@@ -225,9 +216,9 @@ class View extends StatelessWidget {
     if (mStyles.display == 'none') {
       return this.renderEmpty();
     } else if (this.children != null && this.children.length > 0) {
-      return this.renderGestureDetector(this.renderChildrenView());
+      return this.renderFlex(renderGestureDetector(this.renderChildrenView()));
     } else {
-      return this.renderGestureDetector(this.renderContainer(null));
+      return this.renderFlex(renderGestureDetector(this.renderContainer(null)));
     }
   }
 }

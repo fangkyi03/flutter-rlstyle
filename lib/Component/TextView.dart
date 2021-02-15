@@ -135,8 +135,8 @@ class TextView extends StatelessWidget {
         color: HexColor(mStyles.color ?? '#FF000000'),
         fontFamily: mStyles.fontFamily,
         fontSize: mStyles.fontSize != null
-            ? ScreenUtil().setSp(getSize(size:mStyles.fontSize))
-            : ScreenUtil().setSp(16),
+            ? ScreenUtil().setSp(getSize(size:mStyles.fontSize,isTransform: false))
+            : ScreenUtil().setSp(getSize(size:16,isTransform: false)),
         fontWeight: getWeight(),
       ),
     );
