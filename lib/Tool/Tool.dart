@@ -210,7 +210,7 @@ EdgeInsets getPadding(styles) {
       right: getSize(size: styles.paddingRight, defValue: 0.0),
       bottom: getSize(size: styles.paddingBottom, defValue: 0.0));
   if (styles.padding != null) {
-    return EdgeInsets.all(styles.padding);
+    return EdgeInsets.all(getSize(size:styles.padding,defValue: 0.0));
   } else if (!newPadding.isNonNegative) {
     return EdgeInsets.all(0);
   } else {
