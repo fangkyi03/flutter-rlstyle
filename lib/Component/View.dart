@@ -156,6 +156,26 @@ class View extends StatelessWidget {
     return {'mAbsolute': mAbsolute, 'mTree': mTree};
   }
 
+  List<Widget> getPositionZindex(List<Widget> children) {
+    children.sort((dynamic a,dynamic b){
+      try {
+        if (a.mStyles.zIndex > b.mStyles.zIndex) {
+          return 1;
+        }else if (a.mStyles.zIndex != null && b.mStyles.zIndex == null) {
+          return 1;
+        }else if (b.mStyles.zIndex > a.mStyles.zIndex) {
+          return 1;
+        }else if (b.mStyles.zIndex != null && a.mStyles.zIndex == null) {
+          return 1;
+        }
+        return -1;
+      } catch (e) {
+        return -1;
+      }
+    });
+    return children;
+  }
+
   renderStack(List<Widget> children) {
     return renderStackContainer(Stack(children: children));
   }
@@ -195,7 +215,7 @@ class View extends StatelessWidget {
     } else {
       return renderStack([
         this.renderChildreTree(childData['mTree']),
-        ...(childData['mAbsolute'].map((e)=>this.renderAbsolute(e)).toList())
+        ...(this.getPositionZindex(childData['mAbsolute']).map((e)=>this.renderAbsolute(e)).toList()),
       ]);
     }
   }
