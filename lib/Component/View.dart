@@ -27,7 +27,7 @@ class View extends StatelessWidget {
     return Container();
   }
 
-  getTypeOf(runtimeType) {
+  bool getTypeOf(runtimeType) {
     List<String> filterArr = ['TextView', 'ImageView', 'View'];
     return filterArr.indexOf(runtimeType.toString()) != -1;
   }
@@ -75,7 +75,7 @@ class View extends StatelessWidget {
   Widget renderColumn(List<Widget> childrenList) {
     if (childrenList != null) {
       return Column(
-          // mainAxisSize: MainAxisSize.min,
+          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: getJustifyContent(mStyles),
           crossAxisAlignment: getAlignItems(mStyles),
           textDirection: TextDirection.ltr,
@@ -128,9 +128,9 @@ class View extends StatelessWidget {
   setStyle(Map newStyle) {}
   
   Widget renderAbsolute(child) {
-    if (this.getTypeOf(child)) {
+    if (this.getTypeOf(child.runtimeType)) {
       return Positioned(
-          left:getSize(size:child.mStyles.left,defValue: null),
+          left: getSize(size:child.mStyles.left,defValue: null),
           right: getSize(size:child.mStyles.right,defValue: null),
           top: getSize(size:child.mStyles.top,defValue: null),
           bottom: getSize(size:child.mStyles.bottom,defValue: null),
@@ -195,7 +195,7 @@ class View extends StatelessWidget {
     } else {
       return renderStack([
         this.renderChildreTree(childData['mTree']),
-        ...(childData['mAbsolute'].map((e) => this.renderAbsolute(e)).toList())
+        ...(childData['mAbsolute'].map((e)=>this.renderAbsolute(e)).toList())
       ]);
     }
   }
