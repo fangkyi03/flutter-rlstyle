@@ -38,7 +38,7 @@ class Styles {
       this.borderColor,
       this.borderStyle,
       this.borderWidth,
-      this.opacity,
+      this.opacity = 1.0,
       this.boxShadow,
       this.textAlign,
       this.minHeight,

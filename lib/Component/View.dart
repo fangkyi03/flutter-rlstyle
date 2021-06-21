@@ -40,7 +40,7 @@ class View extends StatelessWidget {
       return true;
     } else if (runtimeType.toString().toLowerCase().indexOf('position') != -1) {
       return true;
-    }else {
+    } else {
       return false;
     }
   }
@@ -94,8 +94,8 @@ class View extends StatelessWidget {
 
   Widget renderFlex(Widget child) {
     if (mStyles.flex != null) {
-      return Expanded(child: child,flex: mStyles.flex);
-    }else {
+      return Expanded(child: child, flex: mStyles.flex);
+    } else {
       return child;
     }
   }
@@ -126,14 +126,14 @@ class View extends StatelessWidget {
   }
 
   setStyle(Map newStyle) {}
-  
+
   Widget renderAbsolute(child) {
     if (this.getTypeOf(child.runtimeType)) {
       return Positioned(
-          left: getSize(size:child.mStyles.left,defValue: null),
-          right: getSize(size:child.mStyles.right,defValue: null),
-          top: getSize(size:child.mStyles.top,defValue: null),
-          bottom: getSize(size:child.mStyles.bottom,defValue: null),
+          left: getSize(size: child.mStyles.left, defValue: null),
+          right: getSize(size: child.mStyles.right, defValue: null),
+          top: getSize(size: child.mStyles.top, defValue: null),
+          bottom: getSize(size: child.mStyles.bottom, defValue: null),
           child: child);
     } else {
       return child;
@@ -157,15 +157,15 @@ class View extends StatelessWidget {
   }
 
   List<Widget> getPositionZindex(List<Widget> children) {
-    children.sort((dynamic a,dynamic b){
+    children.sort((dynamic a, dynamic b) {
       try {
         if (a.mStyles.zIndex > b.mStyles.zIndex) {
           return 1;
-        }else if (a.mStyles.zIndex != null && b.mStyles.zIndex == null) {
+        } else if (a.mStyles.zIndex != null && b.mStyles.zIndex == null) {
           return 1;
-        }else if (b.mStyles.zIndex > a.mStyles.zIndex) {
+        } else if (b.mStyles.zIndex > a.mStyles.zIndex) {
           return 1;
-        }else if (b.mStyles.zIndex != null && a.mStyles.zIndex == null) {
+        } else if (b.mStyles.zIndex != null && a.mStyles.zIndex == null) {
           return 1;
         }
         return -1;
@@ -180,28 +180,30 @@ class View extends StatelessWidget {
     return renderStackContainer(Stack(children: children));
   }
 
+  renderOpacity(Widget child) {
+    if (mStyles.opacity < 1 && mStyles.opacity > 0) {
+      return Opacity(child: child, opacity: mStyles.opacity);
+    } else {
+      return child;
+    }
+  }
+
   renderStackContainer(Widget child) {
-    return Opacity(
-      child: Container(
-          width: mStyles.width != null ? getWidth(mStyles) : null,
-          height: mStyles.height != null ? getHeight(mStyles) : null,
-          child: child),
-      opacity: mStyles.opacity,
-    );
+    return this.renderOpacity(Container(
+        width: mStyles.width != null ? getWidth(mStyles) : null,
+        height: mStyles.height != null ? getHeight(mStyles) : null,
+        child: child));
   }
 
   renderContainer(Widget child) {
-    return Opacity(
-      child: Container(
-          margin: getMargin(mStyles),
-          padding: getPadding(mStyles),
-          width: mStyles.width != null ? getWidth(mStyles) : null,
-          height: mStyles.height != null ? getHeight(mStyles) : null,
-          decoration: getDecoration(mStyles),
-          constraints: getContaionMaxMin(mStyles),
-          child: child),
-      opacity: mStyles.opacity,
-    );
+    return this.renderOpacity(Container(
+        margin: getMargin(mStyles),
+        padding: getPadding(mStyles),
+        width: mStyles.width != null ? getWidth(mStyles) : null,
+        height: mStyles.height != null ? getHeight(mStyles) : null,
+        decoration: getDecoration(mStyles),
+        constraints: getContaionMaxMin(mStyles),
+        child: child));
   }
 
   renderChildrenView() {
@@ -215,19 +217,26 @@ class View extends StatelessWidget {
     } else {
       return renderStack([
         this.renderChildreTree(childData['mTree']),
-        ...(this.getPositionZindex(childData['mAbsolute']).map((e)=>this.renderAbsolute(e)).toList()),
+        ...(this
+            .getPositionZindex(childData['mAbsolute'])
+            .map((e) => this.renderAbsolute(e))
+            .toList()),
       ]);
     }
   }
 
   renderGestureDetector(Widget child) {
-    return GestureDetector(
-      onTap: onClick,
-      child: child,
-    );
+    if (onClick != null) {
+      return GestureDetector(
+        onTap: onClick,
+        child: child,
+      );
+    } else {
+      return child;
+    }
   }
 
-  renderPosition(Widget child) { 
+  renderPosition(Widget child) {
     return child;
   }
 
