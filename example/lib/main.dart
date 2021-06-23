@@ -24,32 +24,42 @@ class Main extends StatefulWidget {
 }
 
 class _MainState extends State<Main> {
+  Map<String, dynamic> getStyle() {
+    return {
+      'main': {
+        CssRule.flexWrap: 'wrap',
+        CssRule.flexDirection: 'row',
+        CssRule.backgroundColor: 'red',
+        CssRule.flexWrapRunSpacing: 1,
+        CssRule.flexWrapSpacing: 1,
+        CssRule.width: 210,
+        CssRule.height: 800
+      },
+      'listItem': {
+        CssRule.width: 100,
+        CssRule.height: 100,
+        CssRule.backgroundColor: 'blue',
+        CssRule.justifyContent: 'center',
+        CssRule.alignItems: 'center'
+      }
+    };
+  }
+
+  renderListItem() {
+    return View(styles: getStyle()['listItem'], children: [TextView('测试')]);
+  }
+
+  renderList() {
+    return List.generate(10, (index) => null)
+        .map((e) => renderListItem())
+        .toList();
+  }
+
   renderMain() {
     return MaterialApp(
         home: Scaffold(
-            body: View(
-        styles: {
-          CssRule.flexWrap: 'wrap',
-          CssRule.flexDirection: 'row',
-          CssRule.backgroundColor: 'red',
-          CssRule.flexWrapRunSpacing: 1,
-          CssRule.flexWrapSpacing: 1,
-          CssRule.width: 210,
-          CssRule.height: 800
-        },
-        children: List.generate(10, (index) => null)
-        .map((e) => View(styles: {
-              CssRule.width: 100,
-              CssRule.height: 100,
-              CssRule.backgroundColor: 'blue',
-              CssRule.justifyContent: 'center',
-              CssRule.alignItems: 'center'
-            }, children: [
-              TextView('测试')
-            ]))
-        .toList())
-        )
-      );
+            body:
+                View(styles: getStyle()['main'], children: this.renderList())));
   }
 
   @override
