@@ -45,11 +45,11 @@ class _MainState extends State<Main> {
     };
   }
 
-  renderListItem() {
+  Widget renderListItem() {
     return View(styles: getStyle()['listItem'], children: [TextView('测试')]);
   }
 
-  renderList() {
+  List<Widget> renderList() {
     return List.generate(10, (index) => null)
         .map((e) => renderListItem())
         .toList();
