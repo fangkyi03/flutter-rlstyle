@@ -8,14 +8,13 @@ import './Styles.dart';
 
 // ignore: must_be_immutable
 class TextView extends StatelessWidget {
-  TextView(this.child, {Key key, this.styles, this.className, this.onClick}) {
+  TextView(this.child, {Key key, this.styles, this.className}) {
     this.mStyles = StylesMap.formMap(this.styles ?? {});
   }
   Map<String, dynamic> styles;
   Styles mStyles;
   final String child;
   final String className;
-  final GestureTapCallback onClick;
 
   FontWeight getWeight() {
     if (mStyles.fontWeight == null) return FontWeight.normal;
@@ -135,8 +134,9 @@ class TextView extends StatelessWidget {
         color: HexColor(mStyles.color ?? '#FF000000'),
         fontFamily: mStyles.fontFamily,
         fontSize: mStyles.fontSize != null
-            ? ScreenUtil().setSp(getSize(size:mStyles.fontSize,isTransform: false))
-            : ScreenUtil().setSp(getSize(size:16,isTransform: false)),
+            ? ScreenUtil()
+                .setSp(getSize(size: mStyles.fontSize, isTransform: false))
+            : ScreenUtil().setSp(getSize(size: 16, isTransform: false)),
         fontWeight: getWeight(),
       ),
     );
