@@ -203,6 +203,8 @@ class View extends StatelessWidget {
         height: mStyles.height != null ? getHeight(mStyles) : null,
         decoration: getDecoration(mStyles),
         constraints: getContaionMaxMin(mStyles),
+        transform:
+            Matrix4.translationValues(mStyles.marginLeft, mStyles.marginTop, 0),
         child: child));
   }
 
