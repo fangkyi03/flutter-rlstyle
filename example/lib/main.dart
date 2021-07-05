@@ -1,5 +1,5 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/screenutil_init.dart';
 import 'package:rlstyles/main.dart';
 // final Widget bottomTab = createBottomRoutrer(router:{
 //   'home':BottomRouterConfig(
@@ -66,7 +66,6 @@ class _MainState extends State<Main> {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: Size(360, 690),
-      allowFontScaling: false,
       builder: () => this.renderMain(),
     );
   }

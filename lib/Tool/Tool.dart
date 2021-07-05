@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/screen_util.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rlstyles/Component/HexColor.dart';
 import 'package:rlstyles/Component/Styles.dart';
 import 'package:rlstyles/Tool/base.dart';
@@ -210,7 +210,7 @@ EdgeInsets getPadding(styles) {
       right: getSize(size: styles.paddingRight, defValue: 0.0),
       bottom: getSize(size: styles.paddingBottom, defValue: 0.0));
   if (styles.padding != null) {
-    return EdgeInsets.all(getSize(size:styles.padding,defValue: 0.0));
+    return EdgeInsets.all(getSize(size: styles.padding, defValue: 0.0));
   } else if (!newPadding.isNonNegative) {
     return EdgeInsets.all(0);
   } else {
