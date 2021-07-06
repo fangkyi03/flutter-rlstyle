@@ -178,7 +178,7 @@ double getPaddingHeight(styles) {
 // 获取宽度
 double getWidth(styles) {
   if (getTypeOf(styles.width) == '%') {
-    return null;
+    return 0.0;
   } else {
     return getSize(size: styles.width, defValue: 0.0);
   }
@@ -187,7 +187,7 @@ double getWidth(styles) {
 // 获取高度
 double getHeight(styles) {
   if (getTypeOf(styles.height) == '%') {
-    return null;
+    return 0.0;
   } else {
     return getSize(size: styles.height, defValue: 0.0);
   }

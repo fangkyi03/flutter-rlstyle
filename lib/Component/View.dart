@@ -1,7 +1,10 @@
+// ignore_for_file: unrelated_type_equality_checks
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:rlstyles/Component/StylesMap.dart';
 import 'package:rlstyles/Tool/Tool.dart';
+import 'package:rlstyles/Tool/base.dart' as base;
 import 'package:rlstyles/main.dart';
 import './Styles.dart';
 
@@ -189,21 +192,53 @@ class View extends StatelessWidget {
   }
 
   renderStackContainer(Widget child) {
-    return this.renderOpacity(Container(
-        width: mStyles.width != null ? getWidth(mStyles) : null,
-        height: mStyles.height != null ? getHeight(mStyles) : null,
-        child: child));
+    return this.renderOpacity(this.renderContainer(child));
+  }
+
+  // 判断当前是否百分比布局
+  getPercentageState() {
+    var mWidth = base.getTypeOf(mStyles.width);
+    var mHeight = base.getTypeOf(mStyles.height);
+    if (mWidth != null || mHeight != null) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  // 百分比布局
+  renderPercentage({Widget child}) {
+    double mWidth;
+    double mHeight;
+    if (base.getTypeOf(mStyles.width) == '%') {
+      mWidth =
+          double.parse((mStyles.width as String).replaceAll('%', '')) / 100;
+    }
+    if (base.getTypeOf(mStyles.height) == '%') {
+      mHeight =
+          double.parse((mStyles.height as String).replaceAll('%', '')) / 100;
+    }
+    return FractionallySizedBox(
+      widthFactor: mWidth ?? null,
+      heightFactor: mHeight ?? null,
+      child: child,
+    );
   }
 
   renderContainer(Widget child) {
-    return this.renderOpacity(Container(
+    final view = Container(
         margin: getMargin(mStyles),
         padding: getPadding(mStyles),
         width: mStyles.width != null ? getWidth(mStyles) : null,
         height: mStyles.height != null ? getHeight(mStyles) : null,
         decoration: getDecoration(mStyles),
         constraints: getContaionMaxMin(mStyles),
-        child: child));
+        child: child);
+    if (getPercentageState()) {
+      return renderPercentage(child: view);
+    } else {
+      return this.renderOpacity(view);
+    }
   }
 
   renderChildrenView() {

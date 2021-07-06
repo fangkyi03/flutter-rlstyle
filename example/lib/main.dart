@@ -29,14 +29,12 @@ class _MainState extends State<Main> {
       'main': {
         CssRule.flexWrap: 'wrap',
         CssRule.flexDirection: 'row',
-        CssRule.backgroundColor: 'red',
-        CssRule.flexWrapRunSpacing: 1,
-        CssRule.flexWrapSpacing: 1,
-        CssRule.width: 210,
+        CssRule.backgroundColor: 'black',
+        CssRule.width: double.infinity,
         CssRule.height: 800
       },
       'listItem': {
-        CssRule.width: 100,
+        CssRule.width: '50%',
         CssRule.height: 100,
         CssRule.backgroundColor: 'blue',
         CssRule.justifyContent: 'center',
