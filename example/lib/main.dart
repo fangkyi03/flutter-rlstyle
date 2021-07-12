@@ -1,5 +1,6 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
+import 'package:rlstyles/Component/CssRule.dart';
 import 'package:rlstyles/main.dart';
 // final Widget bottomTab = createBottomRoutrer(router:{
 //   'home':BottomRouterConfig(
@@ -35,16 +36,27 @@ class _MainState extends State<Main> {
       },
       'listItem': {
         CssRule.width: '50%',
-        CssRule.height: 100,
+        CssRule.height: '50%',
         CssRule.backgroundColor: 'blue',
         CssRule.justifyContent: 'center',
-        CssRule.alignItems: 'center'
+        CssRule.alignItems: 'center',
+        CssRule.flexDirection: "column"
       }
     };
   }
 
   Widget renderListItem() {
-    return View(styles: getStyle()['listItem'], children: [TextView('测试')]);
+    return View(styles: getStyle()['listItem'], children: [
+      TextView('测试'),
+      View(
+        styles: {
+          CssRule.width: '30%',
+          CssRule.backgroundColor: 'red'
+          // CssRule.height: '50%',
+        },
+        children: [TextView('1')],
+      )
+    ]);
   }
 
   List<Widget> renderList() {
@@ -53,11 +65,63 @@ class _MainState extends State<Main> {
         .toList();
   }
 
+  Widget renderView() {
+    return View(styles: getStyle()['main'], children: this.renderList());
+  }
+
+  Widget renderTest() {
+    return View(styles: {
+      CssRule.width: '100%',
+      CssRule.height: 600
+    }, children: [
+      View(
+        styles: {
+          CssRule.flex: 1,
+          CssRule.backgroundColor: 'black',
+          CssRule.alignItems: 'center',
+          CssRule.justifyContent: 'center',
+          CssRule.color: 'red',
+          CssRule.height: double.infinity * 0.1
+        },
+        children: [TextView('123123')],
+      ),
+      View(styles: {CssRule.flex: 2, CssRule.backgroundColor: 'red'})
+    ]);
+  }
+
+  Widget renderDemo() {
+    return Container(
+        width: 300,
+        height: 500,
+        padding: EdgeInsets.all(0),
+        margin: EdgeInsets.all(0),
+        child: Row(
+          children: [
+            Container(
+              width: 200,
+              height: 200,
+              color: Colors.green,
+            ),
+            Expanded(
+              child: FractionallySizedBox(
+                widthFactor: 0.9,
+                heightFactor: 0.5,
+                child: Container(color: Colors.blue),
+              ),
+            ),
+            Expanded(
+              child: FractionallySizedBox(
+                widthFactor: 0.9,
+                heightFactor: 0.5,
+                child: Container(color: Colors.red),
+              ),
+            )
+          ],
+        ));
+  }
+
   renderMain() {
-    return MaterialApp(
-        home: Scaffold(
-            body:
-                View(styles: getStyle()['main'], children: this.renderList())));
+    return MaterialApp(home: Scaffold(body: renderTest()));
   }
 
   @override

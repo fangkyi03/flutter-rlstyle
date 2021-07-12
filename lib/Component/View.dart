@@ -199,7 +199,7 @@ class View extends StatelessWidget {
   getPercentageState() {
     var mWidth = base.getTypeOf(mStyles.width);
     var mHeight = base.getTypeOf(mStyles.height);
-    if (mWidth != null || mHeight != null) {
+    if (mWidth == '%' || mHeight == '%') {
       return true;
     } else {
       return false;
@@ -235,7 +235,7 @@ class View extends StatelessWidget {
         constraints: getContaionMaxMin(mStyles),
         child: child);
     if (getPercentageState()) {
-      return renderPercentage(child: view);
+      return this.renderOpacity(renderPercentage(child: view));
     } else {
       return this.renderOpacity(view);
     }
@@ -282,7 +282,8 @@ class View extends StatelessWidget {
     } else if (this.children != null && this.children.length > 0) {
       return this.renderFlex(renderGestureDetector(this.renderChildrenView()));
     } else {
-      return this.renderFlex(renderGestureDetector(this.renderContainer(null)));
+      return this.renderFlex(
+          renderGestureDetector(this.renderContainer(this.renderEmpty())));
     }
   }
 }
