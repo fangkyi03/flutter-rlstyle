@@ -13,15 +13,29 @@ class App extends HookWidget {
     return View(
       styles: {
         CssRule.backgroundColor: 'red',
-        CssRule.width: 100,
-        CssRule.height: 500
+        CssRule.width: '100%',
+        CssRule.height: 500,
+        CssRule.justifyContent: 'center',
+        CssRule.alignItems: 'center',
       },
       children: [
-        TextView(
-          '1',
+        View(
           styles: {
-            CssRule.fontSize: 50,
+            CssRule.alignItems: 'center',
+            CssRule.backgroundColor: 'blue'
           },
+          children: [
+            TextView(
+              '1232',
+              styles: {CssRule.fontSize: 26},
+            ),
+            TextView(
+              '1',
+              styles: {
+                CssRule.fontSize: 50,
+              },
+            )
+          ],
         )
       ],
     );
