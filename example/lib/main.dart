@@ -1,3 +1,4 @@
+import 'package:example/pages/threesomeWing/index.dart';
 import 'package:flutter/material.dart';
 import 'package:rlstyles/Component/CssRule.dart';
 import 'package:rlstyles/main.dart';
@@ -14,7 +15,7 @@ class App extends HookWidget {
       styles: {
         CssRule.backgroundColor: 'red',
         CssRule.width: '100%',
-        CssRule.height: 500,
+        CssRule.height: '100%',
         CssRule.justifyContent: 'center',
         CssRule.alignItems: 'center',
       },
@@ -48,7 +49,11 @@ class App extends HookWidget {
       builder: () => MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter_ScreenUtil',
-        home: Scaffold(body: SafeArea(child: renderView())),
+        initialRoute: '/',
+        routes: {
+          '/': (BuildContext context) =>
+              Scaffold(body: SafeArea(child: ThreeSomeWing())),
+        },
       ),
     );
   }

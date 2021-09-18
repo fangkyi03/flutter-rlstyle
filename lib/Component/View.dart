@@ -126,7 +126,11 @@ class View extends StatelessWidget {
           ? renderRow(mTree)
           : renderColumn(mTree);
     }
-    return renderContainer(element);
+    if (mStyles.width != null || mStyles.height != null) {
+      return renderContainer(element);
+    } else {
+      return element;
+    }
   }
 
   setStyle(Map newStyle) {}
@@ -219,11 +223,12 @@ class View extends StatelessWidget {
       mHeight =
           double.parse((mStyles.height as String).replaceAll('%', '')) / 100;
     }
-    return FractionallySizedBox(
+    return Expanded(
+        child: FractionallySizedBox(
       widthFactor: mWidth ?? null,
       heightFactor: mHeight ?? null,
       child: child,
-    );
+    ));
   }
 
   renderContainer(Widget child) {
@@ -253,8 +258,7 @@ class View extends StatelessWidget {
     } else {
       return renderStack([
         renderChildreTree(childData['mTree']),
-        ...(this
-            .getPositionZindex(childData['mAbsolute'])
+        ...(getPositionZindex(childData['mAbsolute'])
             .map((e) => renderAbsolute(e))
             .toList()),
       ]);
