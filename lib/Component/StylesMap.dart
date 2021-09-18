@@ -16,6 +16,7 @@ class StylesMap extends Styles {
   }
 
   static formMap(Map mapData) {
+    if (mapData.isEmpty) return const Styles();
     return Styles(
         display: mapData['display'] ?? 'flex',
         flexDirection: mapData['flexDirection'] ?? 'row',
@@ -88,7 +89,7 @@ class StylesMap extends Styles {
         margin: mapData['margin'],
         padding: mapData['padding'],
         elevation: mapData['elevation'],
-        zIndex: mapData['zIndex'],
+        zIndex: mapData['zIndex'] ?? 1,
         gridCount: mapData['gridCount'],
         gridMainAxisSpacing: mapData['gridMainAxisSpacing'],
         gridCrossAxisSpacing: mapData['gridCrossAxisSpacing'],

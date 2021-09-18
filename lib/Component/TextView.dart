@@ -8,13 +8,13 @@ import './Styles.dart';
 
 // ignore: must_be_immutable
 class TextView extends StatelessWidget {
-  TextView(this.child, {Key key, this.styles, this.className}) {
-    this.mStyles = StylesMap.formMap(this.styles ?? {});
+  TextView(this.child, {Key? key, this.styles = const {}, this.className}) {
+    this.mStyles = StylesMap.formMap(this.styles);
   }
   Map<String, dynamic> styles;
-  Styles mStyles;
+  Styles mStyles = Styles();
   final String child;
-  final String className;
+  final String? className;
 
   FontWeight getWeight() {
     if (mStyles.fontWeight == null) return FontWeight.normal;
@@ -115,9 +115,9 @@ class TextView extends StatelessWidget {
   }
 
   setStyle(Map newStyles) {
-    if (newStyles != null) {
-      Map obj = {...newStyles, ...styles ?? {}};
-      mStyles = StylesMap.formMap(obj ?? {});
+    if (newStyles.isNotEmpty) {
+      Map obj = {...newStyles, ...styles};
+      mStyles = StylesMap.formMap(obj);
     }
   }
 

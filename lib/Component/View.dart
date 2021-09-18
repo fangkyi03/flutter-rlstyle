@@ -8,21 +8,22 @@ import 'package:rlstyles/Tool/base.dart' as base;
 import 'package:rlstyles/main.dart';
 import './Styles.dart';
 
-class ViewProps {
-  List<Widget> children;
-  Map styles;
-  Styles mStyles;
-}
-
 // ignore: must_be_immutable
 class View extends StatelessWidget {
-  List<Widget> children;
-  Map styles;
-  final String type;
-  final Styles className;
-  Styles mStyles;
-  final GestureTapCallback onClick;
-  View({this.children, this.styles, this.type, this.className, this.onClick}) {
+  final List<Widget>? children;
+  final String? type;
+  final Styles? className;
+  final GestureTapCallback? onClick;
+  final Map? styles;
+  Styles mStyles = const Styles();
+  View(
+      {Key? key,
+      this.children,
+      this.styles,
+      this.type,
+      this.className,
+      this.onClick})
+      : super(key: key) {
     mStyles = StylesMap.formMap(styles ?? {});
   }
 
@@ -36,7 +37,7 @@ class View extends StatelessWidget {
   }
 
   getAbsType(Type runtimeType, dynamic select) {
-    if (this.getTypeOf(runtimeType) &&
+    if (getTypeOf(runtimeType) &&
         select.mStyles.position != null &&
         (select.mStyles.position == 'abs' ||
             select.mStyles.position == 'absolute')) {
@@ -55,20 +56,20 @@ class View extends StatelessWidget {
           mainAxisAlignment: getJustifyContent(mStyles),
           crossAxisAlignment: getAlignItems(mStyles),
           textDirection: getRowDirection(mStyles),
-          children: childrenList.map((e) => this.getRLChild(e)).toList());
+          children: childrenList.map((e) => getRLChild(e)).toList());
     } else {
       return Row(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: getJustifyContent(mStyles),
           crossAxisAlignment: getAlignItems(mStyles),
           textDirection: getRowDirection(mStyles),
-          children: childrenList.map((e) => this.getRLChild(e)).toList());
+          children: childrenList.map((e) => getRLChild(e)).toList());
     }
   }
 
   Widget getRLChild(Widget child) {
-    if (this.getTypeOf(child.runtimeType)) {
-      (child as dynamic).setStyle(styles);
+    if (getTypeOf(child.runtimeType)) {
+      // (child as dynamic).setStyle(styles);
       return child;
     } else {
       return child;
@@ -83,7 +84,7 @@ class View extends StatelessWidget {
           crossAxisAlignment: getAlignItems(mStyles),
           textDirection: TextDirection.ltr,
           verticalDirection: getDirection(mStyles),
-          children: childrenList.map((e) => this.getRLChild(e)).toList());
+          children: childrenList.map((e) => getRLChild(e)).toList());
     } else {
       return Column(
           mainAxisSize: MainAxisSize.min,
@@ -91,13 +92,13 @@ class View extends StatelessWidget {
           crossAxisAlignment: getAlignItems(mStyles),
           textDirection: TextDirection.ltr,
           verticalDirection: getDirection(mStyles),
-          children: childrenList.map((e) => this.getRLChild(e)).toList());
+          children: childrenList.map((e) => getRLChild(e)).toList());
     }
   }
 
   Widget renderFlex(Widget child) {
     if (mStyles.flex != null) {
-      return Expanded(child: child, flex: mStyles.flex);
+      return Expanded(child: child, flex: mStyles.flex as int);
     } else {
       return child;
     }
@@ -109,8 +110,8 @@ class View extends StatelessWidget {
       runSpacing: getSize(size: mStyles.flexWrapRunSpacing),
       direction:
           mStyles.flexDirection == 'column' ? Axis.vertical : Axis.horizontal,
-      crossAxisAlignment: getWrapJustifyContent(mStyles),
-      alignment: getWrapAlignItems(mStyles),
+      crossAxisAlignment: getWrapJustifyContent(mStyles)!,
+      alignment: getWrapAlignItems(mStyles)!,
       textDirection: getRowDirection(mStyles),
       children: mChildren,
     );
@@ -131,7 +132,7 @@ class View extends StatelessWidget {
   setStyle(Map newStyle) {}
 
   Widget renderAbsolute(child) {
-    if (this.getTypeOf(child.runtimeType)) {
+    if (getTypeOf(child.runtimeType)) {
       return Positioned(
           left: getSize(size: child.mStyles.left, defValue: null),
           right: getSize(size: child.mStyles.right, defValue: null),
@@ -150,7 +151,7 @@ class View extends StatelessWidget {
     children.forEach((element) {
       dynamic select = (element as dynamic);
       Type runtimeType = element.runtimeType;
-      if (this.getAbsType(runtimeType, select)) {
+      if (getAbsType(runtimeType, select)) {
         mAbsolute.add(element);
       } else {
         mTree.add(element);
@@ -192,7 +193,7 @@ class View extends StatelessWidget {
   }
 
   renderStackContainer(Widget child) {
-    return this.renderOpacity(this.renderContainer(child));
+    return renderOpacity(renderContainer(child));
   }
 
   // 判断当前是否百分比布局
@@ -207,9 +208,9 @@ class View extends StatelessWidget {
   }
 
   // 百分比布局
-  renderPercentage({Widget child}) {
-    double mWidth;
-    double mHeight;
+  renderPercentage({Widget? child}) {
+    double? mWidth;
+    double? mHeight;
     if (base.getTypeOf(mStyles.width) == '%') {
       mWidth =
           double.parse((mStyles.width as String).replaceAll('%', '')) / 100;
@@ -237,24 +238,24 @@ class View extends StatelessWidget {
     if (getPercentageState()) {
       return this.renderOpacity(renderPercentage(child: view));
     } else {
-      return this.renderOpacity(view);
+      return renderOpacity(view);
     }
   }
 
   renderChildrenView() {
-    Map childData = getChildren(children);
+    Map childData = getChildren(children!);
     if (childData['mAbsolute'].length == 0) {
       if (childData['mTree'].length > 0) {
-        return this.renderChildreTree(childData['mTree']);
+        return renderChildreTree(childData['mTree']);
       } else {
         return renderEmpty();
       }
     } else {
       return renderStack([
-        this.renderChildreTree(childData['mTree']),
+        renderChildreTree(childData['mTree']),
         ...(this
             .getPositionZindex(childData['mAbsolute'])
-            .map((e) => this.renderAbsolute(e))
+            .map((e) => renderAbsolute(e))
             .toList()),
       ]);
     }
@@ -278,12 +279,11 @@ class View extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (mStyles.display == 'none') {
-      return this.renderEmpty();
-    } else if (this.children != null && this.children.length > 0) {
-      return this.renderFlex(renderGestureDetector(this.renderChildrenView()));
+      return renderEmpty();
+    } else if (children != null && children!.length > 0) {
+      return renderFlex(renderGestureDetector(renderChildrenView()));
     } else {
-      return this.renderFlex(
-          renderGestureDetector(this.renderContainer(this.renderEmpty())));
+      return renderFlex(renderGestureDetector(renderContainer(Container())));
     }
   }
 }

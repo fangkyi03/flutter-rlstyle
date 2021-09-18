@@ -5,7 +5,7 @@ import 'package:rlstyles/Component/Styles.dart';
 import 'package:rlstyles/Tool/base.dart';
 
 // 获取wrap主轴方向
-WrapCrossAlignment getWrapJustifyContent(styles) {
+WrapCrossAlignment? getWrapJustifyContent(Styles styles) {
   if (styles.justifyContent != null) {
     switch (styles.justifyContent) {
       case 'flex-start':
@@ -65,7 +65,7 @@ CrossAxisAlignment getAlignItems(styles) {
 }
 
 // 获取次轴方向
-WrapAlignment getWrapAlignItems(styles) {
+WrapAlignment? getWrapAlignItems(Styles styles) {
   if (styles.alignItems != null) {
     switch (styles.alignItems) {
       case 'flex-start':
@@ -347,7 +347,7 @@ BorderRadius getBorderRadius(styles) {
         bottomRight:
             Radius.circular(getSize(size: styles.borderBottomRightRadius)));
   } else {
-    return null;
+    return BorderRadius.all(Radius.circular(0));
   }
 }
 
@@ -365,14 +365,15 @@ getBackgroundColor(styles) {
 }
 
 // 百分比宽高
-getPercentage({Widget childView, Styles styles}) {
-  double mWidth;
-  double mHeight;
-  if (getTypeOf(styles.width) == '%') {
-    mWidth = double.parse((styles.width as String).replaceAll('%', '')) / 100;
+getPercentage({Widget? childView, Styles? styles}) {
+  double? mWidth;
+  double? mHeight;
+  if (getTypeOf(styles?.width) == '%') {
+    mWidth = double.parse((styles?.width as String).replaceAll('%', '')) / 100;
   }
-  if (getTypeOf(styles.height) == '%') {
-    mHeight = double.parse((styles.height as String).replaceAll('%', '')) / 100;
+  if (getTypeOf(styles?.height) == '%') {
+    mHeight =
+        double.parse((styles?.height as String).replaceAll('%', '')) / 100;
   }
   return FractionallySizedBox(
     widthFactor: mWidth ?? 0.0,
@@ -392,7 +393,7 @@ Decoration getDecoration(Styles styles) {
 }
 
 // 获取渐变色
-Gradient getGradient(styles) {
+Gradient? getGradient(styles) {
   if (styles.backgroundImage != null &&
       styles.backgroundImage.indexOf('linear-gradient') != -1) {
     return HexColor.getLineGradient(styles.backgroundImage);

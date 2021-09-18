@@ -35,10 +35,10 @@ String getTypeOf(dynamic data) {
   }
 }
 
-double getSize({dynamic size, dynamic defValue = 0.0,isTransform = true}) {
+double getSize({dynamic size, dynamic defValue = 0.0, isTransform = true}) {
   if (size == null) return defValue;
   final type = getTypeOf(size);
-  double mSize;
+  double? mSize;
   switch (type) {
     case 'String':
       mSize = double.parse((size as String).replaceAll('px', ''));
@@ -52,7 +52,7 @@ double getSize({dynamic size, dynamic defValue = 0.0,isTransform = true}) {
   if (mSize != null) {
     if (isTransform) {
       return ScreenUtil().setWidth(mSize);
-    }else {
+    } else {
       return mSize;
     }
   } else {

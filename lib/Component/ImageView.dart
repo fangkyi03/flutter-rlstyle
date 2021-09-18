@@ -7,17 +7,17 @@ import './Styles.dart';
 
 class ImageView extends StatelessWidget {
   ImageView(
-      {Key key,
+      {Key? key,
       this.styles,
       this.url,
       this.className,
       this.children = const []}) {
     this.mStyles = StylesMap.formMap(this.styles ?? {});
   }
-  Map styles;
-  Styles mStyles;
+  Map? styles;
+  Styles mStyles = Styles();
   final dynamic url;
-  final String className;
+  final String? className;
   final List<Widget> children;
 
   BoxFit getImageFit() {
@@ -64,6 +64,6 @@ class ImageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return View(styles: styles, children: [renderImage()]);
+    return View(styles: styles!, children: [renderImage()]);
   }
 }
