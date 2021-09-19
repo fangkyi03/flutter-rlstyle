@@ -32,8 +32,6 @@ class ThreeSomeWing extends HookWidget {
         CssRule.justifyContent: 'center',
         CssRule.alignItems: 'center',
         CssRule.color: 'red',
-        CssRule.paddingRight: 50,
-        CssRule.paddingLeft: 20,
       },
       'headerRight': {
         CssRule.flexDirection: 'row',
@@ -135,7 +133,7 @@ class ThreeSomeWing extends HookWidget {
   Widget build(BuildContext context) {
     return View(
       styles: getStyle()['main'],
-      children: [renderHeader(), renderBanner()],
+      children: [renderHeader(), renderBanner(), renderBanner()],
     );
   }
 }
