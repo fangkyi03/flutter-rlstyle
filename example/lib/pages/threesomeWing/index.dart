@@ -31,7 +31,7 @@ class ThreeSomeWing extends HookWidget {
         CssRule.bottom: 0,
         CssRule.justifyContent: 'center',
         CssRule.alignItems: 'center',
-        CssRule.color: 'white',
+        CssRule.color: 'red',
         CssRule.paddingRight: 50,
         CssRule.paddingLeft: 20,
       },
@@ -42,7 +42,7 @@ class ThreeSomeWing extends HookWidget {
         CssRule.position: 'abs',
         CssRule.right: 0,
         CssRule.top: 0,
-        CssRule.bottom: 10,
+        CssRule.bottom: 0,
         CssRule.justifyContent: 'center',
         CssRule.alignItems: 'center',
         CssRule.color: 'blue',
@@ -54,7 +54,21 @@ class ThreeSomeWing extends HookWidget {
         CssRule.justifyContent: 'center',
         CssRule.alignItems: 'center',
         CssRule.fontSize: 20,
-      }
+      },
+      'body': {
+        CssRule.flexDirection: 'row',
+        CssRule.alignItems: 'center',
+        CssRule.height: 280,
+        CssRule.backgroundColor: 'blue',
+        CssRule.flexWrap: 'wrap',
+        CssRule.maxHeight: 320,
+        CssRule.overflow: 'hidden'
+      },
+      'flex': {
+        CssRule.width: 200,
+        CssRule.flexDirection: 'row',
+        CssRule.backgroundColor: 'red'
+      },
     };
   }
 
@@ -87,36 +101,41 @@ class ThreeSomeWing extends HookWidget {
     );
   }
 
+  renderBody() {
+    return View(
+        styles: getStyle()['body'],
+        children: List.generate(20, (index) {
+          return View(
+            styles: {
+              CssRule.width: 100,
+              CssRule.height: 100,
+              CssRule.justifyContent: 'center',
+              CssRule.alignItems: 'center'
+            },
+            children: [
+              TextView(index.toString()),
+            ],
+          );
+        }).toList());
+  }
+
+  renderBanner() {
+    return ImageView(
+        url:
+            'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201603%2F04%2F20160304174416_PGjvQ.jpeg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1634654816&t=df5fde0dab1401e77f95a6968e6c0a17',
+        // url: 'https://avatars2.githubusercontent.com/u/14098?s=460&v=4',
+        styles: {
+          CssRule.width: 300,
+          CssRule.height: 200,
+          CssRule.backgroundSize: 'cover'
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return View(
       styles: getStyle()['main'],
-      children: [
-        renderHeader(),
-        Container(
-          height: 50,
-          color: Colors.red,
-          child: Row(
-            children: [Text('1231')],
-          ),
-        )
-      ],
-      // children: [renderHeader()],
-    );
-    return Container(
-      // width: null,
-      // height: null,
-      color: Colors.black,
-      // decoration: BoxDecoration(color: Colors.blue),
-      child: Column(children: [
-        Container(
-          height: 50,
-          color: Colors.red,
-          child: Row(
-            children: [Text('1231')],
-          ),
-        )
-      ]),
+      children: [renderHeader(), renderBanner()],
     );
   }
 }

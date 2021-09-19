@@ -101,7 +101,11 @@ class View extends StatelessWidget {
   }
 
   Widget renderFlex(Widget child) {
-    return Expanded(child: child, flex: mStyles.flex as int);
+    if (mStyles.flex != null && mStyles.flex != 0) {
+      return Expanded(child: child, flex: mStyles.flex as int);
+    } else {
+      return child;
+    }
   }
 
   renderWrap(List<Widget> mChildren) {
@@ -143,7 +147,7 @@ class View extends StatelessWidget {
           right: getSize(size: child.mStyles.right, defValue: null),
           top: getSize(size: child.mStyles.top, defValue: null),
           bottom: getSize(size: child.mStyles.bottom, defValue: null),
-          child: renderContainerStyle(child, child.mStyles));
+          child: renderContainer(child, child.mStyles));
     } else {
       return child;
     }
@@ -152,7 +156,7 @@ class View extends StatelessWidget {
   Map getChildren(List<Widget> children) {
     List<Widget> mAbsolute = [];
     List<Widget> mTree = [];
-    if (children.length == 0) return renderEmpty();
+    if (children.length == 0) return {'mAbsolute': [], 'mTree': []};
     children.forEach((element) {
       dynamic select = (element as dynamic);
       Type runtimeType = element.runtimeType;
@@ -198,7 +202,7 @@ class View extends StatelessWidget {
   }
 
   renderStackContainer(Widget child) {
-    return renderOpacity(renderContainer(child));
+    return renderContainer(child);
   }
 
   // 判断当前是否百分比布局
@@ -232,38 +236,25 @@ class View extends StatelessWidget {
     ));
   }
 
-  renderContainerStyle(Widget child, Styles styles) {
+  renderContainer(Widget child, [Styles? styles]) {
+    Styles newStyles = styles ?? mStyles;
     Widget view = Container(
-        margin: getMargin(styles),
-        padding: getPadding(styles),
-        width: styles.width != null ? getWidth(styles) : null,
-        height: styles.height != null ? getHeight(styles) : null,
-        decoration: getDecoration(styles),
-        constraints: getContaionMaxMin(styles),
-        child: child);
-    return renderOpacity(view);
-  }
-
-  renderContainer(Widget child) {
-    Widget view = Container(
-        margin: getMargin(mStyles),
-        padding: getPadding(mStyles),
-        width: mStyles.width != null ? getWidth(mStyles) : null,
-        height: mStyles.height != null ? getHeight(mStyles) : null,
-        decoration: getDecoration(mStyles),
-        constraints: getContaionMaxMin(mStyles),
+        margin: getMargin(newStyles),
+        padding: getPadding(newStyles),
+        width: newStyles.width != null ? getWidth(newStyles) : null,
+        height: newStyles.height != null ? getHeight(newStyles) : null,
+        decoration: getDecoration(newStyles),
+        constraints: getContaionMaxMin(newStyles),
         child: child);
     if (getPercentageState()) {
       return this.renderOpacity(renderPercentage(child: view));
-    } else if (mStyles.width != null || mStyles.height != null) {
-      return renderOpacity(view);
     } else {
-      return child;
+      return renderOpacity(view);
     }
   }
 
   renderChildrenView() {
-    Map childData = getChildren(children!);
+    Map childData = getChildren(children ?? []);
     if (childData['mAbsolute'].length == 0) {
       if (childData['mTree'].length > 0) {
         return renderChildreTree(childData['mTree']);
@@ -295,8 +286,16 @@ class View extends StatelessWidget {
     return child;
   }
 
+  renderScroll(Widget child) {
+    if (mStyles.overflow != null ||
+        mStyles.overflowX != null ||
+        mStyles.overflowY != null) {
+      // return ScrollViewContainer()
+    }
+  }
+
   renderView() {
-    return renderContainer(renderChildrenView());
+    return renderFlex(renderContainer(renderChildrenView()));
   }
 
   @override

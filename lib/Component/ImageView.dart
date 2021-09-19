@@ -8,7 +8,7 @@ import './Styles.dart';
 class ImageView extends StatelessWidget {
   ImageView(
       {Key? key,
-      this.styles,
+      this.styles = const {},
       this.url,
       this.className,
       this.children = const []}) {
@@ -50,12 +50,16 @@ class ImageView extends StatelessWidget {
         return Image.network(
           url,
           fit: getImageFit(),
+          width: getSize(size: mStyles.width, defValue: null),
+          height: getSize(size: mStyles.height, defValue: null),
         );
       }
     } else {
       return Image.asset(
         url,
         fit: getImageFit(),
+        width: getSize(size: mStyles.width, defValue: null),
+        height: getSize(size: mStyles.height, defValue: null),
       );
     }
   }
@@ -64,6 +68,7 @@ class ImageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return View(styles: styles!, children: [renderImage()]);
+    return renderImage();
+    // return View(styles: styles!, children: [renderImage()]);
   }
 }
