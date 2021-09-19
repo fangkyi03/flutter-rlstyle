@@ -60,7 +60,7 @@ class Styles {
       this.borderTopWidth,
       this.borderTopRightRadius,
       this.borderTopLeftRadius,
-      this.flex,
+      this.flex = 1,
       this.overflowX,
       this.overflowY,
       this.transform,

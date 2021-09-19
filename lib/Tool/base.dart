@@ -35,7 +35,7 @@ String getTypeOf(dynamic data) {
   }
 }
 
-double getSize({dynamic size, dynamic defValue = 0.0, isTransform = true}) {
+getSize({dynamic size, dynamic defValue = 0.0, isTransform = true}) {
   if (size == null) return defValue;
   final type = getTypeOf(size);
   double? mSize;

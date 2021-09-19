@@ -15,14 +15,16 @@ class View extends StatelessWidget {
   final Styles? className;
   final GestureTapCallback? onClick;
   final Map? styles;
+  final bool block;
   Styles mStyles = const Styles();
   View(
       {Key? key,
       this.children,
-      this.styles,
+      this.styles = const {},
       this.type,
       this.className,
-      this.onClick})
+      this.onClick,
+      this.block = true})
       : super(key: key) {
     mStyles = StylesMap.formMap(styles ?? {});
   }
@@ -49,8 +51,8 @@ class View extends StatelessWidget {
     }
   }
 
-  Widget renderRow(List<Widget> childrenList) {
-    if (childrenList != null) {
+  Widget renderRow([List<Widget> childrenList = const []]) {
+    if (childrenList.isNotEmpty) {
       return Row(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: getJustifyContent(mStyles),
@@ -63,21 +65,23 @@ class View extends StatelessWidget {
           mainAxisAlignment: getJustifyContent(mStyles),
           crossAxisAlignment: getAlignItems(mStyles),
           textDirection: getRowDirection(mStyles),
-          children: childrenList.map((e) => getRLChild(e)).toList());
+          children: [Container()]);
     }
   }
 
   Widget getRLChild(Widget child) {
     if (getTypeOf(child.runtimeType)) {
-      // (child as dynamic).setStyle(styles);
+      if (styles != null) {
+        (child as dynamic).setStyle!(styles);
+      }
       return child;
     } else {
       return child;
     }
   }
 
-  Widget renderColumn(List<Widget> childrenList) {
-    if (childrenList != null) {
+  Widget renderColumn([List<Widget> childrenList = const []]) {
+    if (childrenList.isNotEmpty) {
       return Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: getJustifyContent(mStyles),
@@ -97,11 +101,7 @@ class View extends StatelessWidget {
   }
 
   Widget renderFlex(Widget child) {
-    if (mStyles.flex != null) {
-      return Expanded(child: child, flex: mStyles.flex as int);
-    } else {
-      return child;
-    }
+    return Expanded(child: child, flex: mStyles.flex as int);
   }
 
   renderWrap(List<Widget> mChildren) {
@@ -126,14 +126,15 @@ class View extends StatelessWidget {
           ? renderRow(mTree)
           : renderColumn(mTree);
     }
-    if (mStyles.width != null || mStyles.height != null) {
-      return renderContainer(element);
-    } else {
-      return element;
-    }
+    return element;
   }
 
-  setStyle(Map newStyle) {}
+  setStyle(Map newStyles) {
+    // if (newStyles.isNotEmpty) {
+    //   Map obj = {...newStyles, ...styles ?? {}};
+    //   mStyles = StylesMap.formMap(obj);
+    // }
+  }
 
   Widget renderAbsolute(child) {
     if (getTypeOf(child.runtimeType)) {
@@ -142,7 +143,7 @@ class View extends StatelessWidget {
           right: getSize(size: child.mStyles.right, defValue: null),
           top: getSize(size: child.mStyles.top, defValue: null),
           bottom: getSize(size: child.mStyles.bottom, defValue: null),
-          child: child);
+          child: renderContainerStyle(child, child.mStyles));
     } else {
       return child;
     }
@@ -231,8 +232,20 @@ class View extends StatelessWidget {
     ));
   }
 
+  renderContainerStyle(Widget child, Styles styles) {
+    Widget view = Container(
+        margin: getMargin(styles),
+        padding: getPadding(styles),
+        width: styles.width != null ? getWidth(styles) : null,
+        height: styles.height != null ? getHeight(styles) : null,
+        decoration: getDecoration(styles),
+        constraints: getContaionMaxMin(styles),
+        child: child);
+    return renderOpacity(view);
+  }
+
   renderContainer(Widget child) {
-    final view = Container(
+    Widget view = Container(
         margin: getMargin(mStyles),
         padding: getPadding(mStyles),
         width: mStyles.width != null ? getWidth(mStyles) : null,
@@ -242,8 +255,10 @@ class View extends StatelessWidget {
         child: child);
     if (getPercentageState()) {
       return this.renderOpacity(renderPercentage(child: view));
-    } else {
+    } else if (mStyles.width != null || mStyles.height != null) {
       return renderOpacity(view);
+    } else {
+      return child;
     }
   }
 
@@ -280,14 +295,18 @@ class View extends StatelessWidget {
     return child;
   }
 
+  renderView() {
+    return renderContainer(renderChildrenView());
+  }
+
   @override
   Widget build(BuildContext context) {
     if (mStyles.display == 'none') {
       return renderEmpty();
     } else if (children != null && children!.length > 0) {
-      return renderFlex(renderGestureDetector(renderChildrenView()));
+      return renderView();
     } else {
-      return renderFlex(renderGestureDetector(renderContainer(Container())));
+      return renderView();
     }
   }
 }

@@ -129,7 +129,13 @@ getPercentageState(styles) {
 }
 
 // 获取容器最大最小宽度
-getContaionMaxMin(styles) {
+getContaionMaxMin(Styles styles) {
+  if (styles.maxWidth == null &&
+      styles.maxHeight == null &&
+      styles.minWidth == null &&
+      styles.minHeight == null) {
+    return null;
+  }
   return BoxConstraints(
       minWidth: styles.minWidth != null
           ? styles.minWidth.toDouble()
@@ -236,7 +242,7 @@ EdgeInsets getMargin(styles) {
 
 // 获取边框风格
 BorderStyle getBorderStyle(String style) {
-  if (style == null) return BorderStyle.none;
+  if (style.isEmpty) return BorderStyle.none;
   switch (style) {
     case 'solid':
       return BorderStyle.solid;
@@ -313,13 +319,13 @@ BorderSide getBottomBorder(styles) {
 }
 
 // 获取边框
-BoxBorder getBorder(styles) {
+BoxBorder getBorder(Styles styles) {
   if (styles.borderWidth != null &&
       styles.borderColor != null &&
       styles.borderStyle != null) {
     return Border.all(
         color: HexColor(styles.borderColor),
-        style: getBorderStyle(styles.borderStyle),
+        style: getBorderStyle(styles.borderStyle!),
         width: getSize(size: styles.borderWidth));
   } else {
     return Border(
@@ -331,7 +337,7 @@ BoxBorder getBorder(styles) {
 }
 
 // 获取边框圆角
-BorderRadius getBorderRadius(styles) {
+BorderRadius getBorderRadius(Styles styles) {
   if (styles.borderRadius != null) {
     return BorderRadius.all(
         Radius.circular(getSize(size: styles.borderRadius)));
@@ -352,7 +358,7 @@ BorderRadius getBorderRadius(styles) {
 }
 
 // 获取背景颜色
-getBackgroundColor(styles) {
+getBackgroundColor(Styles styles) {
   if (styles.backgroundColor != null &&
       getTypeOf(styles.backgroundColor) == 'String' &&
       (styles.backgroundColor as String).indexOf('linear-gradient') != -1) {
