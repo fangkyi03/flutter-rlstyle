@@ -52,21 +52,13 @@ class View extends StatelessWidget {
   }
 
   Widget renderRow([List<Widget> childrenList = const []]) {
-    if (childrenList.isNotEmpty) {
-      return Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: getJustifyContent(mStyles),
-          crossAxisAlignment: getAlignItems(mStyles),
-          textDirection: getRowDirection(mStyles),
-          children: childrenList.map((e) => getRLChild(e)).toList());
-    } else {
-      return Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: getJustifyContent(mStyles),
-          crossAxisAlignment: getAlignItems(mStyles),
-          textDirection: getRowDirection(mStyles),
-          children: [Container()]);
-    }
+    List<Widget> list = childrenList.isNotEmpty ? childrenList : [Container()];
+    return Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: getJustifyContent(mStyles),
+        crossAxisAlignment: getAlignItems(mStyles),
+        textDirection: getRowDirection(mStyles),
+        children: list.map((e) => getRLChild(e)).toList());
   }
 
   Widget getRLChild(Widget child) {
@@ -74,30 +66,19 @@ class View extends StatelessWidget {
       if (styles != null) {
         (child as dynamic).setStyle!(styles);
       }
-      return child;
-    } else {
-      return child;
     }
+    return child;
   }
 
   Widget renderColumn([List<Widget> childrenList = const []]) {
-    if (childrenList.isNotEmpty) {
-      return Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: getJustifyContent(mStyles),
-          crossAxisAlignment: getAlignItems(mStyles),
-          textDirection: TextDirection.ltr,
-          verticalDirection: getDirection(mStyles),
-          children: childrenList.map((e) => getRLChild(e)).toList());
-    } else {
-      return Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: getJustifyContent(mStyles),
-          crossAxisAlignment: getAlignItems(mStyles),
-          textDirection: TextDirection.ltr,
-          verticalDirection: getDirection(mStyles),
-          children: childrenList.map((e) => getRLChild(e)).toList());
-    }
+    List<Widget> list = childrenList.isNotEmpty ? childrenList : [Container()];
+    return Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: getJustifyContent(mStyles),
+        crossAxisAlignment: getAlignItems(mStyles),
+        textDirection: TextDirection.ltr,
+        verticalDirection: getDirection(mStyles),
+        children: list.map((e) => getRLChild(e)).toList());
   }
 
   Widget renderFlex(Widget child) {
@@ -294,8 +275,19 @@ class View extends StatelessWidget {
     }
   }
 
+  renderGrid(List<Widget> children) {
+    return GridView.count(
+        shrinkWrap: true,
+        crossAxisCount: mStyles.gridCount!,
+        children: children);
+  }
+
   renderView() {
-    return renderFlex(renderContainer(renderChildrenView()));
+    if (mStyles.display == 'grid') {
+      return renderContainer(renderGrid(children!));
+    } else {
+      return renderFlex(renderContainer(renderChildrenView()));
+    }
   }
 
   @override

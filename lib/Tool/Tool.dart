@@ -21,7 +21,7 @@ WrapCrossAlignment? getWrapJustifyContent(Styles styles) {
 }
 
 // 获取主轴方向
-MainAxisAlignment getJustifyContent(styles) {
+MainAxisAlignment getJustifyContent(Styles styles) {
   if (styles.justifyContent != null) {
     switch (styles.justifyContent) {
       case 'flex-start':
@@ -45,7 +45,7 @@ MainAxisAlignment getJustifyContent(styles) {
 }
 
 // 获取次轴方向
-CrossAxisAlignment getAlignItems(styles) {
+CrossAxisAlignment getAlignItems(Styles styles) {
   if (styles.alignItems != null) {
     switch (styles.alignItems) {
       case 'flex-start':
@@ -81,8 +81,8 @@ WrapAlignment? getWrapAlignItems(Styles styles) {
 }
 
 // 获取flex布局方向
-getFlexDirection(styles) {
-  if (styles.flexDirection != null) {
+getFlexDirection(Styles styles) {
+  if (styles.flexDirection.isNotEmpty) {
     if (styles.flexDirection == 'column-reverse') {
       return Axis.vertical;
     } else {
@@ -94,8 +94,8 @@ getFlexDirection(styles) {
 }
 
 // 获取方向
-getDirection(styles) {
-  if (styles.flexDirection != null) {
+getDirection(Styles styles) {
+  if (styles.flexDirection.isNotEmpty) {
     if (styles.flexDirection == 'column-reverse') {
       return VerticalDirection.up;
     } else {
@@ -107,8 +107,8 @@ getDirection(styles) {
 }
 
 // 判断当前方向
-getRowDirection(styles) {
-  if (styles.flexDirection != null) {
+getRowDirection(Styles styles) {
+  if (styles.flexDirection.isNotEmpty) {
     if (styles.flexDirection == 'row-reverse') {
       return TextDirection.rtl;
     } else {
@@ -120,7 +120,7 @@ getRowDirection(styles) {
 }
 
 // 判断是否是百分比布局
-getPercentageState(styles) {
+getPercentageState(Styles styles) {
   if (getTypeOf(styles.width) == '%' || getTypeOf(styles.height) == '%') {
     return true;
   } else {
@@ -152,7 +152,7 @@ getContaionMaxMin(Styles styles) {
 }
 
 // 获取边框宽度
-double getBorderWidth(styles) {
+double getBorderWidth(Styles styles) {
   if (styles.borderWidth != null) {
     return styles.borderWidth.toDouble();
   } else {
@@ -162,27 +162,27 @@ double getBorderWidth(styles) {
 }
 
 // 获取margin宽度
-double getMarginWidth(styles) {
+double getMarginWidth(Styles styles) {
   return getSize(size: styles.marginLeft) + getSize(size: styles.marginRight);
 }
 
 // 获取margin高度
-double getMarginHeight(styles) {
+double getMarginHeight(Styles styles) {
   return getSize(size: styles.marginTop) + getSize(size: styles.marginBottom);
 }
 
 // 获取padding宽度
-double getPaddingWidth(styles) {
+double getPaddingWidth(Styles styles) {
   return getSize(size: styles.paddingLeft) + getSize(size: styles.paddingRight);
 }
 
 // 获取padding高度
-double getPaddingHeight(styles) {
+double getPaddingHeight(Styles styles) {
   return getSize(size: styles.paddingTop) + getSize(size: styles.paddingBottom);
 }
 
 // 获取宽度
-double getWidth(styles) {
+double getWidth(Styles styles) {
   if (getTypeOf(styles.width) == '%') {
     return 0.0;
   } else {
@@ -191,7 +191,7 @@ double getWidth(styles) {
 }
 
 // 获取高度
-double getHeight(styles) {
+double getHeight(Styles styles) {
   if (getTypeOf(styles.height) == '%') {
     return 0.0;
   } else {
@@ -201,7 +201,7 @@ double getHeight(styles) {
 
 // 获取double尺寸
 double getDoubleSize({double size = 0, double defValue = 0.0}) {
-  if (size != null) {
+  if (size.isNaN) {
     return ScreenUtil().setWidth(size);
   } else {
     return defValue;
@@ -209,7 +209,7 @@ double getDoubleSize({double size = 0, double defValue = 0.0}) {
 }
 
 // 获取padding
-EdgeInsets getPadding(styles) {
+EdgeInsets getPadding(Styles styles) {
   final newPadding = EdgeInsets.only(
       left: getSize(size: styles.paddingLeft, defValue: 0.0),
       top: getSize(size: styles.paddingTop, defValue: 0.0),
@@ -225,7 +225,7 @@ EdgeInsets getPadding(styles) {
 }
 
 // 获取margin
-EdgeInsets getMargin(styles) {
+EdgeInsets getMargin(Styles styles) {
   final newMargin = EdgeInsets.only(
       left: getSize(size: styles.marginLeft, defValue: 0.0),
       top: getSize(size: styles.marginTop, defValue: 0.0),
@@ -263,10 +263,10 @@ Color getBorderColor(styles) {
 }
 
 // 获取左侧边框
-BorderSide getLeftBorder(styles) {
+BorderSide getLeftBorder(Styles styles) {
   if (styles.borderLeftColor != null &&
       styles.borderLeftWidth != null &&
-      styles.borderLeftStyle != null) {
+      styles.borderLeftStyle.isNotEmpty) {
     return BorderSide(
         color: HexColor(styles.borderLeftColor),
         style: getBorderStyle(styles.borderLeftStyle),
@@ -277,9 +277,9 @@ BorderSide getLeftBorder(styles) {
 }
 
 // 获取顶部边框
-BorderSide getTopBorder(styles) {
+BorderSide getTopBorder(Styles styles) {
   if (styles.borderTopWidth != null &&
-      styles.borderTopStyle != null &&
+      styles.borderTopStyle.isNotEmpty &&
       styles.borderTopColor != null) {
     return BorderSide(
         color: HexColor(styles.borderTopColor),
@@ -291,8 +291,8 @@ BorderSide getTopBorder(styles) {
 }
 
 // 获取右侧边框
-BorderSide getRightBorder(styles) {
-  if (styles.borderRightStyle != null &&
+BorderSide getRightBorder(Styles styles) {
+  if (styles.borderRightStyle.isNotEmpty &&
       styles.borderRightWidth != null &&
       styles.borderRightColor != null) {
     return BorderSide(
@@ -305,9 +305,9 @@ BorderSide getRightBorder(styles) {
 }
 
 // 获取底部边框
-BorderSide getBottomBorder(styles) {
+BorderSide getBottomBorder(Styles styles) {
   if (styles.borderBottomColor != null &&
-      styles.borderBottomStyle != null &&
+      styles.borderBottomStyle.isNotEmpty &&
       styles.borderBottomWidth != null) {
     return BorderSide(
         color: HexColor(styles.borderBottomColor),
@@ -322,10 +322,10 @@ BorderSide getBottomBorder(styles) {
 BoxBorder getBorder(Styles styles) {
   if (styles.borderWidth != null &&
       styles.borderColor != null &&
-      styles.borderStyle != null) {
+      styles.borderStyle.isNotEmpty) {
     return Border.all(
         color: HexColor(styles.borderColor),
-        style: getBorderStyle(styles.borderStyle!),
+        style: getBorderStyle(styles.borderStyle),
         width: getSize(size: styles.borderWidth));
   } else {
     return Border(
@@ -399,10 +399,10 @@ Decoration getDecoration(Styles styles) {
 }
 
 // 获取渐变色
-Gradient? getGradient(styles) {
+Gradient? getGradient(Styles styles) {
   if (styles.backgroundImage != null &&
-      styles.backgroundImage.indexOf('linear-gradient') != -1) {
-    return HexColor.getLineGradient(styles.backgroundImage);
+      (styles.backgroundImage as String).indexOf('linear-gradient') != -1) {
+    return HexColor.getLineGradient(styles.backgroundImage as String);
   } else if (styles.backgroundColor != null &&
       getTypeOf(styles.backgroundColor) == 'String' &&
       (styles.backgroundColor as String).indexOf('linear-gradient') != -1) {
@@ -413,7 +413,7 @@ Gradient? getGradient(styles) {
 }
 
 // 获取阴影
-getListBoxShadow(styles) {
+getListBoxShadow(Styles styles) {
   return styles.boxShadow;
 }
 
@@ -426,14 +426,14 @@ BoxShadow tranStringBoxShadow(String item) {
 }
 
 // 获取字符串阴影
-getLisStrigBoxShadow(styles) {
+getLisStrigBoxShadow(Styles styles) {
   return (styles.boxShadow as List<String>)
       .map((e) => tranStringBoxShadow(e))
       .toList();
 }
 
 // 获取边框阴影
-getBoxShadow(styles) {
+getBoxShadow(Styles styles) {
   if (styles.boxShadow != null) {
     switch (getTypeOf(styles.boxShadow)) {
       case 'List<BoxShadow>':

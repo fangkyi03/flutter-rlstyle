@@ -4,7 +4,6 @@ export './Component/ImageView.dart';
 export './Component/TextView.dart';
 export './Component/Styles.dart';
 export './Component/ScrollView.dart';
-export './Component/ContainerView.dart';
 export './Component/CssRule.dart';
 export 'package:flutter_screenutil/flutter_screenutil.dart';
 // 工具

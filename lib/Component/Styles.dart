@@ -36,8 +36,8 @@ class Styles {
       this.lines,
       this.boxSizing,
       this.borderColor,
-      this.borderStyle,
-      this.borderWidth,
+      this.borderStyle = 'solid',
+      this.borderWidth = 1,
       this.opacity = 1.0,
       this.boxShadow,
       this.textAlign,
@@ -47,16 +47,16 @@ class Styles {
       this.borderBottomLeftRadius,
       this.borderBottomRightRadius,
       this.borderBottomColor,
-      this.borderBottomStyle,
+      this.borderBottomStyle = 'solid',
       this.borderBottomWidth,
       this.borderLeftColor,
-      this.borderLeftStyle,
+      this.borderLeftStyle = 'solid',
       this.borderLeftWidth,
       this.borderRightColor,
-      this.borderRightStyle,
+      this.borderRightStyle = 'solid',
       this.borderRightWidth,
       this.borderTopColor,
-      this.borderTopStyle,
+      this.borderTopStyle = 'solid',
       this.borderTopWidth,
       this.borderTopRightRadius,
       this.borderTopLeftRadius,
@@ -115,7 +115,7 @@ class Styles {
   final int? lines;
   final String? boxSizing;
   final dynamic borderWidth;
-  final String? borderStyle;
+  final String borderStyle;
   final dynamic borderColor;
   final double opacity;
   final dynamic boxShadow;
@@ -124,16 +124,16 @@ class Styles {
   final dynamic minWidth;
   final double? borderBottomLeftRadius;
   final double? borderBottomRightRadius;
-  final String? borderLeftStyle;
+  final String borderLeftStyle;
   final dynamic borderLeftColor;
   final dynamic borderLeftWidth;
-  final String? borderRightStyle;
+  final String borderRightStyle;
   final dynamic borderRightColor;
   final dynamic borderRightWidth;
-  final String? borderTopStyle;
+  final String borderTopStyle;
   final dynamic borderTopColor;
   final dynamic borderTopWidth;
-  final String? borderBottomStyle;
+  final String borderBottomStyle;
   final dynamic borderBottomColor;
   final dynamic borderBottomWidth;
   final dynamic borderTopLeftRadius;

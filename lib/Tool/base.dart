@@ -2,17 +2,17 @@ import 'dart:async';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 
-typedef periodicCallBack = void Function(Timer periodicTime);
+typedef PeriodicCallBack = void Function(Timer periodicTime);
 
 void setTimeout(callback, time) {
   Duration timeDelay = Duration(milliseconds: time);
   Timer(timeDelay, callback);
 }
 
-void setInterval(periodicCallBack, time) {
+void setInterval(PeriodicCallBack click, time) {
   Duration periodic = Duration(milliseconds: time);
   Timer.periodic(periodic, (intervalTime) {
-    periodicCallBack(intervalTime);
+    click(intervalTime);
   });
 }
 

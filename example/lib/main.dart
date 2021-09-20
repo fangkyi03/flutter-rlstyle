@@ -1,4 +1,4 @@
-import 'package:example/pages/threesomeWing/index.dart';
+import 'package:example/pages/v1/index.dart';
 import 'package:flutter/material.dart';
 import 'package:rlstyles/Component/CssRule.dart';
 import 'package:rlstyles/main.dart';
@@ -51,8 +51,8 @@ class App extends HookWidget {
         title: 'Flutter_ScreenUtil',
         initialRoute: '/',
         routes: {
-          '/': (BuildContext context) =>
-              Scaffold(body: SafeArea(child: ThreeSomeWing())),
+          // 头部搜索编辑框
+          '/': (BuildContext context) => Scaffold(body: SafeArea(child: V1())),
         },
       ),
     );
