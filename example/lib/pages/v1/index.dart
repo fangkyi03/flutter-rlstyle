@@ -29,13 +29,14 @@ class V1 extends HookWidget {
         CssRule.flexDirection: 'column'
       },
       'iconGroup': {
-        CssRule.flexWrap: 'wrap',
+        // CssRule.flexWrap: 'wrap',
         // CssRule.gridCount: 5,
         // CssRule.display: 'grid',
-        CssRule.height: 450,
+        CssRule.position: 'rel',
+        CssRule.height: 50,
       },
       'iconItem': {
-        CssRule.width: '20%',
+        CssRule.flex: 1,
         CssRule.justifyContent: 'center',
         CssRule.alignItems: 'center',
         CssRule.backgroundColor: 'yellow',
@@ -89,21 +90,36 @@ class V1 extends HookWidget {
   }
 
   renderIcon() {
-    return View(
-        styles: getStyle()['iconGroup'],
-        children: List.generate(20, (index) {
-          return View(
-            styles: getStyle()['iconItem'],
-            children: [
-              TextView(index.toString()),
-              TextView((index * Random().nextInt(20)).toString()),
-              ImageView(styles: {
-                CssRule.height: 400,
-                CssRule.backgroundSize: 'cover'
-              }, url: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201603%2F04%2F20160304174416_PGjvQ.jpeg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1634735767&t=46ed27ffe1b8f67d7a7a9453c3168e6e')
-            ],
-          );
-        }).toList());
+    return View(styles: getStyle()['iconGroup'], children: [
+      View(
+        styles: {
+          CssRule.width: 50,
+          CssRule.height: 50,
+          CssRule.backgroundColor: 'black',
+          CssRule.color: 'white',
+          CssRule.borderRadius: 25,
+          CssRule.justifyContent: 'center',
+          CssRule.alignItems: 'center',
+          CssRule.marginRight: 20,
+          CssRule.marginLeft: 20,
+          CssRule.marginTop: 20
+        },
+        children: [TextView('白色')],
+      ),
+      View(
+        styles: getStyle()['iconItem'],
+        children: [TextView('1231')],
+      ),
+      View(styles: {
+        CssRule.position: 'abs',
+        CssRule.left: 0,
+        CssRule.bottom: 0,
+        CssRule.width: 200,
+        CssRule.backgroundColor: 'blue'
+      }, children: [
+        TextView('1')
+      ])
+    ]);
   }
 
   @override
