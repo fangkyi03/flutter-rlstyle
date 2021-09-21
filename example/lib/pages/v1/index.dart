@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:rlstyles/Component/CssRule.dart';
 import 'package:rlstyles/main.dart';
@@ -28,23 +26,6 @@ class V1 extends HookWidget {
         CssRule.paddingRight: 10,
         CssRule.flexDirection: 'column'
       },
-      'iconGroup': {
-        // CssRule.flexWrap: 'wrap',
-        // CssRule.gridCount: 5,
-        // CssRule.display: 'grid',
-        CssRule.position: 'rel',
-        CssRule.height: 50,
-      },
-      'iconItem': {
-        CssRule.flex: 1,
-        CssRule.justifyContent: 'center',
-        CssRule.alignItems: 'center',
-        CssRule.backgroundColor: 'yellow',
-        CssRule.borderColor: 'red',
-        // CssRule.borderWidth: 1,
-        // CssRule.borderStyle: 'solid',
-        CssRule.flexDirection: 'column'
-      }
     };
   }
 
@@ -89,44 +70,11 @@ class V1 extends HookWidget {
     );
   }
 
-  renderIcon() {
-    return View(styles: getStyle()['iconGroup'], children: [
-      View(
-        styles: {
-          CssRule.width: 50,
-          CssRule.height: 50,
-          CssRule.backgroundColor: 'black',
-          CssRule.color: 'white',
-          CssRule.borderRadius: 25,
-          CssRule.justifyContent: 'center',
-          CssRule.alignItems: 'center',
-          CssRule.marginRight: 20,
-          CssRule.marginLeft: 20,
-          CssRule.marginTop: 20
-        },
-        children: [TextView('白色')],
-      ),
-      View(
-        styles: getStyle()['iconItem'],
-        children: [TextView('1231')],
-      ),
-      View(styles: {
-        CssRule.position: 'abs',
-        CssRule.left: 0,
-        CssRule.bottom: 0,
-        CssRule.width: 200,
-        CssRule.backgroundColor: 'blue'
-      }, children: [
-        TextView('1')
-      ])
-    ]);
-  }
-
   @override
   Widget build(BuildContext context) {
     return View(
       styles: getStyle()['main'],
-      children: [renderHeader(), renderIcon()],
+      children: [renderHeader()],
     );
   }
 }
