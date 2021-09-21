@@ -8,8 +8,7 @@
 添加rlStyle到您的pubspec.yaml
 ```javaScript
 dependencies:
-  flutter_screenutil: 5.0.0+2
-  rlstyles: ^1.0.2
+  rlstyles: 2.0.1
 ```
 
 # 示例
