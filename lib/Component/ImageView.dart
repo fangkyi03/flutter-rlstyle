@@ -8,7 +8,7 @@ import './Styles.dart';
 class ImageView extends StatelessWidget {
   ImageView(
       {Key? key,
-      this.styles = const {},
+      this.styles,
       this.url,
       this.className,
       this.children = const []}) {
@@ -68,6 +68,6 @@ class ImageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return renderImage();
+    return View(styles: styles!, children: [renderImage()]);
   }
 }

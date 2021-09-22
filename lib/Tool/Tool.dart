@@ -337,7 +337,7 @@ BoxBorder getBorder(Styles styles) {
 }
 
 // 获取边框圆角
-BorderRadius getBorderRadius(Styles styles) {
+BorderRadius? getBorderRadius(Styles styles) {
   if (styles.borderRadius != null) {
     return BorderRadius.all(
         Radius.circular(getSize(size: styles.borderRadius)));
@@ -353,7 +353,7 @@ BorderRadius getBorderRadius(Styles styles) {
         bottomRight:
             Radius.circular(getSize(size: styles.borderBottomRightRadius)));
   } else {
-    return BorderRadius.all(Radius.circular(0));
+    return null;
   }
 }
 

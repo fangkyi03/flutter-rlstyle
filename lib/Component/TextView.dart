@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rlstyles/Component/StylesMap.dart';
+import 'package:rlstyles/Component/View.dart';
 import './HexColor.dart';
 import '../Tool/base.dart';
 import './Styles.dart';
@@ -144,6 +145,9 @@ class TextView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return this.renderText();
+    return View(
+      styles: styles,
+      children: [this.renderText()],
+    );
   }
 }

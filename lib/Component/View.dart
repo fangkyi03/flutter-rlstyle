@@ -1,12 +1,9 @@
 // ignore_for_file: unrelated_type_equality_checks
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:rlstyles/Component/StylesMap.dart';
 import 'package:rlstyles/Tool/Tool.dart';
 import 'package:rlstyles/Tool/base.dart' as base;
 import 'package:rlstyles/main.dart';
-import './Styles.dart';
 
 // ignore: must_be_immutable
 class View extends StatelessWidget {

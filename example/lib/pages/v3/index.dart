@@ -23,7 +23,7 @@ class V3 extends HookWidget {
         CssRule.borderColor: 'black',
         CssRule.borderWidth: 1,
         CssRule.flex: 1,
-        CssRule.height: 80,
+        CssRule.height: '100%',
         CssRule.flexDirection: 'column',
         CssRule.justifyContent: 'center',
         CssRule.alignItems: 'center',
