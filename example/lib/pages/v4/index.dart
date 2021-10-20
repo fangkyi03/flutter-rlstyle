@@ -139,22 +139,29 @@ class V4 extends HookWidget {
 
   renderList() {
     return View(styles: getV4Style()['list'], children: [
-      // GridView.count(
-      //     crossAxisCount: 2, children: [TextView('1'), TextView('2')])
+      Container(
+        height: 3500.h,
+        color: Colors.blue,
+        width: 360.w,
+      )
     ]);
   }
 
   @override
   Widget build(BuildContext context) {
-    return View(
-      styles: getV4Style()['main'],
-      children: [
-        renderHeader(),
-        renderSwiper(),
-        renderIconGroup(),
-        renderActive(),
-        renderList()
-      ],
+    return Scrollbar(
+      child: SingleChildScrollView(
+        child: View(
+          styles: getV4Style()['main'],
+          children: [
+            renderHeader(),
+            renderSwiper(),
+            renderIconGroup(),
+            renderActive(),
+            renderList()
+          ],
+        ),
+      ),
     );
   }
 }

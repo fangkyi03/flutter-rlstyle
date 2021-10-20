@@ -1,4 +1,3 @@
-import 'package:rlstyles/Component/CssRule.dart';
 import 'package:rlstyles/main.dart';
 
 getV4Style() {
@@ -6,8 +5,8 @@ getV4Style() {
     'main': {
       CssRule.flexDirection: 'column',
       CssRule.backgroundColor: '#f5f5f5',
-      CssRule.width: double.infinity,
-      CssRule.height: double.infinity
+      CssRule.width: 360,
+      CssRule.height: 640.h,
     },
     'header': {
       CssRule.height: 50,
@@ -66,8 +65,8 @@ getV4Style() {
     },
     'icon-group': {
       CssRule.flexWrap: 'wrap',
-      CssRule.display: 'grid',
-      CssRule.gridCount: 5
+      // CssRule.display: 'grid',
+      // CssRule.gridCount: 5
     },
     'icon-img': {
       CssRule.height: 50,
@@ -80,7 +79,7 @@ getV4Style() {
       CssRule.flexDirection: 'column',
       CssRule.justifyContent: 'center',
       CssRule.alignItems: 'center',
-      // CssRule.width: '20%',
+      CssRule.width: 360 * 0.2,
       CssRule.height: 80
     },
     'active': {
@@ -115,7 +114,6 @@ getV4Style() {
     'list': {
       CssRule.flex: 1,
       CssRule.backgroundColor: 'blue',
-      CssRule.height: 500,
       CssRule.marginTop: 20
     }
   };
