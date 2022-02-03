@@ -12,7 +12,7 @@ class TextView extends StatelessWidget {
   TextView(this.child, {Key? key, this.styles = const {}, this.className}) {
     this.mStyles = StylesMap.formMap(this.styles);
   }
-  Map<String, dynamic> styles;
+  final Map styles;
   Styles mStyles = Styles();
   final String child;
   final String? className;
@@ -117,8 +117,12 @@ class TextView extends StatelessWidget {
 
   setStyle(Map newStyles) {
     if (newStyles.isNotEmpty) {
-      Map obj = {...newStyles, ...styles};
-      mStyles = StylesMap.formMap(obj);
+      // if (this.styles != null && this.styles.isNotEmpty) {
+      //   Map obj = {...newStyles, ...styles};
+      //   mStyles = StylesMap.formMap(obj);
+      // } else {
+      //   mStyles = StylesMap.formMap(newStyles);
+      // }
     }
   }
 

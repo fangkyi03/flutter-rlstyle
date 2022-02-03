@@ -8,13 +8,13 @@ import './Styles.dart';
 class ImageView extends StatelessWidget {
   ImageView(
       {Key? key,
-      this.styles,
+      this.styles = const {},
       this.url,
       this.className,
       this.children = const []}) {
-    this.mStyles = StylesMap.formMap(this.styles ?? {});
+    this.mStyles = StylesMap.formMap(this.styles);
   }
-  Map? styles;
+  final Map styles;
   Styles mStyles = Styles();
   final dynamic url;
   final String? className;
@@ -68,6 +68,6 @@ class ImageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return View(styles: styles!, children: [renderImage()]);
+    return View(styles: styles, children: [renderImage()]);
   }
 }
