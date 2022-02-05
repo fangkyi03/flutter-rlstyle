@@ -75,7 +75,9 @@ class Styles {
       this.gridCount,
       this.gridChildAspectRatio,
       this.gridCrossAxisSpacing,
-      this.gridMainAxisSpacing});
+      this.gridMainAxisSpacing,
+      this.scrollBar = true});
+  final bool scrollBar;
   final String display;
   final dynamic color;
   final dynamic width;

@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rlstyles/Component/StylesMap.dart';
@@ -117,12 +116,8 @@ class TextView extends StatelessWidget {
 
   setStyle(Map newStyles) {
     if (newStyles.isNotEmpty) {
-      // if (this.styles != null && this.styles.isNotEmpty) {
-      //   Map obj = {...newStyles, ...styles};
-      //   mStyles = StylesMap.formMap(obj);
-      // } else {
-      //   mStyles = StylesMap.formMap(newStyles);
-      // }
+      Map obj = {...newStyles, ...styles};
+      mStyles = StylesMap.formMap(obj);
     }
   }
 
@@ -136,12 +131,12 @@ class TextView extends StatelessWidget {
         letterSpacing: mStyles.letterSpacing,
         decoration: getTextDecoration(),
         // height: getLineHeight(),
-        color: HexColor(mStyles.color ?? '#FF000000'),
+        color: HexColor(mStyles.color ?? 'black'),
         fontFamily: mStyles.fontFamily,
         fontSize: mStyles.fontSize != null
             ? ScreenUtil()
                 .setSp(getSize(size: mStyles.fontSize, isTransform: false))
-            : ScreenUtil().setSp(getSize(size: 16, isTransform: false)),
+            : ScreenUtil().setSp(getSize(size: 12, isTransform: false)),
         fontWeight: getWeight(),
       ),
     );

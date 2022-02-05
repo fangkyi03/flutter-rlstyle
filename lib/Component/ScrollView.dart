@@ -1,37 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:rlstyles/Component/Styles.dart';
+import 'package:rlstyles/Component/StylesMap.dart';
 
 class ScrollViewContainer extends StatelessWidget {
-  ScrollViewContainer(
-      {Key? key, this.children, this.scrollDirection = Axis.vertical})
-      : super(key: key);
-
-  final List<Widget>? children;
-  final Axis? scrollDirection;
+  ScrollViewContainer({
+    Key? key,
+    this.children = const [],
+    this.styles = const {},
+  }) : super(key: key) {
+    mStyles = StylesMap.formMap(styles ?? {});
+  }
+  @immutable
+  Styles mStyles = const Styles();
+  final Map? styles;
+  final List<Widget> children;
   final ScrollController controller = ScrollController();
 
   getScrollDirection() {
-    if (scrollDirection != null) {
-      return scrollDirection;
-    } else {
+    if (mStyles.overflowY != null) {
+      return Axis.vertical;
+    } else if (mStyles.overflowX != null) {
+      return Axis.horizontal;
+    } else if (mStyles.overflow != null) {
       return Axis.vertical;
     }
-  }
-
-  void animate(double offset) {
-    controller.animateTo(offset,
-        duration: Duration(milliseconds: 1000), curve: Curves.decelerate);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scrollbar(
         child: CustomScrollView(
-            controller: controller,
+            // controller: controller,
             scrollDirection: getScrollDirection(),
             shrinkWrap: true,
             // 内容
-            slivers: <Widget>[
-          new SliverList(delegate: new SliverChildListDelegate(children!))
+            slivers: [
+          new SliverList(delegate: new SliverChildListDelegate(this.children))
         ]));
   }
 }

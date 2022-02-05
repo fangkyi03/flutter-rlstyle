@@ -7,19 +7,17 @@ import 'package:rlstyles/main.dart';
 
 // ignore: must_be_immutable
 class View extends StatelessWidget {
-  final List<Widget>? children;
+  final List<Widget> children;
   final String? type;
-  final Styles? className;
   final GestureTapCallback? onClick;
   final Map? styles;
   final bool block;
   Styles mStyles = const Styles();
   View(
       {Key? key,
-      this.children,
+      this.children = const [],
       this.styles = const {},
       this.type,
-      this.className,
       this.onClick,
       this.block = true})
       : super(key: key) {
@@ -108,7 +106,7 @@ class View extends StatelessWidget {
           ? renderRow(mTree)
           : renderColumn(mTree);
     }
-    return element;
+    return renderScroll(element);
   }
 
   setStyle(Map newStyles) {
@@ -232,7 +230,7 @@ class View extends StatelessWidget {
   }
 
   renderChildrenView() {
-    Map childData = getChildren(children ?? []);
+    Map childData = getChildren(children);
     if (childData['mAbsolute'].length == 0) {
       if (childData['mTree'].length > 0) {
         return renderChildreTree(childData['mTree']);
@@ -267,8 +265,10 @@ class View extends StatelessWidget {
   renderScroll(Widget child) {
     if (mStyles.overflow != null ||
         mStyles.overflowX != null ||
-        mStyles.overflowY != null) {
-      // return ScrollViewContainer()
+        mStyles.overflowY != null && this.children.isNotEmpty) {
+      return ScrollViewContainer(children: [child], styles: styles);
+    } else {
+      return child;
     }
   }
 
@@ -281,7 +281,7 @@ class View extends StatelessWidget {
 
   renderView() {
     if (mStyles.display == 'grid') {
-      return renderContainer(renderGrid(children!));
+      return renderContainer(renderGrid(children));
     } else {
       return renderFlex(renderContainer(renderChildrenView()));
     }
@@ -291,7 +291,7 @@ class View extends StatelessWidget {
   Widget build(BuildContext context) {
     if (mStyles.display == 'none') {
       return renderEmpty();
-    } else if (children != null && children!.length > 0) {
+    } else if (children.isNotEmpty && children.length > 0) {
       return renderView();
     } else {
       return renderView();

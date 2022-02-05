@@ -36,6 +36,7 @@ class CssRule {
   static const lineHeight = 'lineHeight';
   static const textDecoration = 'textDecoration';
   static const overflow = 'overflow';
+  static const scrollBar = 'scrollBar';
   static const lines = 'lines';
   static const boxSizing = 'boxSizing';
   static const borderWidth = 'borderWidth';
