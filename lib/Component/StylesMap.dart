@@ -54,7 +54,6 @@ class StylesMap extends Styles {
         whiteSpace: mapData['whiteSpace'],
         lineHeight: mapData['lineHeight'],
         textDecoration: mapData['textDecoration'],
-        overflow: mapData['overflow'],
         lines: mapData['lines'],
         boxSizing: mapData['boxSizing'],
         borderWidth: mapData['borderWidth'],

@@ -20,7 +20,7 @@ class ScrollViewContainer extends StatelessWidget {
       return Axis.vertical;
     } else if (mStyles.overflowX != null) {
       return Axis.horizontal;
-    } else if (mStyles.overflow != null) {
+    } else {
       return Axis.vertical;
     }
   }
@@ -30,7 +30,6 @@ class ScrollViewContainer extends StatelessWidget {
         // controller: controller,
         scrollDirection: getScrollDirection(),
         shrinkWrap: true,
-        // 内容
         slivers: [
           new SliverList(delegate: new SliverChildListDelegate(this.children))
         ]);

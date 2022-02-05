@@ -32,7 +32,6 @@ class Styles {
       this.whiteSpace,
       this.lineHeight,
       this.textDecoration,
-      this.overflow,
       this.lines,
       this.boxSizing,
       this.borderColor,
@@ -113,7 +112,6 @@ class Styles {
   final String? whiteSpace;
   final dynamic lineHeight;
   final String? textDecoration;
-  final String? overflow;
   final int? lines;
   final String? boxSizing;
   final dynamic borderWidth;

@@ -23,7 +23,6 @@ class View extends StatelessWidget {
       : super(key: key) {
     mStyles = StylesMap.formMap(styles ?? {});
   }
-
   renderEmpty() {
     return Container();
   }
@@ -258,13 +257,8 @@ class View extends StatelessWidget {
     }
   }
 
-  renderPosition(Widget child) {
-    return child;
-  }
-
   renderScroll(Widget child) {
-    if (mStyles.overflow != null ||
-        mStyles.overflowX != null ||
+    if (mStyles.overflowX != null ||
         mStyles.overflowY != null && this.children.isNotEmpty) {
       return ScrollViewContainer(children: [child], styles: styles);
     } else {
@@ -292,9 +286,9 @@ class View extends StatelessWidget {
     if (mStyles.display == 'none') {
       return renderEmpty();
     } else if (children.isNotEmpty && children.length > 0) {
-      return renderView();
+      return renderGestureDetector(renderView());
     } else {
-      return renderView();
+      return renderGestureDetector(renderView());
     }
   }
 }
