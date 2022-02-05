@@ -10,7 +10,6 @@ class ScrollViewContainer extends StatelessWidget {
   }) : super(key: key) {
     mStyles = StylesMap.formMap(styles ?? {});
   }
-  @immutable
   Styles mStyles = const Styles();
   final Map? styles;
   final List<Widget> children;
@@ -26,16 +25,22 @@ class ScrollViewContainer extends StatelessWidget {
     }
   }
 
+  renderScroll() {
+    return CustomScrollView(
+        // controller: controller,
+        scrollDirection: getScrollDirection(),
+        shrinkWrap: true,
+        // 内容
+        slivers: [
+          new SliverList(delegate: new SliverChildListDelegate(this.children))
+        ]);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scrollbar(
-        child: CustomScrollView(
-            // controller: controller,
-            scrollDirection: getScrollDirection(),
-            shrinkWrap: true,
-            // 内容
-            slivers: [
-          new SliverList(delegate: new SliverChildListDelegate(this.children))
-        ]));
+    if (mStyles.scrollBar) {
+      return Scrollbar(child: renderScroll());
+    }
+    return renderScroll();
   }
 }

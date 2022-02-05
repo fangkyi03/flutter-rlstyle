@@ -93,6 +93,7 @@ class StylesMap extends Styles {
         gridCount: mapData['gridCount'],
         gridMainAxisSpacing: mapData['gridMainAxisSpacing'],
         gridCrossAxisSpacing: mapData['gridCrossAxisSpacing'],
-        gridChildAspectRatio: mapData['gridChildAspectRatio']);
+        gridChildAspectRatio: mapData['gridChildAspectRatio'],
+        scrollBar: mapData['scrollBar'] != null ? mapData['scrollBar'] : true);
   }
 }
