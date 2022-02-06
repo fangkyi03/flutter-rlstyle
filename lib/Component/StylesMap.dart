@@ -4,7 +4,7 @@ class StylesMap extends Styles {
   static getClass(Map keyName, Map classMap) {
     final arr = [];
     keyName.keys.forEach((element) {
-      if (keyName[element]) {
+      if (keyName[element] == true) {
         arr.add(element);
       }
     });
