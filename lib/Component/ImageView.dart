@@ -9,14 +9,14 @@ class ImageView extends StatelessWidget {
   ImageView(
       {Key? key,
       this.styles = const {},
-      this.url,
+      this.url = '',
       this.className,
       this.children = const []}) {
     this.mStyles = StylesMap.formMap(this.styles);
   }
   final Map styles;
   Styles mStyles = Styles();
-  final dynamic url;
+  final String url;
   final String? className;
   final List<Widget> children;
 
@@ -45,8 +45,7 @@ class ImageView extends StatelessWidget {
 
   renderImage() {
     if (url != null) {
-      if (url.runtimeType.toString() == 'String' &&
-          (url as String).indexOf('http') != -1) {
+      if (url.indexOf('http') != -1) {
         return Image.network(
           url,
           fit: getImageFit(),

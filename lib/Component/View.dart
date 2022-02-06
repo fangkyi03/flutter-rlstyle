@@ -1,5 +1,4 @@
 // ignore_for_file: unrelated_type_equality_checks
-
 import 'package:flutter/material.dart';
 import 'package:rlstyles/Tool/Tool.dart';
 import 'package:rlstyles/Tool/base.dart' as base;
@@ -27,18 +26,21 @@ class View extends StatelessWidget {
     return Container();
   }
 
-  bool getTypeOf(runtimeType) {
-    List<String> filterArr = ['TextView', 'ImageView', 'View'];
-    return filterArr.indexOf(runtimeType.toString()) != -1;
+  bool getTypeOf(Widget element) {
+    if (element is TextView || element is ImageView || element is View) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
-  getAbsType(Type runtimeType, dynamic select) {
-    if (getTypeOf(runtimeType) &&
+  getAbsType(Widget element, dynamic select) {
+    if (getTypeOf(element) &&
         select.mStyles.position != null &&
         (select.mStyles.position == 'abs' ||
             select.mStyles.position == 'absolute')) {
       return true;
-    } else if (runtimeType.toString().toLowerCase().indexOf('position') != -1) {
+    } else if (element is Positioned) {
       return true;
     } else {
       return false;
@@ -56,7 +58,7 @@ class View extends StatelessWidget {
   }
 
   Widget getRLChild(Widget child) {
-    if (getTypeOf(child.runtimeType)) {
+    if (getTypeOf(child)) {
       if (styles != null) {
         (child as dynamic).setStyle!(styles);
       }
@@ -116,7 +118,7 @@ class View extends StatelessWidget {
   }
 
   Widget renderAbsolute(child) {
-    if (getTypeOf(child.runtimeType)) {
+    if (getTypeOf(child)) {
       return Positioned(
           left: getSize(size: child.mStyles.left, defValue: null),
           right: getSize(size: child.mStyles.right, defValue: null),
@@ -134,8 +136,7 @@ class View extends StatelessWidget {
     if (children.length == 0) return {'mAbsolute': [], 'mTree': []};
     children.forEach((element) {
       dynamic select = (element as dynamic);
-      Type runtimeType = element.runtimeType;
-      if (getAbsType(runtimeType, select)) {
+      if (getAbsType(element, select)) {
         mAbsolute.add(element);
       } else {
         mTree.add(element);

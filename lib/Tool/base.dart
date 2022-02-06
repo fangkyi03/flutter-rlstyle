@@ -27,11 +27,15 @@ void alert(BuildContext context, String title) {
 }
 
 String getTypeOf(dynamic data) {
-  String type = data.runtimeType.toString();
-  if (type == 'String') {
-    return (data as String).indexOf('%') != -1 ? '%' : 'String';
+  if (data != null) {
+    String type = data.runtimeType.toString();
+    if (type == 'String') {
+      return (data as String).indexOf('%') != -1 ? '%' : 'String';
+    } else {
+      return type;
+    }
   } else {
-    return type;
+    return 'String';
   }
 }
 
