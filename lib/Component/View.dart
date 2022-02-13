@@ -40,7 +40,7 @@ class View extends StatelessWidget {
         (select.mStyles.position == 'abs' ||
             select.mStyles.position == 'absolute')) {
       return true;
-    } else if (element is Positioned) {
+    } else if (element is Positioned || element is AnimatedPositioned) {
       return true;
     } else {
       return false;
@@ -239,7 +239,7 @@ class View extends StatelessWidget {
       }
     } else {
       return renderStack([
-        renderChildreTree(childData['mTree']),
+        renderContainer(renderChildreTree(childData['mTree'])),
         ...(getPositionZindex(childData['mAbsolute'])
             .map((e) => renderAbsolute(e))
             .toList()),
