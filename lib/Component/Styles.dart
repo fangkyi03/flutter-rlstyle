@@ -1,7 +1,7 @@
 class Styles {
   const Styles(
       {this.display = 'display',
-      this.flexDirection = 'row',
+      this.flexDirection = 'col',
       this.backgroundColor,
       this.backgroundImage,
       this.width,

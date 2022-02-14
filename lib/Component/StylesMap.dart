@@ -19,7 +19,7 @@ class StylesMap extends Styles {
     if (mapData.isEmpty) return const Styles();
     return Styles(
         display: mapData['display'] ?? 'flex',
-        flexDirection: mapData['flexDirection'] ?? 'row',
+        flexDirection: mapData['flexDirection'] ?? 'col',
         color: mapData['color'],
         flex: mapData['flex'] ?? 0,
         width: mapData['width'],
