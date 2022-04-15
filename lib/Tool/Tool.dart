@@ -353,7 +353,7 @@ BorderRadius? getBorderRadius(Styles styles) {
         bottomRight:
             Radius.circular(getSize(size: styles.borderBottomRightRadius)));
   } else {
-    return null;
+    return BorderRadius.all(Radius.circular(0));
   }
 }
 

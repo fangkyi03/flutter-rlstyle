@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:rlstyles/Tool/Tool.dart';
 import 'package:rlstyles/main.dart';
 import '../Tool/base.dart';
 import './View.dart';
@@ -67,6 +68,8 @@ class ImageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return View(styles: styles, children: [renderImage()]);
+    return View(styles: styles, children: [
+      ClipRRect(borderRadius: getBorderRadius(mStyles), child: renderImage())
+    ]);
   }
 }
