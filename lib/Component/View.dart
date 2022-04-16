@@ -81,7 +81,18 @@ class View extends StatelessWidget {
 
   Widget renderFlex(Widget child) {
     if (mStyles.flex != null && mStyles.flex != 0) {
-      return Expanded(child: child, flex: mStyles.flex as int);
+      // 这边比较特殊 如果直接处理onClick 这会导致flex1 是基于GestureDetector
+      // 从而导致后面的flex 1没有效果 所以这边要做一个判断 让其能正常显示
+      if (onClick != null) {
+        return Expanded(
+            child: GestureDetector(
+              onTap: onClick,
+              child: child,
+            ),
+            flex: mStyles.flex as int);
+      } else {
+        return Expanded(child: child, flex: mStyles.flex as int);
+      }
     } else {
       return child;
     }
@@ -251,7 +262,7 @@ class View extends StatelessWidget {
   }
 
   renderGestureDetector(Widget child) {
-    if (onClick != null) {
+    if (onClick != null && mStyles.flex == null) {
       return GestureDetector(
         onTap: onClick,
         child: child,
