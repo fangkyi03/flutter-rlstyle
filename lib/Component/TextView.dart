@@ -8,14 +8,15 @@ import './Styles.dart';
 
 // ignore: must_be_immutable
 class TextView extends StatelessWidget {
-  TextView(this.child, {Key? key, this.styles = const {}, this.className}) {
+  TextView(this.child,
+      {Key? key, this.styles = const {}, this.className, this.onClick}) {
     this.mStyles = StylesMap.formMap(this.styles);
   }
   final Map styles;
   Styles mStyles = Styles();
   final String child;
   final String? className;
-
+  final Function()? onClick;
   FontWeight getWeight() {
     if (mStyles.fontWeight == null) return FontWeight.normal;
     if (getTypeOf(mStyles.fontWeight) == 'String' &&
@@ -146,6 +147,7 @@ class TextView extends StatelessWidget {
   Widget build(BuildContext context) {
     return View(
       styles: styles,
+      onClick: onClick,
       children: [this.renderText()],
     );
   }
