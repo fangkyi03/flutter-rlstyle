@@ -218,12 +218,11 @@ class View extends StatelessWidget {
       mHeight =
           double.parse((mStyles.height as String).replaceAll('%', '')) / 100;
     }
-    return Expanded(
-        child: FractionallySizedBox(
+    return FractionallySizedBox(
       widthFactor: mWidth ?? null,
       heightFactor: mHeight ?? null,
       child: child,
-    ));
+    );
   }
 
   renderContainer(Widget child, [Styles? styles]) {

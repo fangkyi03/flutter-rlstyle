@@ -4,6 +4,8 @@
 # demo演示视频
 [https://www.bilibili.com/video/av71131117](https://www.bilibili.com/video/av71131117)
 
+# 注意事项
+1.不要再root级 使用flex:1 这样会导致报错 debug模式正常 但是profile release都会无法正常显示
 # 使用
 添加rlStyle到您的pubspec.yaml
 ```javaScript
