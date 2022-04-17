@@ -354,7 +354,6 @@ BorderRadius? getBorderRadius(Styles styles) {
             Radius.circular(getSize(size: styles.borderBottomRightRadius)));
   } else {
     return null;
-    // return BorderRadius.all(Radius.circular(0));
   }
 }
 
