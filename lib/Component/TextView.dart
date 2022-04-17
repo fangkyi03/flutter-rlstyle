@@ -23,26 +23,25 @@ class TextView extends StatelessWidget {
         mStyles.fontWeight == 'bold') {
       return FontWeight.bold;
     }
-    final double mfontWeight = getSize(size: mStyles.fontWeight);
     if (mStyles.fontWeight == null) {
       return FontWeight.normal;
-    } else if (mfontWeight == 100.0) {
+    } else if (mStyles.fontWeight == 100.0) {
       return FontWeight.w100;
-    } else if (mfontWeight == 200.0) {
+    } else if (mStyles.fontWeight == 200.0) {
       return FontWeight.w200;
-    } else if (mfontWeight == 300.0) {
+    } else if (mStyles.fontWeight == 300.0) {
       return FontWeight.w300;
-    } else if (mfontWeight == 400.0) {
+    } else if (mStyles.fontWeight == 400.0) {
       return FontWeight.w400;
-    } else if (mfontWeight == 500.0) {
+    } else if (mStyles.fontWeight == 500.0) {
       return FontWeight.w500;
-    } else if (mfontWeight == 600.0) {
+    } else if (mStyles.fontWeight == 600.0) {
       return FontWeight.w600;
-    } else if (mfontWeight == 700.0) {
+    } else if (mStyles.fontWeight == 700.0) {
       return FontWeight.w700;
-    } else if (mfontWeight == 800.0) {
+    } else if (mStyles.fontWeight == 800.0) {
       return FontWeight.w800;
-    } else if (mfontWeight == 900.0) {
+    } else if (mStyles.fontWeight == 900.0) {
       return FontWeight.w900;
     } else {
       return FontWeight.normal;
