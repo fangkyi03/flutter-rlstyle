@@ -12,3 +12,5 @@ export './Tool/base.dart';
 export './Component/StylesMap.dart';
 // hook
 export 'package:flutter_hooks/flutter_hooks.dart';
+// Tailwind
+export './Tailwind/index.dart';
