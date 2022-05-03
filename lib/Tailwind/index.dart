@@ -1,5 +1,14 @@
 import 'package:rlstyles/Component/CssRule.dart';
 
+// 合并所有样式
+var mergeStyle = (List styles) {
+  final obj = {};
+  for (var style in styles) {
+    obj.addAll(style);
+  }
+  return obj;
+};
+
 // row
 const FlexRow = {CssRule.flexDirection: 'row'};
 const FlexRowReverse = {CssRule.flexDirection: 'row-reverse'};
