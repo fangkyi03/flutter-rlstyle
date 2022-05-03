@@ -74,10 +74,11 @@ final radius = ({dynamic size}) => {CssRule.borderRadius: size};
 final radiusLg = {CssRule.borderRadius: '5px'};
 final radiusSm = {CssRule.borderRadius: '2px'};
 final radiusXs = {CssRule.borderRadius: '1px'};
-final rLeftTop = {CssRule.borderTopLeftRadius: '5px'};
-final rLeftBottom = {CssRule.borderBottomLeftRadius: '5px'};
-final rRightTop = {CssRule.borderTopRightRadius: '5px'};
-final rRightBottom = {CssRule.borderBottomRightRadius: '5px'};
+final rLeftTop = ({dynamic size}) => {CssRule.borderTopLeftRadius: size};
+final rLeftBottom = ({dynamic size}) => {CssRule.borderBottomLeftRadius: size};
+final rRightTop = ({dynamic size}) => {CssRule.borderTopRightRadius: size};
+final rRightBottom =
+    ({dynamic size}) => {CssRule.borderBottomRightRadius: size};
 
 // border
 final border = ({dynamic size, dynamic color}) => {
