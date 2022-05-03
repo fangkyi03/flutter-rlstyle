@@ -115,3 +115,45 @@ const borderSolid = {CssRule.borderStyle: 'solid'};
 
 // backGroundColor
 final bgColor = ({dynamic color}) => {CssRule.backgroundColor: color};
+
+// position
+final absolute = {CssRule.position: 'absolute'};
+final relative = {CssRule.position: 'relative'};
+
+// zIndex
+final zIndex = ({dynamic index}) => {CssRule.zIndex: index};
+
+// scroll
+final overScrollY = {CssRule.overflowY: 'scroll'};
+final overScrollX = {CssRule.overflowX: 'scroll'};
+
+// flex
+final flex = ({dynamic size}) => {CssRule.flex: size};
+
+// size
+final minWidth = ({dynamic size}) => {CssRule.minWidth: size};
+final minHeight = ({dynamic size}) => {CssRule.minHeight: size};
+final maxWidth = ({dynamic size}) => {CssRule.maxWidth: size};
+final maxHeight = ({dynamic size}) => {CssRule.maxHeight: size};
+
+// abs
+final absTop = ({dynamic size}) => {CssRule.top: size};
+final absLeft = ({dynamic size}) => {CssRule.left: size};
+final absRight = ({dynamic size}) => {CssRule.right: size};
+final absBottom = ({dynamic size}) => {CssRule.bottom: size};
+
+// opacity
+final opacity = ({dynamic size}) => {CssRule.opacity: size};
+
+// backgroundSize
+final bgSize = ({dynamic size}) => {CssRule.backgroundSize: size};
+
+// scrollBar
+final scrollBar = ({dynamic state}) => {CssRule.scrollBar: state};
+
+// font
+final fWeight = ({dynamic size}) => {CssRule.fontWeight: size};
+final fFamily = ({dynamic size}) => {CssRule.fontFamily: size};
+
+// backgroundImage
+final bgImage = ({dynamic size}) => {CssRule.backgroundImage: size};
