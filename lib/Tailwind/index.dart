@@ -1,16 +1,16 @@
 import 'package:rlstyles/Component/CssRule.dart';
 
 // row
-const Row = {CssRule.flexDirection: 'row'};
-const RowReverse = {CssRule.flexDirection: 'row-reverse'};
+const FlexRow = {CssRule.flexDirection: 'row'};
+const FlexRowReverse = {CssRule.flexDirection: 'row-reverse'};
 
 // column
-const Column = {CssRule.flexDirection: 'column'};
-const ColumnReverse = {CssRule.flexDirection: 'column-reverse'};
+const FlexColumn = {CssRule.flexDirection: 'column'};
+const FlexColumnReverse = {CssRule.flexDirection: 'column-reverse'};
 
 // wrap
-const Wrap = {CssRule.flexWrap: 'wrap'};
-const NoWrap = {CssRule.flexWrap: 'nowrap'};
+const FlexWrap = {CssRule.flexWrap: 'wrap'};
+const FlexNoWrap = {CssRule.flexWrap: 'nowrap'};
 
 // Justify
 const JustifyStart = {CssRule.justifyContent: 'flex-start'};
