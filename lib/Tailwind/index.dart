@@ -157,3 +157,11 @@ final fFamily = ({dynamic size}) => {CssRule.fontFamily: size};
 
 // backgroundImage
 final bgImage = ({dynamic size}) => {CssRule.backgroundImage: size};
+
+// backgroungSize
+final bgSizeCover = {CssRule.backgroundSize: 'cover'};
+final bgSizeContain = {CssRule.backgroundSize: 'contain'};
+final bgSizeFill = {CssRule.backgroundSize: 'fill'};
+final bgSizeFitHeight = {CssRule.backgroundSize: 'fitHeight'};
+final bgSizeFitWidth = {CssRule.backgroundSize: 'fitWidth'};
+final bgSizeScaleDown = {CssRule.backgroundSize: 'scaleDown'};
