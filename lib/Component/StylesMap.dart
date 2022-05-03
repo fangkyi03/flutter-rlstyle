@@ -64,7 +64,7 @@ class StylesMap extends Styles {
         textAlign: mapData['textAlign'],
         minHeight: mapData['minHeight'],
         minWidth: mapData['minWidth'],
-        borderBottomLeftRadius: mapData['borderBottomLeftRadius'],
+        borderBottomLeftRadius: mapData['borderBottomLeftRadius'] ?? 1,
         borderBottomRightRadius: mapData['borderBottomRightRadius'],
         borderLeftStyle: mapData['borderLeftStyle'] ?? 'solid',
         borderLeftColor: mapData['borderLeftColor'],
