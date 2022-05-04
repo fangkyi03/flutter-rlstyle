@@ -288,6 +288,8 @@ class View extends StatelessWidget {
   renderView() {
     if (mStyles.display == 'grid') {
       return renderContainer(renderGrid(children));
+    } else if (mStyles.position == 'abs' || mStyles.position == 'absolute') {
+      return renderAbsolute(renderChildrenView());
     } else {
       return renderFlex(renderContainer(renderChildrenView()));
     }
