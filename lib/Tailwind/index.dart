@@ -117,8 +117,8 @@ const borderSolid = {CssRule.borderStyle: 'solid'};
 final bgColor = ({dynamic color}) => {CssRule.backgroundColor: color};
 
 // position
-final absolute = {CssRule.position: 'absolute'};
-final relative = {CssRule.position: 'relative'};
+final absolute = {CssRule.position: 'abs'};
+final relative = {CssRule.position: 'rel'};
 
 // zIndex
 final zIndex = ({dynamic index}) => {CssRule.zIndex: index};

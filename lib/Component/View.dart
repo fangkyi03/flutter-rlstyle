@@ -1,6 +1,4 @@
 // ignore_for_file: unrelated_type_equality_checks
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:rlstyles/Tool/Tool.dart';
 import 'package:rlstyles/Tool/base.dart' as base;
