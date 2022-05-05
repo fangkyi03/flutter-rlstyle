@@ -142,7 +142,7 @@ class Styles {
   final String? overflowY;
   final String? overflowX;
   final double? letterSpacing;
-  final String? transform;
+  final dynamic transform;
   final dynamic backgroundSize;
   final dynamic margin;
   final dynamic padding;

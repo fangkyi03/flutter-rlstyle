@@ -10,16 +10,14 @@ class View extends StatelessWidget {
   final String? type;
   final GestureTapCallback? onClick;
   final Map? styles;
-  final bool block;
   Styles mStyles = const Styles();
-  View(
-      {Key? key,
-      this.children = const [],
-      this.styles = const {},
-      this.type,
-      this.onClick,
-      this.block = true})
-      : super(key: key) {
+  View({
+    Key? key,
+    this.children = const [],
+    this.styles = const {},
+    this.type,
+    this.onClick,
+  }) : super(key: key) {
     mStyles = StylesMap.formMap(styles ?? {});
   }
   renderEmpty() {
@@ -232,6 +230,7 @@ class View extends StatelessWidget {
         height: newStyles.height != null ? getHeight(newStyles) : null,
         decoration: getDecoration(newStyles),
         constraints: getContaionMaxMin(newStyles),
+        transform: newStyles.transform,
         child: child);
     if (getPercentageState()) {
       return this.renderOpacity(renderPercentage(child: view));
