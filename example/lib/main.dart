@@ -16,18 +16,26 @@ class Home extends HookWidget {
             onClick: () {
               print('点击');
             },
-            styles: mergeStyle([FL_Color(color: Colors.blue)]),
-            children: [TextView('中国')],
+            styles: [
+              FL_Color(color: Colors.yellow),
+              FL_BgColor(color: Colors.blue),
+              FL_FlexColumn,
+              FL_Padding(size: 20),
+              FL_Radius(size: 10),
+              FL_Width(size: 100),
+              FL_Height(size: 100),
+            ],
+            children: [TextView('123'), TextView('child12312312312312')],
           )
         ],
-        styles: mergeStyle([
+        styles: [
           FL_FlexColumn,
           FL_AlignCenter,
           FL_JustifyCenter,
-          FL_Width(size: 100),
           FL_BgColor(color: Colors.red),
-          FL_Height(size: 200),
-        ]),
+          FL_WFull,
+          FL_HFull
+        ],
       );
     }
 

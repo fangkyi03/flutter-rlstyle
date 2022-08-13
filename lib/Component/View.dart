@@ -9,16 +9,20 @@ class View extends StatelessWidget {
   final List<Widget> children;
   final String? type;
   final GestureTapCallback? onClick;
-  final Map? styles;
+  final dynamic styles;
   Styles mStyles = const Styles();
   View({
     Key? key,
     this.children = const [],
-    this.styles = const {},
+    this.styles,
     this.type,
     this.onClick,
   }) : super(key: key) {
-    mStyles = StylesMap.formMap(styles ?? {});
+    if (this.styles.runtimeType.toString() == 'List<Map<String, dynamic>>') {
+      mStyles = StylesMap.formMap(mergeStyle(this.styles));
+    } else {
+      mStyles = StylesMap.formMap(this.styles ?? {});
+    }
   }
   renderEmpty() {
     return Container();
@@ -120,7 +124,7 @@ class View extends StatelessWidget {
     return renderScroll(element);
   }
 
-  setStyle(Map newStyles) {
+  setStyle(dynamic newStyles) {
     // if (newStyles.isNotEmpty) {
     //   Map obj = {...newStyles, ...styles ?? {}};
     //   mStyles = StylesMap.formMap(obj);

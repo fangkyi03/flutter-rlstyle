@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rlstyles/Component/StylesMap.dart';
 import 'package:rlstyles/Component/View.dart';
+import 'package:rlstyles/main.dart';
 import './HexColor.dart';
 import '../Tool/base.dart';
 import './Styles.dart';
@@ -114,10 +115,15 @@ class TextView extends StatelessWidget {
     }
   }
 
-  setStyle(Map newStyles) {
+  setStyle(dynamic newStyles) {
     if (newStyles.isNotEmpty) {
-      Map obj = {...newStyles, ...styles};
-      mStyles = StylesMap.formMap(obj);
+      if (newStyles.runtimeType.toString() == 'List<Map<String, dynamic>>') {
+        Map obj = {...(mergeStyle(newStyles)), ...styles};
+        mStyles = StylesMap.formMap(obj);
+      } else {
+        Map obj = {...newStyles, ...styles};
+        mStyles = StylesMap.formMap(obj);
+      }
     }
   }
 
