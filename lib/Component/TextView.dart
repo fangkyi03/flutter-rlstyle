@@ -11,9 +11,15 @@ import './Styles.dart';
 class TextView extends StatelessWidget {
   TextView(this.child,
       {Key? key, this.styles = const {}, this.className, this.onClick}) {
-    this.mStyles = StylesMap.formMap(this.styles);
+    final type = this.styles.runtimeType.toString();
+    if (type == 'List<Map<String, dynamic>>' ||
+        type == 'List<Map<String, String>>') {
+      mStyles = StylesMap.formMap(mergeStyle(this.styles));
+    } else {
+      mStyles = StylesMap.formMap(this.styles ?? {});
+    }
   }
-  final Map styles;
+  final dynamic styles;
   Styles mStyles = Styles();
   final String child;
   final String? className;
@@ -117,7 +123,9 @@ class TextView extends StatelessWidget {
 
   setStyle(dynamic newStyles) {
     if (newStyles.isNotEmpty) {
-      if (newStyles.runtimeType.toString() == 'List<Map<String, dynamic>>') {
+      final type = this.styles.runtimeType.toString();
+      if (type == 'List<Map<String, dynamic>>' ||
+          type == 'List<Map<String, String>>') {
         Map obj = {...(mergeStyle(newStyles)), ...styles};
         mStyles = StylesMap.formMap(obj);
       } else {

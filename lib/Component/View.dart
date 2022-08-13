@@ -18,7 +18,9 @@ class View extends StatelessWidget {
     this.type,
     this.onClick,
   }) : super(key: key) {
-    if (this.styles.runtimeType.toString() == 'List<Map<String, dynamic>>') {
+    final type = this.styles.runtimeType.toString();
+    if (type == 'List<Map<String, dynamic>>' ||
+        type == 'List<Map<String, String>>') {
       mStyles = StylesMap.formMap(mergeStyle(this.styles));
     } else {
       mStyles = StylesMap.formMap(this.styles ?? {});

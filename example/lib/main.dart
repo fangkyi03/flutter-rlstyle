@@ -9,41 +9,81 @@ class Home extends HookWidget {
   const Home({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    Widget renderBody() {
+    final styles = {
+      'header': [
+        FL_Width(size: double.infinity),
+        FL_Height(size: 50),
+        FL_BgColor(color: Colors.white),
+        FL_AlignCenter,
+        FL_JustifyCenter
+      ],
+      'body': [FL_BgColor(color: Colors.grey), FL_WFull, FL_HFull],
+      'headerLeft': [
+        FL_Absolute,
+        FL_AbsLeft(size: 10),
+        FL_AbsTop(size: 0),
+        FL_AbsBottom(size: 0),
+        FL_AlignCenter,
+        FL_JustifyCenter,
+      ],
+      'headerRight': [
+        FL_Absolute,
+        FL_AbsRight(size: 10),
+        FL_AbsTop(size: 0),
+        FL_AbsBottom(size: 0),
+        FL_AlignCenter,
+        FL_JustifyCenter,
+      ]
+    };
+    Widget renderHeaderLeft() {
       return View(
+        styles: styles['headerLeft'],
         children: [
-          View(
-            onClick: () {
-              print('点击');
-            },
-            styles: [
-              FL_Color(color: Colors.yellow),
-              FL_BgColor(color: Colors.blue),
-              FL_FlexColumn,
-              FL_Padding(size: 20),
-              FL_Radius(size: 10),
-              FL_Width(size: 100),
-              FL_Height(size: 100),
-            ],
-            children: [TextView('123'), TextView('child12312312312312')],
+          Icon(
+            Icons.mail,
+            size: 20,
           )
         ],
-        styles: [
-          FL_FlexColumn,
-          FL_AlignCenter,
-          FL_JustifyCenter,
-          FL_BgColor(color: Colors.red),
-          FL_WFull,
-          FL_HFull
+      );
+    }
+
+    Widget renderHeaderRight() {
+      return View(
+        styles: styles['headerRight'],
+        children: [TextView('ceshi')],
+      );
+    }
+
+    Widget renderHeader() {
+      return View(
+        styles: styles['header'],
+        children: [
+          renderHeaderLeft(),
+          TextView('12312313231'),
+          renderHeaderRight()
         ],
       );
+    }
+
+    Widget renderBanner() {
+      return View(
+        children: [TextView('banner1212')],
+      );
+    }
+
+    Widget renderView() {
+      return View(
+          children: [renderHeader(), renderBanner()], styles: styles['body']);
     }
 
     return ScreenUtilInit(
       designSize: const Size(360, 690),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (context) {
+      builder: (
+        context,
+        Widget? child,
+      ) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'First Method',
@@ -52,7 +92,10 @@ class Home extends HookWidget {
             primarySwatch: Colors.blue,
             textTheme: Typography.englishLike2018.apply(fontSizeFactor: 1.sp),
           ),
-          home: Scaffold(body: renderBody()),
+          home: Scaffold(
+              body: SafeArea(
+            child: renderView(),
+          )),
         );
       },
     );
