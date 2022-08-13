@@ -123,7 +123,7 @@ class TextView extends StatelessWidget {
 
   setStyle(dynamic newStyles) {
     if (newStyles.isNotEmpty) {
-      final type = this.styles.runtimeType.toString();
+      final type = newStyles.runtimeType.toString();
       if (type == 'List<Map<String, dynamic>>' ||
           type == 'List<Map<String, String>>') {
         Map obj = {...(mergeStyle(newStyles)), ...styles};
