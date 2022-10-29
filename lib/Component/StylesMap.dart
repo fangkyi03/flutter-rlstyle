@@ -1,4 +1,4 @@
-import 'package:rlstyles/Component/Styles.dart';
+import 'package:rlstyles/main.dart';
 
 class StylesMap extends Styles {
   static getClass(Map keyName, Map classMap) {
@@ -10,7 +10,11 @@ class StylesMap extends Styles {
     });
     Map obj = {};
     arr.forEach((element) {
-      obj = {...obj, ...classMap[element]};
+      if (getStyleType(classMap[element]) == 'array') {
+        obj = {...obj, ...mergeStyle(classMap[element])};
+      } else {
+        obj = {...obj, ...classMap[element]};
+      }
     });
     return obj;
   }

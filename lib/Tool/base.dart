@@ -63,3 +63,13 @@ getSize({dynamic size, dynamic defValue = 0.0, isTransform = true}) {
     return defValue;
   }
 }
+
+getStyleType(dynamic style) {
+  final type = style.runtimeType.toString();
+  if (type == 'List<Map<String, dynamic>>' ||
+      type == 'List<Map<String, String>>') {
+    return 'array';
+  } else {
+    return 'map';
+  }
+}
