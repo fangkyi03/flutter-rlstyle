@@ -3,13 +3,13 @@
 import 'package:rlstyles/Component/CssRule.dart';
 
 // 合并所有样式
-var mergeStyle = (List styles) {
+Map mergeStyle(List styles) {
   final obj = {};
   for (var style in styles) {
     obj.addAll(style);
   }
   return obj;
-};
+}
 
 // row
 const FL_FlexRow = {CssRule.flexDirection: 'row'};
@@ -89,6 +89,9 @@ final FL_Border = ({dynamic size, dynamic color}) => {
       CssRule.borderStyle: 'solid',
       CssRule.borderColor: color
     };
+
+final FL_BorderColor = ({dynamic color}) => {CssRule.borderColor: color};
+
 final FL_BLeftTop = ({dynamic size, dynamic color}) => {
       CssRule.borderTopLeftRadius: size,
       CssRule.borderLeftWidth: size,

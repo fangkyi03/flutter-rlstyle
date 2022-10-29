@@ -1,8 +1,11 @@
 import 'dart:async';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
+import 'package:rlstyles/main.dart';
 
 typedef PeriodicCallBack = void Function(Timer periodicTime);
+
+enum StyleType { array, map, nul }
 
 void setTimeout(callback, time) {
   Duration timeDelay = Duration(milliseconds: time);
@@ -64,12 +67,23 @@ getSize({dynamic size, dynamic defValue = 0.0, isTransform = true}) {
   }
 }
 
-getStyleType(dynamic style) {
-  final type = style.runtimeType.toString();
-  if (type == 'List<Map<String, dynamic>>' ||
-      type == 'List<Map<String, String>>') {
-    return 'array';
+StyleType getStyleType(dynamic style) {
+  if (style is List) {
+    return StyleType.array;
+  } else if (style is Map) {
+    return StyleType.map;
   } else {
-    return 'map';
+    return StyleType.nul;
+  }
+}
+
+getStyle(dynamic style) {
+  switch (getStyleType(style)) {
+    case StyleType.array:
+      return mergeStyle(style);
+    case StyleType.map:
+      return style;
+    case StyleType.nul:
+      return {};
   }
 }
