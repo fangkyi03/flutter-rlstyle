@@ -90,6 +90,43 @@ final FL_Border = ({dynamic size, dynamic color}) => {
       CssRule.borderColor: color
     };
 
+final FL_BorderBottom = ({
+  dynamic width,
+  dynamic color,
+}) =>
+    {
+      CssRule.borderBottomWidth: width,
+      CssRule.borderBottomColor: color,
+      CssRule.borderBottomStyle: 'solid'
+    };
+
+final FL_BorderTop = ({
+  dynamic width,
+  dynamic color,
+}) =>
+    {
+      CssRule.borderTopWidth: width,
+      CssRule.borderTopColor: color,
+      CssRule.borderTopStyle: 'solid'
+    };
+
+final FL_BorderLeft = ({
+  dynamic width,
+  dynamic color,
+}) =>
+    {
+      CssRule.borderLeftWidth: width,
+      CssRule.borderLeftColor: color,
+      CssRule.borderLeftStyle: 'solid'
+    };
+
+final FL_BorderRight =
+    ({dynamic width, dynamic color, String style = 'solid'}) => {
+          CssRule.borderRightWidth: width,
+          CssRule.borderRightColor: color,
+          CssRule.borderRightStyle: style
+        };
+
 final FL_BorderColor = ({dynamic color}) => {CssRule.borderColor: color};
 
 final FL_BLeftTop = ({dynamic size, dynamic color}) => {
@@ -110,6 +147,7 @@ final FL_BRightTop = ({dynamic size, dynamic color}) => {
       CssRule.borderRightStyle: 'solid',
       CssRule.borderRightColor: color
     };
+
 final FL_BRightBottom = ({dynamic size, dynamic color}) => {
       CssRule.borderBottomRightRadius: size,
       CssRule.borderRightWidth: size,

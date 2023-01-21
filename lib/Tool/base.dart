@@ -58,7 +58,7 @@ getSize({dynamic size, dynamic defValue = 0.0, isTransform = true}) {
   }
   if (mSize != null) {
     if (isTransform) {
-      return ScreenUtil().setWidth(mSize);
+      return ScreenUtil().setWidth(mSize).abs();
     } else {
       return mSize;
     }

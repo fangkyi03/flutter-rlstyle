@@ -391,7 +391,7 @@ getPercentage({Widget? childView, Styles? styles}) {
 // 设置边框
 Decoration getDecoration(Styles styles) {
   return BoxDecoration(
-      borderRadius: getBorderRadius(styles),
+      // borderRadius: getBorderRadius(styles),
       color: getBackgroundColor(styles),
       border: getBorder(styles),
       gradient: getGradient(styles),
