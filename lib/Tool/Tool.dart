@@ -232,7 +232,7 @@ EdgeInsets getMargin(Styles styles) {
       right: getSize(size: styles.marginRight, defValue: 0.0),
       bottom: getSize(size: styles.marginBottom, defValue: 0.0));
   if (styles.margin != null) {
-    return EdgeInsets.all(styles.margin);
+    return EdgeInsets.all(getSize(size: styles.margin, defValue: 0.0));
   } else if (!newMargin.isNonNegative) {
     return EdgeInsets.all(0);
   } else {

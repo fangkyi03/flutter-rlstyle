@@ -73,7 +73,14 @@ class Home extends HookWidget {
 
     Widget renderView() {
       return View(
-          children: [renderHeader(), renderBanner()], styles: styles['body']);
+        styles: [
+          FL_AlignCenter,
+          FL_JustifyCenter,
+          FL_WFull,
+          FL_Margin(size: 100)
+        ],
+        children: [TextView('123123')],
+      );
     }
 
     return ScreenUtilInit(
@@ -81,8 +88,7 @@ class Home extends HookWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (
-        context,
-        Widget? child,
+        BuildContext context,
       ) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,

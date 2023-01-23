@@ -229,6 +229,13 @@ class View extends StatelessWidget {
 
   renderContainer(Widget child, [Styles? styles]) {
     Styles newStyles = styles ?? mStyles;
+    Widget view = child;
+    if (getBorderRadius(newStyles) != null) {
+      view = ClipRRect(
+        borderRadius: getBorderRadius(newStyles),
+        child: child,
+      );
+    }
     Widget mContainer = Container(
         margin: getMargin(newStyles),
         padding: getPadding(newStyles),
@@ -237,18 +244,12 @@ class View extends StatelessWidget {
         decoration: getDecoration(newStyles),
         constraints: getContaionMaxMin(newStyles),
         transform: newStyles.transform,
-        child: child);
-    Widget view = mContainer;
-    if (getBorderRadius(newStyles) != null) {
-      view = ClipRRect(
-        borderRadius: getBorderRadius(newStyles),
-        child: mContainer,
-      );
-    }
+        child: view);
+
     if (getPercentageState()) {
-      return this.renderOpacity(renderPercentage(child: view));
+      return this.renderOpacity(renderPercentage(child: mContainer));
     } else {
-      return renderOpacity(view);
+      return renderOpacity(mContainer);
     }
   }
 
