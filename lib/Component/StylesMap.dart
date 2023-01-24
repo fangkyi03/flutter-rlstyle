@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:rlstyles/main.dart';
 
 class StylesMap extends Styles {
@@ -85,7 +86,7 @@ class StylesMap extends Styles {
         overflowX: mapData['overflowX'],
         letterSpacing: mapData['letterSpacing'],
         transform: mapData['transform'],
-        backgroundSize: mapData['backgroundSize'],
+        backgroundSize: mapData['backgroundSize'] ?? BoxFit.none,
         margin: mapData['margin'],
         padding: mapData['padding'],
         elevation: mapData['elevation'],

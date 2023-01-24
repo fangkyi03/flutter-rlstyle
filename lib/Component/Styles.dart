@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Styles {
   const Styles(
       {this.display = 'display',
@@ -66,7 +68,7 @@ class Styles {
       this.flexWrap,
       this.flexWrapSpacing,
       this.flexWrapRunSpacing,
-      this.backgroundSize,
+      this.backgroundSize = BoxFit.none,
       this.margin,
       this.padding,
       this.elevation,
@@ -143,7 +145,7 @@ class Styles {
   final String? overflowX;
   final double? letterSpacing;
   final dynamic transform;
-  final dynamic backgroundSize;
+  final BoxFit backgroundSize;
   final dynamic margin;
   final dynamic padding;
   final dynamic elevation;

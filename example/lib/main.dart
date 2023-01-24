@@ -81,21 +81,30 @@ class Home extends HookWidget {
           FL_HFull,
         ],
         children: [
-          ClipRRect(
-              borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20)),
-              child: View(
+          View(
+            styles: [
+              FL_Width(size: 200),
+              FL_Height(size: 200),
+              FL_Color(color: Colors.red),
+              FL_FSize(size: 20),
+              FL_Border(color: Colors.red, size: 1),
+              FL_Radius(size: 10),
+              FL_AlignCenter,
+              FL_JustifyCenter,
+            ],
+            children: [
+              ImageView(
                 styles: [
-                  FL_Width(size: 200),
-                  FL_Height(size: 50),
-                  FL_Color(color: Colors.red),
-                  FL_FSize(size: 20),
-                  FL_BorderLeftBottom(color: Colors.red, size: 10),
-                  FL_BorderBottom(color: Colors.red, size: 10),
-                  FL_AlignCenter,
-                  FL_JustifyCenter,
+                  FL_Width(size: '100%'),
+                  FL_Height(size: 190),
+                  FL_BgSize(size: BoxFit.contain),
+                  FL_Radius(size: 50)
                 ],
-                children: [TextView('取消')],
-              ))
+                url:
+                    'https://bkimg.cdn.bcebos.com/pic/cdbf6c81800a19d8bc3e2629cfb5958ba61ea8d3e8c5',
+              )
+            ],
+          )
         ],
       );
     }
