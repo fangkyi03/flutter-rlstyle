@@ -1,4 +1,5 @@
 class CssRule {
+  static const flexNo = 'flexNo';
   static const flex = 'flex';
   static const height = 'height';
   static const display = 'display';
@@ -11,6 +12,7 @@ class CssRule {
   static const justifyContent = 'justifyContent';
   static const alignItems = 'alignItems';
   static const borderRadius = 'borderRadius';
+  static const clipRadius = 'clipRadius';
   static const marginLeft = 'marginLeft';
   static const marginTop = 'marginTop';
   static const marginRight = 'marginRight';

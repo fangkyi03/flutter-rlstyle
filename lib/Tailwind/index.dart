@@ -3,13 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:rlstyles/main.dart';
 
 // 合并所有样式
-Map mergeStyle(List styles) {
+Map mergeStyle(dynamic styles) {
   final obj = {};
-  for (var style in styles) {
-    obj.addAll(style);
+  final type = styles.runtimeType.toString();
+  if (type == 'List<Map<String, dynamic>>' ||
+      type == 'List<Map<String, String>>') {
+    for (var style in styles) {
+      obj.addAll(style);
+    }
+    return obj;
+  } else {
+    return styles;
   }
-  return obj;
 }
+
+// no_flex
+const FL_FLEX_NO = {CssRule.flexNo: true};
 
 // row
 const FL_FlexRow = {CssRule.flexDirection: 'row'};
@@ -76,6 +85,8 @@ final FL_ColorGreen = {CssRule.color: '#0f0'};
 final FL_ColorBlue = {CssRule.color: '#00f'};
 
 // radius
+// 是否开启圆角裁剪
+final FL_Clip_Radius = ({bool state = false}) => {CssRule.clipRadius: state};
 final FL_Radius = ({dynamic size}) => {CssRule.borderRadius: size};
 final FL_RadiusLg = {CssRule.borderRadius: '5px'};
 final FL_RadiusSm = {CssRule.borderRadius: '2px'};

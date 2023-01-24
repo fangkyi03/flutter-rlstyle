@@ -20,10 +20,12 @@ class StylesMap extends Styles {
   static formMap(Map mapData) {
     if (mapData.isEmpty) return const Styles();
     return Styles(
+        clipRadius: mapData['clipRadius'] ?? false,
         display: mapData['display'] ?? 'flex',
         flexDirection: mapData['flexDirection'] ?? 'col',
         color: mapData['color'],
         flex: mapData['flex'] ?? null,
+        flexNo: mapData['flexNo'] ?? false,
         width: mapData['width'],
         height: mapData['height'],
         flexWrap: mapData['flexWrap'],

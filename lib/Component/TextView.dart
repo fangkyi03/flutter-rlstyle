@@ -3,8 +3,7 @@ import 'package:rlstyles/main.dart';
 
 // ignore: must_be_immutable
 class TextView extends StatelessWidget {
-  TextView(this.child,
-      {Key? key, this.styles = const {}, this.className, this.onClick}) {
+  TextView(this.child, {Key? key, this.styles, this.className, this.onClick}) {
     final type = this.styles.runtimeType.toString();
     if (type == 'List<Map<String, dynamic>>' ||
         type == 'List<Map<String, String>>') {
@@ -120,7 +119,7 @@ class TextView extends StatelessWidget {
       final type = newStyles.runtimeType.toString();
       if (type == 'List<Map<String, dynamic>>' ||
           type == 'List<Map<String, String>>') {
-        Map obj = {...(mergeStyle(newStyles)), ...styles};
+        Map obj = {...(mergeStyle(newStyles)), ...mergeStyle(styles)};
         mStyles = StylesMap.formMap(obj);
       } else {
         Map obj = {...newStyles, ...styles};

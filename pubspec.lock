@@ -15,6 +15,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.1.0"
+  card_swiper:
+    dependency: "direct main"
+    description:
+      name: card_swiper
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.0.4"
   characters:
     dependency: transitive
     description:

@@ -229,13 +229,14 @@ class View extends StatelessWidget {
 
   renderContainer(Widget child, [Styles? styles]) {
     Styles newStyles = styles ?? mStyles;
-    // Widget view = child;
-    // if (getBorderRadius(newStyles) != null) {
-    //   view = ClipRRect(
-    //     borderRadius: getBorderRadius(newStyles),
-    //     child: child,
-    //   );
-    // }
+
+    Widget view = child;
+    if (mStyles.clipRadius) {
+      view = ClipRRect(
+        borderRadius: getBorderRadius(newStyles),
+        child: child,
+      );
+    }
     Widget mContainer = Container(
         margin: getMargin(newStyles),
         padding: getPadding(newStyles),
@@ -244,7 +245,7 @@ class View extends StatelessWidget {
         decoration: getDecoration(newStyles),
         constraints: getContaionMaxMin(newStyles),
         transform: newStyles.transform,
-        child: child);
+        child: view);
 
     if (getPercentageState()) {
       return this.renderOpacity(renderPercentage(child: mContainer));
@@ -254,6 +255,13 @@ class View extends StatelessWidget {
   }
 
   renderChildrenView() {
+    if (mStyles.flexNo) {
+      if (children.length > 0) {
+        return children[0];
+      } else {
+        return Container();
+      }
+    }
     Map childData = getChildren(children);
     if (childData['mAbsolute'].length == 0) {
       if (childData['mTree'].length > 0) {

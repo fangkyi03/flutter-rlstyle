@@ -77,7 +77,11 @@ class Styles {
       this.gridChildAspectRatio,
       this.gridCrossAxisSpacing,
       this.gridMainAxisSpacing,
+      this.flexNo = false,
+      this.clipRadius = false,
       this.scrollBar = true});
+  final bool clipRadius;
+  final bool flexNo;
   final bool scrollBar;
   final String display;
   final dynamic color;
