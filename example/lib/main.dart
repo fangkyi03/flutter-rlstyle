@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:rlstyles/main.dart';
 
@@ -77,9 +78,25 @@ class Home extends HookWidget {
           FL_AlignCenter,
           FL_JustifyCenter,
           FL_WFull,
-          FL_Margin(size: 100)
+          FL_HFull,
         ],
-        children: [TextView('123123')],
+        children: [
+          ClipRRect(
+              borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20)),
+              child: View(
+                styles: [
+                  FL_Width(size: 200),
+                  FL_Height(size: 50),
+                  FL_Color(color: Colors.red),
+                  FL_FSize(size: 20),
+                  FL_BorderLeftBottom(color: Colors.red, size: 10),
+                  FL_BorderBottom(color: Colors.red, size: 10),
+                  FL_AlignCenter,
+                  FL_JustifyCenter,
+                ],
+                children: [TextView('取消')],
+              ))
+        ],
       );
     }
 

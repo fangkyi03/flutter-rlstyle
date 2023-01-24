@@ -1,6 +1,5 @@
 // ignore_for_file: non_constant_identifier_names
-
-import 'package:rlstyles/Component/CssRule.dart';
+import 'package:rlstyles/main.dart';
 
 // 合并所有样式
 Map mergeStyle(List styles) {
@@ -76,12 +75,14 @@ final FL_Radius = ({dynamic size}) => {CssRule.borderRadius: size};
 final FL_RadiusLg = {CssRule.borderRadius: '5px'};
 final FL_RadiusSm = {CssRule.borderRadius: '2px'};
 final FL_RadiusXs = {CssRule.borderRadius: '1px'};
-final FL_RLeftTop = ({dynamic size}) => {CssRule.borderTopLeftRadius: size};
-final FL_RLeftBottom =
-    ({dynamic size}) => {CssRule.borderBottomLeftRadius: size};
-final FL_RRightTop = ({dynamic size}) => {CssRule.borderTopRightRadius: size};
-final FL_RRightBottom =
-    ({dynamic size}) => {CssRule.borderBottomRightRadius: size};
+final FL_RadiusLeftTop =
+    ({dynamic size}) => {CssRule.borderTopLeftRadius: size};
+final FL_RadiusLeftBottom = ({dynamic size}) =>
+    {CssRule.borderBottomLeftRadius: getSize(size: size, defValue: 0.0)};
+final FL_RadiusRightTop = ({dynamic size}) =>
+    {CssRule.borderTopRightRadius: getSize(size: size, defValue: 0.0)};
+final FL_RadiusRightBottom = ({dynamic size}) =>
+    {CssRule.borderBottomRightRadius: getSize(size: size, defValue: 0.0)};
 
 // border
 final FL_Border = ({dynamic size, dynamic color}) => {
@@ -91,11 +92,11 @@ final FL_Border = ({dynamic size, dynamic color}) => {
     };
 
 final FL_BorderBottom = ({
-  dynamic width,
+  dynamic size,
   dynamic color,
 }) =>
     {
-      CssRule.borderBottomWidth: width,
+      CssRule.borderBottomWidth: size,
       CssRule.borderBottomColor: color,
       CssRule.borderBottomStyle: 'solid'
     };
@@ -129,27 +130,24 @@ final FL_BorderRight =
 
 final FL_BorderColor = ({dynamic color}) => {CssRule.borderColor: color};
 
-final FL_BLeftTop = ({dynamic size, dynamic color}) => {
-      CssRule.borderTopLeftRadius: size,
+final FL_BorderLeftTop = ({dynamic size, dynamic color}) => {
       CssRule.borderLeftWidth: size,
       CssRule.borderLeftStyle: 'solid',
       CssRule.borderLeftColor: color
     };
-final FL_BLeftBottom = ({dynamic size, dynamic color}) => {
-      CssRule.borderBottomLeftRadius: size,
+
+final FL_BorderLeftBottom = ({dynamic size, dynamic color}) => {
       CssRule.borderLeftWidth: size,
       CssRule.borderLeftStyle: 'solid',
       CssRule.borderLeftColor: color
     };
-final FL_BRightTop = ({dynamic size, dynamic color}) => {
-      CssRule.borderTopRightRadius: size,
+final FL_BorderRightTop = ({dynamic size, dynamic color}) => {
       CssRule.borderRightWidth: size,
       CssRule.borderRightStyle: 'solid',
       CssRule.borderRightColor: color
     };
 
-final FL_BRightBottom = ({dynamic size, dynamic color}) => {
-      CssRule.borderBottomRightRadius: size,
+final FL_BorderRightBottom = ({dynamic size, dynamic color}) => {
       CssRule.borderRightWidth: size,
       CssRule.borderRightStyle: 'solid',
       CssRule.borderRightColor: color

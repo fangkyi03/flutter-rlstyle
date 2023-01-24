@@ -122,8 +122,8 @@ class Styles {
   final String? textAlign;
   final dynamic minHeight;
   final dynamic minWidth;
-  final double? borderBottomLeftRadius;
-  final double? borderBottomRightRadius;
+  final dynamic borderBottomLeftRadius;
+  final dynamic borderBottomRightRadius;
   final String borderLeftStyle;
   final dynamic borderLeftColor;
   final dynamic borderLeftWidth;
