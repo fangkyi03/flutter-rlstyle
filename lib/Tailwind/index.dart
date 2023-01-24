@@ -1,4 +1,5 @@
 // ignore_for_file: non_constant_identifier_names
+import 'package:flutter/material.dart';
 import 'package:rlstyles/main.dart';
 
 // 合并所有样式
@@ -55,6 +56,10 @@ final FL_WFull = {CssRule.width: '100%'};
 // height
 final FL_Height = ({dynamic size}) => {CssRule.height: size};
 final FL_HFull = {CssRule.height: '100%'};
+
+// font
+final FL_FWeight = ({dynamic size}) => {CssRule.fontWeight: size};
+final FL_FFamily = ({dynamic size}) => {CssRule.fontFamily: size};
 
 // fontSize
 final FL_FSize = ({dynamic size}) => {CssRule.fontSize: size};
@@ -141,6 +146,7 @@ final FL_BorderLeftBottom = ({dynamic size, dynamic color}) => {
       CssRule.borderLeftStyle: 'solid',
       CssRule.borderLeftColor: color
     };
+
 final FL_BorderRightTop = ({dynamic size, dynamic color}) => {
       CssRule.borderRightWidth: size,
       CssRule.borderRightStyle: 'solid',
@@ -193,20 +199,16 @@ final FL_BgSize = ({dynamic size}) => {CssRule.backgroundSize: size};
 // scrollBar
 final FL_ScrollBar = ({dynamic state}) => {CssRule.scrollBar: state};
 
-// font
-final FL_FWeight = ({dynamic size}) => {CssRule.fontWeight: size};
-final FL_FFamily = ({dynamic size}) => {CssRule.fontFamily: size};
-
 // backgroundImage
 final FL_BgImage = ({dynamic size}) => {CssRule.backgroundImage: size};
 
 // backgroungSize
-final FL_BgSizeCover = {CssRule.backgroundSize: 'cover'};
-final FL_BgSizeContain = {CssRule.backgroundSize: 'contain'};
-final FL_BgSizeFill = {CssRule.backgroundSize: 'fill'};
-final FL_BgSizeFitHeight = {CssRule.backgroundSize: 'fitHeight'};
-final FL_BgSizeFitWidth = {CssRule.backgroundSize: 'fitWidth'};
-final FL_BgSizeScaleDown = {CssRule.backgroundSize: 'scaleDown'};
+final FL_BgSizeCover = {CssRule.backgroundSize: BoxFit.cover};
+final FL_BgSizeContain = {CssRule.backgroundSize: BoxFit.contain};
+final FL_BgSizeFill = {CssRule.backgroundSize: BoxFit.fill};
+final FL_BgSizeFitHeight = {CssRule.backgroundSize: BoxFit.fitHeight};
+final FL_BgSizeFitWidth = {CssRule.backgroundSize: BoxFit.fitWidth};
+final FL_BgSizeScaleDown = {CssRule.backgroundSize: BoxFit.scaleDown};
 
 // transform
 final FL_Transform = ({dynamic matrix4}) => {CssRule.transform: matrix4};
