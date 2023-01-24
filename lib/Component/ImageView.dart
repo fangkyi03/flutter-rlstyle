@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:rlstyles/Tool/Tool.dart';
 import 'package:rlstyles/main.dart';
 
+// ignore: must_be_immutable
 class ImageView extends StatelessWidget {
   ImageView(
       {Key? key,
-      this.styles = const {},
+      this.styles,
       this.url = '',
       this.className,
-      this.children = const []}) {
+      this.children = const []})
+      : super(key: key) {
     final type = this.styles.runtimeType.toString();
     if (type == 'List<Map<String, dynamic>>' ||
         type == 'List<Map<String, String>>') {
@@ -24,11 +26,11 @@ class ImageView extends StatelessWidget {
   final List<Widget> children;
 
   BoxFit getImageFit() {
-    return mStyles.backgroundSize ?? BoxFit.contain;
+    return mStyles.backgroundSize;
   }
 
   renderImage() {
-    if (url != null) {
+    if (url != '') {
       if (url.indexOf('http') != -1) {
         return Image.network(
           url,

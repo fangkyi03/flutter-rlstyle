@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rlstyles/Component/StylesMap.dart';
-import 'package:rlstyles/Component/View.dart';
 import 'package:rlstyles/main.dart';
-import './HexColor.dart';
-import '../Tool/base.dart';
-import './Styles.dart';
 
 // ignore: must_be_immutable
 class TextView extends StatelessWidget {
