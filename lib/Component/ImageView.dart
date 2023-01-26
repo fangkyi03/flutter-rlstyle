@@ -55,7 +55,6 @@ class ImageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    precacheImage(NetworkImage(url), context);
     return View(styles: styles, children: [
       ClipRRect(
           borderRadius:
