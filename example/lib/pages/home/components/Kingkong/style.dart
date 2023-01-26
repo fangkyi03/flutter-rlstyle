@@ -1,5 +1,14 @@
 // import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:rlstyles/main.dart';
+
+main() {
+  return [
+    FL_FLEX_NO,
+    FL_WFull,
+    FL_Height(size: 160),
+  ];
+}
 
 group() {
   return [

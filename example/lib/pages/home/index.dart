@@ -126,6 +126,8 @@ class Home extends HookWidget {
               "https://m15.360buyimg.com/mobilecms/jfs/t1/191060/24/12861/6818/60ec11f2E67cf5ee6/c264378678b3cd96.png"
         }
       ];
+      data.addAll(data.toList());
+      data.addAll(data.toList());
       return KingKong(
         data: data,
       );

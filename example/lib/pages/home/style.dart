@@ -6,7 +6,7 @@ getMain() {
     FL_HFull,
     FL_WFull,
     FL_FlexColumn,
-    FL_BgColor(color: Colors.white),
+    FL_BgColor(color: 'rgb(245,245,245)')
   ];
 }
 
