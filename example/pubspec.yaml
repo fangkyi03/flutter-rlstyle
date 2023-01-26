@@ -17,6 +17,7 @@ environment:
   sdk: ">=2.15.0-118.0.dev <3.0.0"
 
 dependencies:
+  card_swiper: ^2.0.4
   flutter:
     sdk: flutter
   dio: ^4.0.6

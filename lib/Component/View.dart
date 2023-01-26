@@ -6,7 +6,7 @@ import 'package:rlstyles/main.dart';
 
 // ignore: must_be_immutable
 class View extends StatelessWidget {
-  final List<Widget> children;
+  final List<dynamic> children;
   final String? type;
   final GestureTapCallback? onClick;
   final dynamic styles;
@@ -20,7 +20,8 @@ class View extends StatelessWidget {
   }) : super(key: key) {
     final type = this.styles.runtimeType.toString();
     if (type == 'List<Map<String, dynamic>>' ||
-        type == 'List<Map<String, String>>') {
+        type == 'List<Map<String, String>>' ||
+        type == 'List<Map<String, Object>>') {
       mStyles = StylesMap.formMap(mergeStyle(this.styles));
     } else {
       mStyles = StylesMap.formMap(this.styles ?? {});
@@ -146,7 +147,7 @@ class View extends StatelessWidget {
     }
   }
 
-  Map getChildren(List<Widget> children) {
+  Map getChildren(List<dynamic> children) {
     List<Widget> mAbsolute = [];
     List<Widget> mTree = [];
     if (children.length == 0) return {'mAbsolute': [], 'mTree': []};
@@ -231,13 +232,14 @@ class View extends StatelessWidget {
     Styles newStyles = styles ?? mStyles;
 
     Widget view = child;
+    Widget mContainer;
     if (mStyles.clipRadius) {
       view = ClipRRect(
         borderRadius: getBorderRadius(newStyles),
         child: child,
       );
     }
-    Widget mContainer = Container(
+    mContainer = Container(
         margin: getMargin(newStyles),
         padding: getPadding(newStyles),
         width: newStyles.width != null ? getWidth(newStyles) : null,
@@ -246,6 +248,21 @@ class View extends StatelessWidget {
         constraints: getContaionMaxMin(newStyles),
         transform: newStyles.transform,
         child: view);
+    // if (mStyles.boxSizing == FL_BOX_SIZING_ENUM.content_box) {
+
+    // } else {
+    //   mContainer = Container(
+    //     margin: getMargin(newStyles),
+    //     padding: getPadding(newStyles),
+    //     child: Container(
+    //         width: newStyles.width != null ? getWidth(newStyles) : null,
+    //         height: newStyles.height != null ? getHeight(newStyles) : null,
+    //         decoration: getDecoration(newStyles),
+    //         constraints: getContaionMaxMin(newStyles),
+    //         transform: newStyles.transform,
+    //         child: view),
+    //   );
+    // }
 
     if (getPercentageState()) {
       return this.renderOpacity(renderPercentage(child: mContainer));
@@ -299,11 +316,11 @@ class View extends StatelessWidget {
     }
   }
 
-  renderGrid(List<Widget> children) {
+  renderGrid(List<dynamic> children) {
     return GridView.count(
         shrinkWrap: true,
         crossAxisCount: mStyles.gridCount!,
-        children: children);
+        children: children as List<Widget>);
   }
 
   renderView() {

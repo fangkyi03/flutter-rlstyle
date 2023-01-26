@@ -4,6 +4,7 @@ import 'package:rlstyles/main.dart';
 
 // 合并所有样式
 Map mergeStyle(dynamic styles) {
+  if (styles == null) return {};
   final obj = {};
   final type = styles.runtimeType.toString();
   if (type == 'List<Map<String, dynamic>>' ||
@@ -17,6 +18,9 @@ Map mergeStyle(dynamic styles) {
   }
 }
 
+// box
+final FL_BOX_SIZING =
+    (FL_BOX_SIZING_ENUM boxSizing) => {CssRule.boxSizing: boxSizing};
 // no_flex
 const FL_FLEX_NO = {CssRule.flexNo: true};
 
@@ -72,12 +76,14 @@ final FL_FFamily = ({dynamic size}) => {CssRule.fontFamily: size};
 
 // fontSize
 final FL_FSize = ({dynamic size}) => {CssRule.fontSize: size};
+final FL_Font_Size = ({dynamic size}) => FL_FSize(size: size);
 final FL_FSizeLg = {CssRule.fontSize: '20px'};
 final FL_SizeSm = {CssRule.fontSize: '15px'};
 final FL_FSizeXs = {CssRule.fontSize: '12px'};
 
 // fontColor
 final FL_Color = ({dynamic color}) => {CssRule.color: color};
+final FL_Font_Color = ({dynamic color}) => FL_Color(color: color);
 final FL_ColorBlack = {CssRule.color: '#000'};
 final FL_ColorWhite = {CssRule.color: '#fff'};
 final FL_ColorRed = {CssRule.color: '#f00'};

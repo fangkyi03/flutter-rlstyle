@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+// ignore: camel_case_types
+enum FL_BOX_SIZING_ENUM { border_box, content_box }
+
 class Styles {
   const Styles(
       {this.display = 'display',
@@ -35,7 +38,6 @@ class Styles {
       this.lineHeight,
       this.textDecoration,
       this.lines,
-      this.boxSizing,
       this.borderColor,
       this.borderStyle = 'solid',
       this.borderWidth = 1,
@@ -79,7 +81,9 @@ class Styles {
       this.gridMainAxisSpacing,
       this.flexNo = false,
       this.clipRadius = false,
+      this.boxSizing = FL_BOX_SIZING_ENUM.content_box,
       this.scrollBar = true});
+  final FL_BOX_SIZING_ENUM boxSizing;
   final bool clipRadius;
   final bool flexNo;
   final bool scrollBar;
@@ -119,7 +123,6 @@ class Styles {
   final dynamic lineHeight;
   final String? textDecoration;
   final int? lines;
-  final String? boxSizing;
   final dynamic borderWidth;
   final String borderStyle;
   final dynamic borderColor;

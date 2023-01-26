@@ -20,6 +20,7 @@ class StylesMap extends Styles {
   static formMap(Map mapData) {
     if (mapData.isEmpty) return const Styles();
     return Styles(
+        boxSizing: mapData['boxSizing'] ?? FL_BOX_SIZING_ENUM.content_box,
         clipRadius: mapData['clipRadius'] ?? false,
         display: mapData['display'] ?? 'flex',
         flexDirection: mapData['flexDirection'] ?? 'col',
@@ -59,7 +60,6 @@ class StylesMap extends Styles {
         lineHeight: mapData['lineHeight'],
         textDecoration: mapData['textDecoration'],
         lines: mapData['lines'],
-        boxSizing: mapData['boxSizing'],
         borderWidth: mapData['borderWidth'],
         borderStyle: mapData['borderStyle'] ?? 'solid',
         borderColor: mapData['borderColor'],

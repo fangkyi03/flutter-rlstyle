@@ -1,113 +1,47 @@
-import 'package:example/style.dart' as style;
+import 'package:example/components/Main/index.dart';
+import 'package:example/pages/home/index.dart';
 import 'package:flutter/material.dart';
 import 'package:rlstyles/main.dart';
-import 'package:card_swiper/card_swiper.dart';
 
 void main() {
-  runApp(Home());
+  runApp(Main());
 }
 
-class Home extends HookWidget {
-  const Home({Key? key}) : super(key: key);
+class Main extends HookWidget {
+  const Main({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    Widget renderSearch() {
-      return View(
-        styles: style.getSearch(),
-        children: [
-          TextView(
-            'JD',
-            styles: {CssRule.color: Colors.red, CssRule.fontSize: 20},
-          ),
-          View(
-            styles: {
-              CssRule.backgroundColor: Colors.grey,
-              CssRule.width: 1,
-              CssRule.height: 15,
-              CssRule.marginLeft: 5,
-              CssRule.marginRight: 5
-            },
-          ),
-          Icon(
-            Icons.search,
-            color: Colors.grey,
-            size: 25,
-          ),
-          TextView(
-            'dell显示器',
-            styles: [FL_MarginLeft(size: 5)],
-          )
-        ],
-      );
-    }
-
-    Widget renderHeader() {
-      return View(
-        styles: style.getHeader(),
-        children: [
-          Icon(
-            Icons.menu,
-            color: Colors.white,
-          ),
-          renderSearch(),
-          Icon(
-            Icons.my_library_add,
-            color: Colors.white,
-          )
-        ],
-      );
-    }
-
-    Widget renderSwiper() {
-      return View(
-        styles: style.getSwiper(),
-        children: [
-          View(
-            styles: style.getSwiperContainer(),
-            children: [
-              Swiper(
-                itemBuilder: (BuildContext context, int index) {
-                  return ImageView(
-                    styles: style.getSwiperImage(),
-                    url:
-                        "https://bkimg.cdn.bcebos.com/pic/cdbf6c81800a19d8bc3e2629cfb5958ba61ea8d3e8c5",
-                  );
-                },
-                itemCount: 3,
-              ),
-            ],
-          )
-        ],
-      );
-    }
-
-    Widget renderView() {
-      return View(
-        styles: style.getMain(),
-        children: [renderHeader(), renderSwiper()],
-      );
+    getRouter() {
+      return {'/home': (BuildContext context) => Home()};
     }
 
     return ScreenUtilInit(
-      designSize: const Size(360, 690),
+      designSize: const Size(375, 667),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (
         BuildContext context,
       ) {
         return MaterialApp(
+          routes: getRouter(),
           debugShowCheckedModeBanner: false,
-          title: 'First Method',
           // You can use the library anywhere in the app even in theme
           theme: ThemeData(
             primarySwatch: Colors.blue,
             textTheme: Typography.englishLike2018.apply(fontSizeFactor: 1.sp),
           ),
-          home: Scaffold(
-              backgroundColor: Colors.red,
-              body: SafeArea(
-                child: renderView(),
-              )),
+          home: Home(),
+          initialRoute: '/home',
+          builder: (context, child) {
+            ScreenUtil.setContext(context);
+            return MediaQuery(
+              data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+              child: MainView(
+                child: child,
+              ),
+              // child: PageView(child: child),
+            );
+          },
         );
       },
     );

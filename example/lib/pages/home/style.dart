@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:rlstyles/main.dart';
 
 getMain() {
-  return [FL_HFull, FL_WFull, FL_FlexColumn, FL_BgColor(color: Colors.white)];
+  return [
+    FL_HFull,
+    FL_WFull,
+    FL_FlexColumn,
+    FL_BgColor(color: Colors.white),
+  ];
 }
 
 getHeader() {
@@ -14,7 +19,7 @@ getHeader() {
     FL_Height(size: 44),
     FL_BgColor(color: Colors.red),
     FL_PaddingLeft(size: 10),
-    FL_PaddingRight(size: 10)
+    FL_PaddingRight(size: 10),
   ];
 }
 
@@ -40,7 +45,7 @@ getSwiper() {
 
 getSwiperContainer() {
   return [
-    FL_Width(size: 330),
+    FL_Width(size: 350),
     FL_Height(size: 140),
     FL_FLEX_NO,
     FL_Clip_Radius(state: true),
