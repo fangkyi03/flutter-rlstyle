@@ -1,6 +1,8 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, camel_case_types
 import 'package:flutter/material.dart';
 import 'package:rlstyles/main.dart';
+
+enum FL_DISPLAY_ENUM { flex, list }
 
 // 合并所有样式
 Map mergeStyle(dynamic styles) {
@@ -17,6 +19,10 @@ Map mergeStyle(dynamic styles) {
     return styles;
   }
 }
+
+// display
+final FL_DISPLAY = ({FL_DISPLAY_ENUM display = FL_DISPLAY_ENUM.flex}) =>
+    {CssRule.display: display.name};
 
 // box
 final FL_BOX_SIZING =

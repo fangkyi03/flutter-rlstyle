@@ -33,10 +33,22 @@ class Seckill extends HookWidget {
       );
     }
 
+    Widget renderMore() {
+      return View(
+        styles: [
+          FL_Width(size: 20),
+          FL_BgColor(color: '#f5f5f5'),
+          FL_Font_Color(color: 'rgb(102,102,102)'),
+          FL_Font_Size(size: 12),
+        ],
+        children: [TextView('查看全部')],
+      );
+    }
+
     Widget renderImageGroup() {
       return View(
         styles: style.imageGroup(),
-        children: data.map((e) => renderImage(e)).toList(),
+        children: [...data.map((e) => renderImage(e)).toList(), renderMore()],
       );
     }
 

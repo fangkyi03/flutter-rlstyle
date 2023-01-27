@@ -19,7 +19,7 @@ imageGroup() {
     FL_FlexRow,
     FL_Height(size: 80),
     FL_Width(size: 350),
-    FL_ScrollBar(state: false),
+    // FL_ScrollBar(state: false),
     FL_Margin(size: 10),
     FL_MarginBottom(size: 0)
   ];

@@ -279,6 +279,16 @@ class View extends StatelessWidget {
         return Container();
       }
     }
+    // if (mStyles.display == 'list') {
+    //   return Container(
+    //     height: 1.sh,
+    //     child: ListView.builder(
+    //       itemBuilder: (BuildContext context, int index) => children[index],
+    //       shrinkWrap: false,
+    //       itemCount: children.length,
+    //     ),
+    //   );
+    // }
     Map childData = getChildren(children);
     if (childData['mAbsolute'].length == 0) {
       if (childData['mTree'].length > 0) {

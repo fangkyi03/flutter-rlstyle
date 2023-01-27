@@ -1,4 +1,6 @@
+import 'package:example/components/WaterfallFlowList/index.dart';
 import 'package:example/pages/home/components/Kingkong/index.dart';
+import 'package:example/pages/home/components/ListItem/index.dart';
 import 'package:example/pages/home/components/Seckill/index.dart';
 import 'package:example/pages/home/style.dart' as style;
 import 'package:example/pages/home/components/HomeSwiper/index.dart';
@@ -171,17 +173,34 @@ class Home extends HookWidget {
       return Seckill(data: data);
     }
 
+    Widget renderList() {
+      final data = List.generate(
+          100,
+          (e) => ({
+                'img':
+                    'https://img10.360buyimg.com/mobilecms/s360x360_jfs/t1/87913/30/29005/142264/63d0f640Fc0797c9e/db8594f3456ba10c.jpg!q70.dpg.webp',
+                'name':
+                    '海尔 (Haier)冰箱646升双开门对开门 一级能效双变频 净味保鲜大容量家用电冰箱 低温触媒+智能WIFI+立体送风+精储格局',
+                'price': '4798',
+                'tag': '1000'
+              }));
+      return WaterfallFlowList(
+          data: data, renderItem: (Map item, int index) => ListItem());
+    }
+
     Widget renderView() {
       return View(
         styles: style.getMain(),
         children: [
           SafeArea(
               child: View(
+            styles: [FL_DISPLAY(display: FL_DISPLAY_ENUM.list)],
             children: [
               renderHeader(),
               renderSwiper(),
               renderIconGroup(),
-              renderSeckill()
+              renderSeckill(),
+              renderList()
             ],
           ))
         ],

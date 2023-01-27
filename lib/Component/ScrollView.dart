@@ -35,7 +35,7 @@ class ScrollViewContainer extends StatelessWidget {
 
   renderScroll() {
     return CustomScrollView(
-        // controller: controller,
+        controller: controller,
         scrollDirection: getScrollDirection(),
         shrinkWrap: true,
         slivers: [
@@ -46,7 +46,10 @@ class ScrollViewContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (mStyles.scrollBar) {
-      return Scrollbar(child: renderScroll());
+      return Scrollbar(
+        child: renderScroll(),
+        controller: controller,
+      );
     }
     return renderScroll();
   }
