@@ -175,7 +175,7 @@ class Home extends HookWidget {
 
     Widget renderList() {
       final data = List.generate(
-          100,
+          1000,
           (e) => ({
                 'img':
                     'https://img10.360buyimg.com/mobilecms/s360x360_jfs/t1/87913/30/29005/142264/63d0f640Fc0797c9e/db8594f3456ba10c.jpg!q70.dpg.webp',
@@ -194,7 +194,7 @@ class Home extends HookWidget {
         children: [
           SafeArea(
               child: View(
-            styles: [FL_DISPLAY(display: FL_DISPLAY_ENUM.list)],
+            // styles: [FL_DISPLAY(display: FL_DISPLAY_ENUM.list)],
             children: [
               renderHeader(),
               renderSwiper(),

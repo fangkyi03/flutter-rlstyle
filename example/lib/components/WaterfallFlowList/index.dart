@@ -13,6 +13,7 @@ class WaterfallFlowList extends HookWidget {
   @override
   Widget build(BuildContext context) {
     return View(
+      styles: [FL_DISPLAY(display: FL_DISPLAY_ENUM.list)],
       children: data.map((e) => TextView('child')).toList(),
     );
   }

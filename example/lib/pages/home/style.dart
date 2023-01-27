@@ -7,7 +7,8 @@ getMain() {
     FL_WFull,
     FL_FlexColumn,
     FL_BgColor(color: 'rgb(245,245,245)'),
-    FL_OverScrollY
+    FL_OverScrollY,
+    FL_ScrollBar(state: false)
   ];
 }
 
