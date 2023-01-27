@@ -27,6 +27,7 @@ final FL_DISPLAY = ({FL_DISPLAY_ENUM display = FL_DISPLAY_ENUM.flex}) =>
 // box
 final FL_BOX_SIZING =
     (FL_BOX_SIZING_ENUM boxSizing) => {CssRule.boxSizing: boxSizing};
+
 // no_flex
 const FL_FLEX_NO = {CssRule.flexNo: true};
 
@@ -96,9 +97,10 @@ final FL_ColorRed = {CssRule.color: '#f00'};
 final FL_ColorGreen = {CssRule.color: '#0f0'};
 final FL_ColorBlue = {CssRule.color: '#00f'};
 
-// radius
 // 是否开启圆角裁剪
 final FL_Clip_Radius = ({bool state = false}) => {CssRule.clipRadius: state};
+
+// radius
 final FL_Radius = ({dynamic size}) => {CssRule.borderRadius: size};
 final FL_RadiusLg = {CssRule.borderRadius: '5px'};
 final FL_RadiusSm = {CssRule.borderRadius: '2px'};
@@ -186,6 +188,8 @@ const FL_BorderSolid = {CssRule.borderStyle: 'solid'};
 
 // backGroundColor
 final FL_BgColor = ({dynamic color}) => {CssRule.backgroundColor: color};
+final FL_BackgroundColor =
+    ({dynamic color}) => {CssRule.backgroundColor: color};
 
 // position
 final FL_Absolute = {CssRule.position: 'abs'};
@@ -218,12 +222,14 @@ final FL_Opacity = ({dynamic size}) => {CssRule.opacity: size};
 
 // backgroundSize
 final FL_BgSize = ({dynamic size}) => {CssRule.backgroundSize: size};
+final FL_BackgroundSize = ({dynamic size}) => {CssRule.backgroundSize: size};
 
 // scrollBar
 final FL_ScrollBar = ({dynamic state}) => {CssRule.scrollBar: state};
 
 // backgroundImage
 final FL_BgImage = ({dynamic size}) => {CssRule.backgroundImage: size};
+final FL_BackgroundImage = ({dynamic size}) => {CssRule.backgroundImage: size};
 
 // backgroungSize
 final FL_BgSizeCover = {CssRule.backgroundSize: BoxFit.cover};

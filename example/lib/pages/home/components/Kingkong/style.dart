@@ -29,6 +29,6 @@ icon(dynamic color) {
   ];
 }
 
-List<Map<String, dynamic>> img() {
+img() {
   return [FL_Width(size: 40), FL_Height(size: 40), FL_BgSizeCover];
 }
