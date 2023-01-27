@@ -210,14 +210,17 @@ double getDoubleSize({double size = 0, double defValue = 0.0}) {
 
 // 获取padding
 EdgeInsets getPadding(Styles styles) {
-  final newPadding = EdgeInsets.only(
-      left: getSize(size: styles.paddingLeft, defValue: 0.0),
-      top: getSize(size: styles.paddingTop, defValue: 0.0),
-      right: getSize(size: styles.paddingRight, defValue: 0.0),
-      bottom: getSize(size: styles.paddingBottom, defValue: 0.0));
+  double defValue = 0.0;
   if (styles.padding != null) {
-    return EdgeInsets.all(getSize(size: styles.padding, defValue: 0.0));
-  } else if (!newPadding.isNonNegative) {
+    defValue = getSize(size: styles.padding, defValue: 0.0);
+  }
+  final newPadding = EdgeInsets.only(
+      left: getSize(size: styles.paddingLeft, defValue: defValue),
+      top: getSize(size: styles.paddingTop, defValue: defValue),
+      right: getSize(size: styles.paddingRight, defValue: defValue),
+      bottom: getSize(size: styles.paddingBottom, defValue: defValue));
+
+  if (!newPadding.isNonNegative) {
     return EdgeInsets.all(0);
   } else {
     return newPadding;
@@ -226,14 +229,16 @@ EdgeInsets getPadding(Styles styles) {
 
 // 获取margin
 EdgeInsets getMargin(Styles styles) {
-  final newMargin = EdgeInsets.only(
-      left: getSize(size: styles.marginLeft, defValue: 0.0),
-      top: getSize(size: styles.marginTop, defValue: 0.0),
-      right: getSize(size: styles.marginRight, defValue: 0.0),
-      bottom: getSize(size: styles.marginBottom, defValue: 0.0));
+  double defValue = 0.0;
   if (styles.margin != null) {
-    return EdgeInsets.all(getSize(size: styles.margin, defValue: 0.0));
-  } else if (!newMargin.isNonNegative) {
+    defValue = getSize(size: styles.margin, defValue: 0.0);
+  }
+  final newMargin = EdgeInsets.only(
+      left: getSize(size: styles.marginLeft, defValue: defValue),
+      top: getSize(size: styles.marginTop, defValue: defValue),
+      right: getSize(size: styles.marginRight, defValue: defValue),
+      bottom: getSize(size: styles.marginBottom, defValue: defValue));
+  if (!newMargin.isNonNegative) {
     return EdgeInsets.all(0);
   } else {
     return newMargin;

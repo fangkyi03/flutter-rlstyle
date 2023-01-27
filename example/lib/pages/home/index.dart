@@ -1,6 +1,7 @@
 import 'package:example/pages/home/components/Kingkong/index.dart';
+import 'package:example/pages/home/components/Seckill/index.dart';
 import 'package:example/pages/home/style.dart' as style;
-import 'package:example/pages/home/swiper.dart';
+import 'package:example/pages/home/components/HomeSwiper/index.dart';
 import 'package:flutter/material.dart';
 import 'package:rlstyles/main.dart';
 
@@ -133,13 +134,55 @@ class Home extends HookWidget {
       );
     }
 
+    Widget renderSeckill() {
+      final data = [
+        {
+          'img':
+              'https://m.360buyimg.com/seckillcms/jfs/t1/90352/32/34369/222045/63c7b5e3Fc32fb13f/a9f5f11f69fde2bf.jpg',
+          "price": "189"
+        },
+        {
+          'img':
+              'https://m.360buyimg.com/seckillcms/jfs/t1/90352/32/34369/222045/63c7b5e3Fc32fb13f/a9f5f11f69fde2bf.jpg',
+          "price": "189"
+        },
+        {
+          'img':
+              'https://m.360buyimg.com/seckillcms/jfs/t1/90352/32/34369/222045/63c7b5e3Fc32fb13f/a9f5f11f69fde2bf.jpg',
+          "price": "189"
+        },
+        {
+          'img':
+              'https://m.360buyimg.com/seckillcms/jfs/t1/90352/32/34369/222045/63c7b5e3Fc32fb13f/a9f5f11f69fde2bf.jpg',
+          "price": "189"
+        },
+        {
+          'img':
+              'https://m.360buyimg.com/seckillcms/jfs/t1/90352/32/34369/222045/63c7b5e3Fc32fb13f/a9f5f11f69fde2bf.jpg',
+          "price": "189"
+        },
+        {
+          'img':
+              'https://m.360buyimg.com/seckillcms/jfs/t1/90352/32/34369/222045/63c7b5e3Fc32fb13f/a9f5f11f69fde2bf.jpg',
+          "price": "189"
+        },
+      ];
+      data.addAll(data.toList());
+      return Seckill(data: data);
+    }
+
     Widget renderView() {
       return View(
         styles: style.getMain(),
         children: [
           SafeArea(
               child: View(
-            children: [renderHeader(), renderSwiper(), renderIconGroup()],
+            children: [
+              renderHeader(),
+              renderSwiper(),
+              renderIconGroup(),
+              renderSeckill()
+            ],
           ))
         ],
       );

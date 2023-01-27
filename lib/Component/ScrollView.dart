@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rlstyles/Component/Styles.dart';
 import 'package:rlstyles/Component/StylesMap.dart';
+import 'package:rlstyles/Tailwind/index.dart';
 
 // ignore: must_be_immutable
 class ScrollViewContainer extends StatelessWidget {
@@ -9,10 +10,16 @@ class ScrollViewContainer extends StatelessWidget {
     this.children = const [],
     this.styles = const {},
   }) : super(key: key) {
-    mStyles = StylesMap.formMap(styles ?? {});
+    final type = this.styles.runtimeType.toString();
+    if (type == 'List<Map<String, dynamic>>' ||
+        type == 'List<Map<String, String>>') {
+      mStyles = StylesMap.formMap(mergeStyle(this.styles));
+    } else {
+      mStyles = StylesMap.formMap(this.styles ?? {});
+    }
   }
   Styles mStyles = const Styles();
-  final Map? styles;
+  final dynamic styles;
   final List<Widget> children;
   final ScrollController controller = ScrollController();
 

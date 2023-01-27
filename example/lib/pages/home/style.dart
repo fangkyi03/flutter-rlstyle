@@ -34,30 +34,3 @@ getSearch() {
     FL_PaddingLeft(size: 15)
   ];
 }
-
-getSwiper() {
-  return [
-    FL_AlignCenter,
-    FL_JustifyCenter,
-    FL_WFull,
-  ];
-}
-
-getSwiperContainer() {
-  return [
-    FL_Width(size: 350),
-    FL_Height(size: 140),
-    FL_FLEX_NO,
-    FL_Clip_Radius(state: true),
-    FL_Radius(size: 10),
-    FL_MarginTop(size: 10)
-  ];
-}
-
-getSwiperImage() {
-  return [
-    FL_Width(size: 350),
-    FL_Height(size: 140),
-    FL_BgSize(size: BoxFit.fill)
-  ];
-}

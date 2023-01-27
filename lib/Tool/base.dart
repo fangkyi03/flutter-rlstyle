@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 import 'package:rlstyles/main.dart';
 
@@ -7,9 +6,9 @@ typedef PeriodicCallBack = void Function(Timer periodicTime);
 
 enum StyleType { array, map, nul }
 
-void setTimeout(callback, time) {
+setTimeout(callback, time) {
   Duration timeDelay = Duration(milliseconds: time);
-  Timer(timeDelay, callback);
+  return Timer(timeDelay, callback);
 }
 
 void setInterval(PeriodicCallBack click, time) {

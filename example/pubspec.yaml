@@ -25,6 +25,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   rlstyles:
     path: ../
+  moment_dart: ^0.16.0
     # git:
     #   url: git://github.com/fangkyi03/rlstyle.git
 
@@ -46,6 +47,7 @@ flutter:
   assets:
     - assets/images/
     - assets/demo7/
+    - lib/pages/home/asset/
   fonts:
     - family: HanaleiFill
       fonts:

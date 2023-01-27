@@ -27,7 +27,7 @@ class KingKong extends HookWidget {
         Swiper(
           loop: false,
           curve: Curves.bounceIn,
-          itemCount: (data.length ~/ 10).toInt(),
+          itemCount: data.length ~/ 10,
           pagination: SwiperPagination(
             builder: DotSwiperPaginationBuilder(
               color: Colors.white,

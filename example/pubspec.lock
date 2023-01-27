@@ -131,6 +131,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.8.0"
+  moment_dart:
+    dependency: "direct main"
+    description:
+      name: moment_dart
+      sha256: "19bc0c79cbe8b523aebb45387401075bb40f27b1a450786164d7192d6d384d50"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.16.0"
   path:
     dependency: transitive
     description:

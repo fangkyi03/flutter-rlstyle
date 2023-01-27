@@ -9,10 +9,10 @@ class HomeSwiper extends HookWidget {
   @override
   Widget build(BuildContext context) {
     return View(
-      styles: style.getSwiper(),
+      styles: style.swiper(),
       children: [
         View(
-          styles: style.getSwiperContainer(),
+          styles: style.swiperContainer(),
           children: [
             Swiper(
                 loop: true,
@@ -20,7 +20,7 @@ class HomeSwiper extends HookWidget {
                 duration: 2000,
                 itemBuilder: (BuildContext context, int index) {
                   return ImageView(
-                      styles: style.getSwiperImage(), url: data[index]);
+                      styles: style.swiperImage(), url: data[index]);
                 },
                 itemCount: 5,
                 pagination: SwiperPagination(
