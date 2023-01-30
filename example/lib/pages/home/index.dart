@@ -18,6 +18,9 @@ class Home extends HookWidget {
     Widget renderSearch() {
       return View(
         styles: style.getSearch(),
+        onClick: () {
+          Navigator.pushNamed(context, '/search');
+        },
         children: [
           TextView(
             'JD',

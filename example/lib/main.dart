@@ -1,5 +1,6 @@
 import 'package:example/components/Main/index.dart';
 import 'package:example/pages/home/index.dart';
+import 'package:example/pages/search/index.dart';
 import 'package:flutter/material.dart';
 import 'package:rlstyles/main.dart';
 
@@ -12,7 +13,10 @@ class Main extends HookWidget {
   @override
   Widget build(BuildContext context) {
     getRouter() {
-      return {'/home': (BuildContext context) => Home()};
+      return {
+        '/home': (BuildContext context) => Home(),
+        '/search': (BuildContext context) => Search()
+      };
     }
 
     return ScreenUtilInit(

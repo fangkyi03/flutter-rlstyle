@@ -5,6 +5,7 @@ class CountDown extends HookWidget {
   const CountDown({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    // 格式化时间
     Map<String, dynamic> formatTime(int s) {
       int hour = (s ~/ 3600) % 24;
       int minute = s % 3600 ~/ 60;
