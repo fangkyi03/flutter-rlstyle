@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rlstyles/main.dart';
 
-typedef ScrollCallback = void Function(double number);
+typedef ScrollCallback = Null Function(double number);
 
 // ignore: must_be_immutable
 class ScrollViewContainer extends HookWidget {

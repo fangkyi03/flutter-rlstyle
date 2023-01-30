@@ -194,14 +194,15 @@ class Home extends HookWidget {
     Widget renderView() {
       return View(
         styles: style.getMain(),
+        event: {
+          'scroll': (double a) {
+            print('滚动${a}');
+            return;
+          }
+        },
         children: [
           SafeArea(
               child: View(
-            event: {
-              'scorll': () {
-                print('滚动');
-              }
-            },
             children: [
               renderHeader(),
               renderSwiper(),
