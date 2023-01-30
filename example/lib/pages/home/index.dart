@@ -197,6 +197,11 @@ class Home extends HookWidget {
         children: [
           SafeArea(
               child: View(
+            event: {
+              'scorll': () {
+                print('滚动');
+              }
+            },
             children: [
               renderHeader(),
               renderSwiper(),

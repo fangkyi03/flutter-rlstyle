@@ -9,15 +9,17 @@ class View extends StatelessWidget {
   final List<dynamic> children;
   final String? type;
   final GestureTapCallback? onClick;
+  final Map<String, dynamic>? event;
   final dynamic styles;
   Styles mStyles = const Styles();
-  View({
-    Key? key,
-    this.children = const [],
-    this.styles,
-    this.type,
-    this.onClick,
-  }) : super(key: key) {
+  View(
+      {Key? key,
+      this.children = const [],
+      this.styles,
+      this.type,
+      this.onClick,
+      this.event = const {}})
+      : super(key: key) {
     final type = this.styles.runtimeType.toString();
     if (type == 'List<Map<String, dynamic>>' ||
         type == 'List<Map<String, String>>' ||
@@ -248,22 +250,6 @@ class View extends StatelessWidget {
         constraints: getContaionMaxMin(newStyles),
         transform: newStyles.transform,
         child: view);
-    // if (mStyles.boxSizing == FL_BOX_SIZING_ENUM.content_box) {
-
-    // } else {
-    //   mContainer = Container(
-    //     margin: getMargin(newStyles),
-    //     padding: getPadding(newStyles),
-    //     child: Container(
-    //         width: newStyles.width != null ? getWidth(newStyles) : null,
-    //         height: newStyles.height != null ? getHeight(newStyles) : null,
-    //         decoration: getDecoration(newStyles),
-    //         constraints: getContaionMaxMin(newStyles),
-    //         transform: newStyles.transform,
-    //         child: view),
-    //   );
-    // }
-
     if (getPercentageState()) {
       return this.renderOpacity(renderPercentage(child: mContainer));
     } else {
@@ -318,7 +304,8 @@ class View extends StatelessWidget {
   renderScroll(Widget child) {
     if (mStyles.overflowX != null ||
         mStyles.overflowY != null && this.children.isNotEmpty) {
-      return ScrollViewContainer(children: [child], styles: styles);
+      return ScrollViewContainer(
+          children: [child], styles: styles, onScroll: event!['scroll']);
     } else {
       return child;
     }
