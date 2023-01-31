@@ -70,7 +70,7 @@ class Styles {
       this.flexWrap,
       this.flexWrapSpacing,
       this.flexWrapRunSpacing,
-      this.backgroundSize = BoxFit.none,
+      this.backgroundSize = BoxFit.cover,
       this.margin,
       this.padding,
       this.elevation,

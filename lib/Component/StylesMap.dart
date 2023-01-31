@@ -88,7 +88,7 @@ class StylesMap extends Styles {
         overflowX: mapData['overflowX'],
         letterSpacing: mapData['letterSpacing'],
         transform: mapData['transform'],
-        backgroundSize: mapData['backgroundSize'] ?? BoxFit.none,
+        backgroundSize: mapData['backgroundSize'] ?? BoxFit.cover,
         margin: mapData['margin'],
         padding: mapData['padding'],
         elevation: mapData['elevation'],

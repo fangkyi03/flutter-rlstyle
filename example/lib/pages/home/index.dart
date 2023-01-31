@@ -1,3 +1,4 @@
+import 'package:example/components/OpenApp/index.dart';
 import 'package:example/components/WaterfallFlowList/index.dart';
 import 'package:example/pages/home/components/Kingkong/index.dart';
 import 'package:example/pages/home/components/ListItem/index.dart';
@@ -208,9 +209,15 @@ class Home extends HookWidget {
               renderSwiper(),
               renderIconGroup(),
               renderSeckill(),
-              renderList()
+              renderList(),
             ],
-          ))
+          )),
+          Positioned(
+            child: OpenApp(),
+            left: 0,
+            right: 0,
+            bottom: 40,
+          )
         ],
       );
     }

@@ -9,6 +9,8 @@ class ImageView extends StatelessWidget {
       this.styles,
       this.url = '',
       this.className,
+      this.width,
+      this.height,
       this.children = const []})
       : super(key: key) {
     final type = this.styles.runtimeType.toString();
@@ -19,6 +21,8 @@ class ImageView extends StatelessWidget {
       mStyles = StylesMap.formMap(this.styles ?? {});
     }
   }
+  final dynamic width;
+  final dynamic height;
   final dynamic styles;
   Styles mStyles = Styles();
   final String url;
@@ -35,15 +39,15 @@ class ImageView extends StatelessWidget {
         return Image.network(
           url,
           fit: getImageFit(),
-          width: getSize(size: mStyles.width, defValue: null),
-          height: getSize(size: mStyles.height, defValue: null),
+          width: getSize(size: width ?? mStyles.width, defValue: null),
+          height: getSize(size: height ?? mStyles.height, defValue: null),
         );
       } else {
         return Image.asset(
           url,
           fit: getImageFit(),
-          width: getSize(size: mStyles.width, defValue: null),
-          height: getSize(size: mStyles.height, defValue: null),
+          width: getSize(size: width ?? mStyles.width, defValue: null),
+          height: getSize(size: height ?? mStyles.height, defValue: null),
         );
       }
     } else {

@@ -31,6 +31,8 @@ final FL_BOX_SIZING =
 // no_flex
 const FL_FLEX_NO = {CssRule.flexNo: true};
 
+const FL_NO_FLEX = {CssRule.flexNo: true};
+
 // row
 const FL_FlexRow = {CssRule.flexDirection: 'row'};
 const FL_FlexRowReverse = {CssRule.flexDirection: 'row-reverse'};
