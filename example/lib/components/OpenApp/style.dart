@@ -22,6 +22,5 @@ swiper() {
     FL_FLEX_NO,
     FL_AbsRight(size: 0),
     FL_AbsTop(size: 10),
-    FL_Font_Color(color: Colors.white)
   ];
 }

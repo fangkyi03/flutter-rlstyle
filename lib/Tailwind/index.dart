@@ -81,6 +81,8 @@ final FL_HFull = {CssRule.height: '100%'};
 
 // font
 final FL_FWeight = ({dynamic size}) => {CssRule.fontWeight: size};
+final FL_Font_Weight = ({dynamic size}) => {CssRule.fontWeight: size};
+final FL_Font_Family = ({dynamic size}) => {CssRule.fontFamily: size};
 final FL_FFamily = ({dynamic size}) => {CssRule.fontFamily: size};
 
 // fontSize
