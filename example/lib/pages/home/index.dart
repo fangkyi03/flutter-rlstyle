@@ -207,14 +207,15 @@ class Home extends HookWidget {
     }
 
     onScroll(double offset) {
-      if (!isFixHeader.value) {
-        if (offset > 50) {
+      if (offset >= 40) {
+        if (!isFixHeader.value) {
           isFixHeader.value = true;
+          return;
         }
-      }
-      if (isFixHeader.value) {
-        if (offset < 100) {
+      } else if (offset < 100) {
+        if (isFixHeader.value) {
           isFixHeader.value = false;
+          return;
         }
       }
       return;
@@ -229,7 +230,7 @@ class Home extends HookWidget {
           SafeArea(
               child: View(
             children: [
-              !isFixHeader.value ? renderHeader() : Container(),
+              renderHeader(),
               renderSwiper(),
               renderIconGroup(),
               renderSeckill(),
