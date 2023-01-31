@@ -16,6 +16,7 @@ class Home extends HookWidget {
   const Home({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final isFixHeader = useState(false);
     Widget renderSearch() {
       return View(
         styles: style.getSearch(),
@@ -192,20 +193,43 @@ class Home extends HookWidget {
           data: data, renderItem: (Map item, int index) => ListItem());
     }
 
+    renderFixHeader() {
+      return Positioned(
+        child: AnimatedOpacity(
+          duration: Duration(milliseconds: 200),
+          opacity: isFixHeader.value ? 1.0 : 0.0,
+          child: renderHeader(),
+        ),
+        top: 0,
+        left: 0,
+        right: 0,
+      );
+    }
+
+    onScroll(double offset) {
+      if (!isFixHeader.value) {
+        if (offset > 50) {
+          isFixHeader.value = true;
+        }
+      }
+      if (isFixHeader.value) {
+        if (offset < 100) {
+          isFixHeader.value = false;
+        }
+      }
+      return;
+    }
+
     Widget renderView() {
       return View(
         styles: style.getMain(),
-        event: {
-          'scroll': (double a) {
-            print('滚动${a}');
-            return;
-          }
-        },
+        event: {'scroll': onScroll},
         children: [
+          renderFixHeader(),
           SafeArea(
               child: View(
             children: [
-              renderHeader(),
+              !isFixHeader.value ? renderHeader() : Container(),
               renderSwiper(),
               renderIconGroup(),
               renderSeckill(),

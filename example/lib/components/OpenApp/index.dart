@@ -8,6 +8,22 @@ class OpenApp extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final list = ['打开京东APP', '购物更轻松'];
+    renderSwiper() {
+      return Swiper(
+        scrollDirection: Axis.vertical,
+        loop: true,
+        // autoplay: true,
+        duration: 2000,
+        itemBuilder: (BuildContext context, int index) {
+          return TextView(
+            list[index],
+            styles: [FL_Font_Color(color: 'white'), FL_FWeight(size: 'bold')],
+          );
+        },
+        itemCount: list.length,
+      );
+    }
+
     return View(
       styles: style.main(),
       children: [
@@ -22,24 +38,7 @@ class OpenApp extends HookWidget {
             ),
             View(
               styles: style.swiper(),
-              children: [
-                Swiper(
-                  scrollDirection: Axis.vertical,
-                  loop: true,
-                  // autoplay: true,
-                  duration: 2000,
-                  itemBuilder: (BuildContext context, int index) {
-                    return TextView(
-                      list[index],
-                      styles: [
-                        FL_Font_Color(color: 'white'),
-                        FL_FWeight(size: 'bold')
-                      ],
-                    );
-                  },
-                  itemCount: list.length,
-                )
-              ],
+              children: [renderSwiper()],
             )
           ],
         )

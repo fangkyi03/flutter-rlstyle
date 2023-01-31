@@ -33,7 +33,7 @@ class ScrollViewContainer extends HookWidget {
         }
       });
       return;
-    }, []);
+    }, [controller]);
     getScrollDirection() {
       if (mStyles.overflowY != null) {
         return Axis.vertical;
@@ -49,6 +49,7 @@ class ScrollViewContainer extends HookWidget {
           controller: controller,
           scrollDirection: getScrollDirection(),
           shrinkWrap: true,
+          physics: ClampingScrollPhysics(),
           slivers: [
             new SliverList(delegate: new SliverChildListDelegate(this.children))
           ]);

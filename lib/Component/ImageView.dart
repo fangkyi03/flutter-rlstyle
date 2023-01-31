@@ -4,15 +4,15 @@ import 'package:rlstyles/main.dart';
 
 // ignore: must_be_immutable
 class ImageView extends StatelessWidget {
-  ImageView(
-      {Key? key,
-      this.styles,
-      this.url = '',
-      this.className,
-      this.width,
-      this.height,
-      this.children = const []})
-      : super(key: key) {
+  ImageView({
+    Key? key,
+    this.styles,
+    this.url = '',
+    this.className,
+    this.width,
+    this.height,
+    this.children = const [],
+  }) : super(key: key) {
     final type = this.styles.runtimeType.toString();
     if (type == 'List<Map<String, dynamic>>' ||
         type == 'List<Map<String, String>>') {
@@ -24,6 +24,7 @@ class ImageView extends StatelessWidget {
   final dynamic width;
   final dynamic height;
   final dynamic styles;
+  // final BoxFit backgroundSize;
   Styles mStyles = Styles();
   final String url;
   final String? className;

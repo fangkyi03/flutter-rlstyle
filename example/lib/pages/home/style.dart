@@ -36,3 +36,12 @@ getSearch() {
     FL_PaddingLeft(size: 15)
   ];
 }
+
+fixHeader() {
+  return [
+    // FL_Absolute,
+    // FL_Height(size: 60),
+    // FL_AbsBottom(size: 300),
+    // FL_BackgroundColor(color: Colors.red)
+  ];
+}
