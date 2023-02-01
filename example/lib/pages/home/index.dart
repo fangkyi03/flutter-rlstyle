@@ -230,6 +230,7 @@ class Home extends HookWidget {
         styles: style.getMain(),
         event: {'scroll': onScroll},
         children: [
+          renderFixHeader(),
           SafeArea(
             child: View(
               children: [
