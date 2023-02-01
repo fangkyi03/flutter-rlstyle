@@ -138,6 +138,31 @@ class View extends StatelessWidget {
         child: renderContainer(child, mStyles));
   }
 
+  verifyChildren(Element select) {
+    print('s');
+    // try {
+    //   if (select.children) {
+    //     return getAbsType((select.children[0] as Widget), select.children[0]);
+    //   }
+    // } catch (err) {
+    //   return false;
+    // }
+  }
+
+  verifyChild(select) {
+    try {
+      if (select.child) {
+        return getAbsType((select.child as Widget), select.child);
+      }
+    } catch (err) {
+      return verifyChildren(select.getChildren());
+    }
+  }
+
+  deepComparison(dynamic select) {
+    return verifyChild(select);
+  }
+
   Map getChildren(List<dynamic> children) {
     List<Widget> mAbsolute = [];
     List<Widget> mTree = [];

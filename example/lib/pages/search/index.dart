@@ -1,5 +1,4 @@
 import 'package:example/components/OpenApp/index.dart';
-import 'package:example/pages/home/style.dart';
 import 'package:flutter/material.dart';
 import 'package:rlstyles/main.dart';
 import './style.dart' as style;
@@ -49,7 +48,15 @@ class Search extends HookWidget {
 
     return View(
       styles: style.main(),
-      children: [renderHeader(), OpenApp()],
+      children: [
+        renderHeader(),
+        Positioned(
+          child: OpenApp(),
+          bottom: 40,
+          left: 0,
+          right: 0,
+        )
+      ],
     );
   }
 }

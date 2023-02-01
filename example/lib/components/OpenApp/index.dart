@@ -10,6 +10,8 @@ class OpenApp extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final list = ['打开京东APP', '购物更轻松'];
+    final showModal = useState(true);
+    final showModalOpacity = useState(true);
     renderSwiper() {
       return View(styles: style.swiperView(), children: [
         Swiper(
@@ -54,11 +56,22 @@ class OpenApp extends HookWidget {
       );
     }
 
-    return AnimatedOpacity(
-      onEnd: onEnd,
-      opacity: opacity ? 1.0 : 0.0,
-      duration: Duration(milliseconds: 250),
-      child: renderView(),
+    if (!showModal.value) return Container();
+    return View(
+      styles: [FL_JustifyCenter, FL_ItemCenter],
+      onClick: () {
+        showModalOpacity.value = false;
+      },
+      children: [
+        AnimatedOpacity(
+          onEnd: () {
+            showModal.value = false;
+          },
+          opacity: showModalOpacity.value ? 1.0 : 0.0,
+          duration: Duration(milliseconds: 250),
+          child: renderView(),
+        )
+      ],
     );
   }
 }
