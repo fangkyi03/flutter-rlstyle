@@ -8,7 +8,21 @@ class Search extends HookWidget {
   Widget build(BuildContext context) {
     return View(
       styles: style.main(),
-      children: [TextView('child')],
+      children: [
+        // Positioned(
+        //     child: View(
+        //   styles: [
+        //     FL_Height(size: 20),
+        //     FL_WFull,
+        //     FL_BackgroundColor(color: Colors.red)
+        //   ],
+        //   children: [TextView('child')],
+        // )),
+        View(
+          styles: style.abs(),
+          children: [TextView('child')],
+        )
+      ],
     );
   }
 }

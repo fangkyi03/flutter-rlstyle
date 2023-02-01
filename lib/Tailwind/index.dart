@@ -2,15 +2,13 @@
 import 'package:flutter/material.dart';
 import 'package:rlstyles/main.dart';
 
-enum FL_DISPLAY_ENUM { flex, list }
+enum FL_DISPLAY_ENUM { flex, list, no }
 
 // 合并所有样式
 Map mergeStyle(dynamic styles) {
   if (styles == null) return {};
   final obj = {};
-  final type = styles.runtimeType.toString();
-  if (type == 'List<Map<String, dynamic>>' ||
-      type == 'List<Map<String, String>>') {
+  if (styles is List) {
     for (var style in styles) {
       obj.addAll(style);
     }

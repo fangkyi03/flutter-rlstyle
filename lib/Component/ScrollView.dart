@@ -16,13 +16,7 @@ class ScrollViewContainer extends HookWidget {
       this.styles = const {},
       this.onScroll})
       : super(key: key) {
-    final type = this.styles.runtimeType.toString();
-    if (type == 'List<Map<String, dynamic>>' ||
-        type == 'List<Map<String, String>>') {
-      mStyles = StylesMap.formMap(mergeStyle(this.styles));
-    } else {
-      mStyles = StylesMap.formMap(this.styles ?? {});
-    }
+    mStyles = StylesMap.formMap(mergeStyle(this.styles));
   }
   @override
   Widget build(BuildContext context) {

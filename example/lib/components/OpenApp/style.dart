@@ -1,10 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:rlstyles/main.dart';
 
 main() {
   return [
-    FL_AlignCenter,
-    FL_JustifyCenter
+    // FL_Height(size: 40)
     // FL_Absolute,
     // FL_AbsLeft(size: 10),
     // FL_AbsRight(size: 10),
@@ -18,9 +16,19 @@ swiper() {
   return [
     FL_Absolute,
     FL_Height(size: 40),
+    FL_AlignEnd,
+    FL_JustifyCenter,
     FL_Width(size: 100),
-    FL_FLEX_NO,
     FL_AbsRight(size: 0),
-    FL_AbsTop(size: 10),
+    FL_AbsLeft(size: 90),
+    FL_AbsRight(size: 20),
+    FL_AbsBottom(size: 0)
+  ];
+}
+
+swiperView() {
+  return [
+    FL_NO_FLEX,
+    FL_Height(size: 20),
   ];
 }

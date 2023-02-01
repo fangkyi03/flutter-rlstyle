@@ -13,13 +13,7 @@ class ImageView extends StatelessWidget {
     this.height,
     this.children = const [],
   }) : super(key: key) {
-    final type = this.styles.runtimeType.toString();
-    if (type == 'List<Map<String, dynamic>>' ||
-        type == 'List<Map<String, String>>') {
-      mStyles = StylesMap.formMap(mergeStyle(this.styles));
-    } else {
-      mStyles = StylesMap.formMap(this.styles ?? {});
-    }
+    mStyles = StylesMap.formMap(mergeStyle(this.styles));
   }
   final dynamic width;
   final dynamic height;

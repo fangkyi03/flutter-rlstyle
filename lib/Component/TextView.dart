@@ -4,13 +4,7 @@ import 'package:rlstyles/main.dart';
 // ignore: must_be_immutable
 class TextView extends StatelessWidget {
   TextView(this.child, {Key? key, this.styles, this.className, this.onClick}) {
-    final type = this.styles.runtimeType.toString();
-    if (type == 'List<Map<String, dynamic>>' ||
-        type == 'List<Map<String, String>>') {
-      mStyles = StylesMap.formMap(mergeStyle(this.styles));
-    } else {
-      mStyles = StylesMap.formMap(this.styles ?? {});
-    }
+    mStyles = StylesMap.formMap(mergeStyle(this.styles));
   }
   final dynamic styles;
   Styles mStyles = Styles();

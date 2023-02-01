@@ -6,7 +6,7 @@ import 'package:rlstyles/main.dart';
 
 // ignore: must_be_immutable
 class View extends StatelessWidget {
-  final List<dynamic> children;
+  final List<Widget> children;
   final String? type;
   final GestureTapCallback? onClick;
   final Map<String, dynamic>? event;
@@ -20,14 +20,7 @@ class View extends StatelessWidget {
       this.onClick,
       this.event = const {}})
       : super(key: key) {
-    final type = this.styles.runtimeType.toString();
-    if (type == 'List<Map<String, dynamic>>' ||
-        type == 'List<Map<String, String>>' ||
-        type == 'List<Map<String, Object>>') {
-      mStyles = StylesMap.formMap(mergeStyle(this.styles));
-    } else {
-      mStyles = StylesMap.formMap(this.styles ?? {});
-    }
+    mStyles = StylesMap.formMap(mergeStyle(this.styles));
   }
   renderEmpty() {
     return Container();
@@ -137,16 +130,12 @@ class View extends StatelessWidget {
   }
 
   Widget renderAbsolute(child) {
-    if (getTypeOf(child)) {
-      return Positioned(
-          left: getSize(size: child.mStyles.left, defValue: null),
-          right: getSize(size: child.mStyles.right, defValue: null),
-          top: getSize(size: child.mStyles.top, defValue: null),
-          bottom: getSize(size: child.mStyles.bottom, defValue: null),
-          child: renderContainer(child, child.mStyles));
-    } else {
-      return child;
-    }
+    return Positioned(
+        left: getSize(size: mStyles.left, defValue: null),
+        right: getSize(size: mStyles.right, defValue: null),
+        top: getSize(size: mStyles.top, defValue: null),
+        bottom: getSize(size: mStyles.bottom, defValue: null),
+        child: renderContainer(child, mStyles));
   }
 
   Map getChildren(List<dynamic> children) {
@@ -258,13 +247,6 @@ class View extends StatelessWidget {
   }
 
   renderChildrenView() {
-    if (mStyles.flexNo) {
-      if (children.length > 0) {
-        return children[0];
-      } else {
-        return Container();
-      }
-    }
     if (mStyles.display == 'list') {
       return ListView.builder(
         physics: NeverScrollableScrollPhysics(),
@@ -283,9 +265,7 @@ class View extends StatelessWidget {
     } else {
       return renderStack([
         renderContainer(renderChildreTree(childData['mTree'])),
-        ...(getPositionZindex(childData['mAbsolute'])
-            .map((e) => renderAbsolute(e))
-            .toList()),
+        ...(childData['mAbsolute'])
       ]);
     }
   }
@@ -319,12 +299,17 @@ class View extends StatelessWidget {
   }
 
   renderView() {
+    if (mStyles.flexNo) {
+      return renderContainer(children[0]);
+    }
     if (mStyles.display == 'grid') {
-      return renderContainer(renderGrid(children));
+      return renderGestureDetector(renderContainer(renderGrid(children)));
     } else if (mStyles.position == 'abs' || mStyles.position == 'absolute') {
-      return renderAbsolute(renderChildrenView());
+      return renderAbsolute(
+          renderGestureDetector(renderContainer(renderChildreTree(children))));
     } else {
-      return renderFlex(renderContainer(renderChildrenView()));
+      return renderGestureDetector(
+          renderFlex(renderContainer(renderChildrenView())));
     }
   }
 
@@ -333,9 +318,9 @@ class View extends StatelessWidget {
     if (mStyles.display == 'none') {
       return renderEmpty();
     } else if (children.isNotEmpty && children.length > 0) {
-      return renderGestureDetector(renderView());
+      return renderView();
     } else {
-      return renderGestureDetector(renderView());
+      return renderView();
     }
   }
 }

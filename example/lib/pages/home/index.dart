@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:example/components/OpenApp/index.dart';
 import 'package:example/components/WaterfallFlowList/index.dart';
 import 'package:example/pages/home/components/Kingkong/index.dart';
@@ -17,6 +19,8 @@ class Home extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final isFixHeader = useState(false);
+    final showAppModal = useState(true);
+    final showAppModalOpacity = useState(true);
     Widget renderSearch() {
       return View(
         styles: style.getSearch(),
@@ -226,22 +230,30 @@ class Home extends HookWidget {
         styles: style.getMain(),
         event: {'scroll': onScroll},
         children: [
-          renderFixHeader(),
           SafeArea(
-              child: View(
+            child: View(
+              children: [
+                renderHeader(),
+                renderSwiper(),
+                renderIconGroup(),
+                renderSeckill(),
+                renderList()
+              ],
+            ),
+          ),
+          View(
+            onClick: () {
+              showAppModalOpacity.value = false;
+            },
+            styles: style.openApp(showAppModal.value),
             children: [
-              renderHeader(),
-              renderSwiper(),
-              renderIconGroup(),
-              renderSeckill(),
-              renderList(),
+              OpenApp(
+                onEnd: () {
+                  showAppModal.value = false;
+                },
+                opacity: showAppModalOpacity.value,
+              )
             ],
-          )),
-          Positioned(
-            child: OpenApp(),
-            left: 0,
-            right: 0,
-            bottom: 40,
           )
         ],
       );

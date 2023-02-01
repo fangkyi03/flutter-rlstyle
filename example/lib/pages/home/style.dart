@@ -45,3 +45,17 @@ fixHeader() {
     // FL_BackgroundColor(color: Colors.red)
   ];
 }
+
+openApp([showAppModal = true]) {
+  if (showAppModal) {
+    return [
+      FL_Absolute,
+      FL_AbsLeft(size: 0),
+      FL_AbsRight(size: 0),
+      FL_AbsBottom(size: 40),
+      FL_JustifyCenter,
+      FL_AlignCenter,
+    ];
+  }
+  return [FL_DISPLAY(display: FL_DISPLAY_ENUM.no)];
+}
