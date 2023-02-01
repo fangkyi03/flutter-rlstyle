@@ -54,6 +54,9 @@ const FL_JustifyAround = {CssRule.justifyContent: 'space-around'};
 const FL_AlignStart = {CssRule.alignItems: 'flex-start'};
 const FL_AlignCenter = {CssRule.alignItems: 'center'};
 const FL_AlignEnd = {CssRule.alignItems: 'flex-end'};
+const FL_ItemStart = FL_AlignStart;
+const FL_ItemCenter = FL_AlignCenter;
+const FL_ItemEd = FL_AlignEnd;
 
 // padding
 final FL_Padding = ({dynamic size}) => {CssRule.padding: size};
@@ -104,6 +107,8 @@ final FL_Clip_Radius = ({bool state = false}) => {CssRule.clipRadius: state};
 
 // radius
 final FL_Radius = ({dynamic size}) => {CssRule.borderRadius: size};
+final FL_BorderRadius = FL_Radius;
+
 final FL_RadiusLg = {CssRule.borderRadius: '5px'};
 final FL_RadiusSm = {CssRule.borderRadius: '2px'};
 final FL_RadiusXs = {CssRule.borderRadius: '1px'};

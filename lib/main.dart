@@ -6,6 +6,7 @@ export './Component/Styles.dart';
 export './Component/ScrollView.dart';
 export './Component/CssRule.dart';
 export './Component/HexColor.dart';
+export './Component/TextInputView.dart';
 export 'package:flutter_screenutil/flutter_screenutil.dart';
 // 工具
 export './Tool/base.dart';
