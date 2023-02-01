@@ -32,3 +32,7 @@ swiperView() {
     FL_Height(size: 20),
   ];
 }
+
+fixed() {
+  return [FL_Absolute, FL_AbsBottom(size: 100), FL_AbsLeft(size: 10)];
+}

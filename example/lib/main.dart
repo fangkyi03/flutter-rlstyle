@@ -35,7 +35,7 @@ class Main extends HookWidget {
             textTheme: Typography.englishLike2018.apply(fontSizeFactor: 1.sp),
           ),
           home: Home(),
-          initialRoute: '/search',
+          initialRoute: '/home',
           builder: (context, child) {
             ScreenUtil.setContext(context);
             return MediaQuery(

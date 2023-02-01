@@ -19,8 +19,6 @@ class Home extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final isFixHeader = useState(false);
-    final showAppModal = useState(true);
-    final showAppModalOpacity = useState(true);
     Widget renderSearch() {
       return View(
         styles: style.getSearch(),
@@ -243,18 +241,8 @@ class Home extends HookWidget {
             ),
           ),
           View(
-            onClick: () {
-              showAppModalOpacity.value = false;
-            },
-            styles: style.openApp(showAppModal.value),
-            children: [
-              OpenApp(
-                onEnd: () {
-                  showAppModal.value = false;
-                },
-                opacity: showAppModalOpacity.value,
-              )
-            ],
+            styles: style.openApp(),
+            children: [OpenApp()],
           )
         ],
       );
