@@ -3,11 +3,12 @@ import 'package:rlstyles/main.dart';
 
 class MainView extends HookWidget {
   final Widget? child;
-  MainView({Key? key, this.child}) : super(key: key);
+  final dynamic color;
+  MainView({Key? key, this.child, this.color = 'white'}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.red,
+        backgroundColor: HexColor(color),
         body: SafeArea(
           child: child!,
           // top: false,

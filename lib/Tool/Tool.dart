@@ -18,6 +18,7 @@ WrapCrossAlignment? getWrapJustifyContent(Styles styles) {
   } else {
     return WrapCrossAlignment.start;
   }
+  return null;
 }
 
 // 获取主轴方向
@@ -78,6 +79,7 @@ WrapAlignment? getWrapAlignItems(Styles styles) {
   } else {
     return WrapAlignment.start;
   }
+  return null;
 }
 
 // 获取flex布局方向

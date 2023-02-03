@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rlstyles/main.dart';
 
 main() {
-  return [FL_WFull, FL_HFull, FL_BackgroundColor(color: 'white')];
+  return [FL_WFull, FL_HFull, FL_BackgroundColor(color: 'rgb(245,245,245)')];
 }
 
 abs() {
@@ -21,6 +21,7 @@ header() {
     FL_JustifyBetween,
     FL_FlexRow,
     FL_PaddingRight(size: 10),
+    FL_BackgroundColor(color: 'white'),
     FL_BorderBottom(
       color: Colors.grey,
     )

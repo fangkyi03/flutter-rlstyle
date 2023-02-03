@@ -1,5 +1,4 @@
-import 'dart:developer';
-
+import 'package:example/components/Main/index.dart';
 import 'package:example/components/OpenApp/index.dart';
 import 'package:example/components/WaterfallFlowList/index.dart';
 import 'package:example/pages/home/components/Kingkong/index.dart';
@@ -248,6 +247,6 @@ class Home extends HookWidget {
       );
     }
 
-    return renderView();
+    return MainView(color: Colors.red, child: renderView());
   }
 }

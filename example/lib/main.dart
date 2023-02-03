@@ -39,12 +39,10 @@ class Main extends HookWidget {
           builder: (context, child) {
             ScreenUtil.setContext(context);
             return MediaQuery(
-              data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-              child: MainView(
-                child: child,
-              ),
-              // child: PageView(child: child),
-            );
+                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                child: child!
+                // child: PageView(child: child),
+                );
           },
         );
       },
