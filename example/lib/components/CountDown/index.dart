@@ -19,7 +19,11 @@ class CountDown extends HookWidget {
     useEffect(() {
       var timeId;
       setInterval((periodicTime) {
-        countTime.value -= 1;
+        if (countTime.value >= 1) {
+          countTime.value -= 1;
+        } else {
+          periodicTime.cancel();
+        }
         countDownTime.value = formatTime(countTime.value);
         final time = countDownTime.value;
         countDownText.value = time['hour'].toString() +

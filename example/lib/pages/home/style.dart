@@ -3,8 +3,10 @@ import 'package:rlstyles/main.dart';
 
 getMain() {
   return [
-    FL_HFull,
-    FL_WFull,
+    // FL_Height(size: 667),
+    // FL_Width(size: 360),
+    // FL_HFull,
+    // FL_WFull,
     FL_FlexColumn,
     FL_BgColor(color: 'rgb(245,245,245)'),
     FL_OverScrollY,

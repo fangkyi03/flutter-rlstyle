@@ -47,7 +47,16 @@ getSize({dynamic size, dynamic defValue = 0.0, isTransform = true}) {
   double? mSize;
   switch (type) {
     case 'String':
-      mSize = double.parse((size as String).replaceAll('px', ''));
+      final sizeStr = (size as String);
+      if (sizeStr.indexOf('vh') != -1) {
+        mSize = double.parse(size.replaceAll('vh', ''));
+        mSize = ScreenUtil().screenHeight * mSize / 100;
+      } else if (sizeStr.indexOf('vw') != -1) {
+        mSize = double.parse(size.replaceAll('vw', ''));
+        mSize = ScreenUtil().scaleWidth * mSize / 100;
+      } else {
+        mSize = double.parse(sizeStr.replaceAll('px', ''));
+      }
       break;
     case 'int':
       mSize = (size as int).toDouble();

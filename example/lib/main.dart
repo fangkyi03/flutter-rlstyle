@@ -1,5 +1,6 @@
 import 'package:example/components/Main/index.dart';
 import 'package:example/pages/home/index.dart';
+import 'package:example/pages/index/index.dart';
 import 'package:example/pages/search/index.dart';
 import 'package:flutter/material.dart';
 import 'package:rlstyles/main.dart';
@@ -14,7 +15,7 @@ class Main extends HookWidget {
   Widget build(BuildContext context) {
     getRouter() {
       return {
-        '/home': (BuildContext context) => Home(),
+        '/home': (BuildContext context) => Index(),
         '/search': (BuildContext context) => Search()
       };
     }
@@ -29,7 +30,6 @@ class Main extends HookWidget {
         return MaterialApp(
           routes: getRouter(),
           debugShowCheckedModeBanner: false,
-          // You can use the library anywhere in the app even in theme
           theme: ThemeData(
             primarySwatch: Colors.blue,
             textTheme: Typography.englishLike2018.apply(fontSizeFactor: 1.sp),
@@ -40,9 +40,7 @@ class Main extends HookWidget {
             ScreenUtil.setContext(context);
             return MediaQuery(
                 data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-                child: child!
-                // child: PageView(child: child),
-                );
+                child: child!);
           },
         );
       },

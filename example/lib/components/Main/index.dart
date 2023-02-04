@@ -1,6 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:rlstyles/main.dart';
 
+class AppBar extends HookWidget implements PreferredSizeWidget {
+  const AppBar({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return View(
+      children: [TextView('child')],
+    );
+  }
+
+  @override
+  Size get preferredSize => Size(10, 10.0);
+}
+
 class MainView extends HookWidget {
   final Widget? child;
   final dynamic color;
@@ -8,6 +21,7 @@ class MainView extends HookWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        // appBar: AppBar(),
         backgroundColor: HexColor(color),
         body: SafeArea(
           child: child!,
