@@ -1,4 +1,5 @@
 import 'package:example/pages/home/index.dart';
+import 'package:example/pages/index/request.dart';
 import 'package:example/pages/search/index.dart';
 import 'package:flutter/material.dart';
 import 'package:rlstyles/main.dart';
@@ -8,27 +9,32 @@ class Index extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final pages = useState<List<Widget>>([Home(), Search()]);
-    final PageController controller = PageController(initialPage: 0);
-    renderTabbarItem(int index, Map item) {
+    final pagesIndex = useState(0);
+    final request = useRequest();
+    final tabs = request[IndexRequest.tabbar] as ValueNotifier<List>;
+    Widget renderTabbarItem(int index, Map item) {
       return View(
         styles: [FL_Flex(size: 1), FL_ItemCenter, FL_JustifyCenter],
         onClick: () {
-          controller.jumpToPage(index);
+          pagesIndex.value = index;
         },
-        children: [Icon(Icons.abc), TextView(item['name'])],
+        children: [
+          ImageView(
+            styles: [FL_Height(size: 46), FL_Width(size: 60)],
+            url: pagesIndex.value == index
+                ? item['navIcon']['active']
+                : item['navIcon']['def'],
+          ),
+        ],
       );
     }
 
     renderTabbar() {
-      final list = [
-        {"name": "首页"},
-        {"name": '我的'}
-      ];
       return View(
         styles: [
           FL_FlexRow,
           FL_ItemCenter,
-          FL_Height(size: 40),
+          FL_Height(size: 50),
           FL_JustifyCenter,
           FL_BackgroundColor(color: Colors.white),
           // FL_Absolute,
@@ -36,10 +42,10 @@ class Index extends HookWidget {
           // FL_AbsLeft(size: 0),
           // FL_AbsRight(size: 0)
         ],
-        children: list
+        children: tabs.value
             .asMap()
             .keys
-            .map((index) => renderTabbarItem(index, list[index]))
+            .map((index) => renderTabbarItem(index, tabs.value[index]))
             .toList(),
       );
     }
@@ -49,10 +55,13 @@ class Index extends HookWidget {
           child: renderTabbar(),
         ),
         body: PageView(
-          controller: controller,
+          // controller: controller,
           allowImplicitScrolling: true,
           physics: NeverScrollableScrollPhysics(),
           children: pages.value,
+          onPageChanged: (index) {
+            pagesIndex.value = index;
+          },
         ));
   }
 }
