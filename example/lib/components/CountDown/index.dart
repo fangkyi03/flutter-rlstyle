@@ -19,6 +19,7 @@ class CountDown extends HookWidget {
     useEffect(() {
       var timeId;
       setInterval((periodicTime) {
+        print('输出定时器');
         if (countTime.value >= 1) {
           countTime.value -= 1;
         } else {
@@ -35,7 +36,7 @@ class CountDown extends HookWidget {
       }, 1000);
       return () {
         if (timeId != null) {
-          timeId.cancel();
+          timeId!.cancel();
           timeId = null;
         }
       };

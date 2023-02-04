@@ -50,6 +50,7 @@ class Index extends HookWidget {
         ),
         body: PageView(
           controller: controller,
+          allowImplicitScrolling: true,
           physics: NeverScrollableScrollPhysics(),
           children: pages.value,
         ));
