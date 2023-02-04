@@ -34,7 +34,10 @@ class CountDown extends HookWidget {
         timeId = periodicTime;
       }, 1000);
       return () {
-        timeId.cancel();
+        if (timeId != null) {
+          timeId.cancel();
+          timeId = null;
+        }
       };
     }, [countDownTime, countTime, countDownText]);
 

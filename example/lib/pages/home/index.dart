@@ -239,10 +239,10 @@ class Home extends HookWidget {
               ],
             ),
           ),
-          // View(
-          //   styles: style.openApp(),
-          //   children: [OpenApp()],
-          // )
+          View(
+            styles: style.openApp(),
+            children: [OpenApp()],
+          )
         ],
       );
     }

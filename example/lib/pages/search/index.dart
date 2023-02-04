@@ -138,12 +138,12 @@ class Search extends HookWidget {
         children: [
           renderHeader(),
           renderBody(),
-          // Positioned(
-          //   child: OpenApp(),
-          //   bottom: 40,
-          //   left: 0,
-          //   right: 0,
-          // )
+          Positioned(
+            child: OpenApp(),
+            bottom: 40,
+            left: 0,
+            right: 0,
+          )
         ],
       ),
     );

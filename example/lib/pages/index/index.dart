@@ -11,11 +11,11 @@ class Index extends HookWidget {
     final PageController controller = PageController(initialPage: 0);
     renderTabbarItem(int index, Map item) {
       return View(
-        styles: [FL_Flex(size: 1)],
+        styles: [FL_Flex(size: 1), FL_ItemCenter, FL_JustifyCenter],
         onClick: () {
           controller.jumpToPage(index);
         },
-        children: [TextView(item['name'])],
+        children: [Icon(Icons.abc), TextView(item['name'])],
       );
     }
 
@@ -28,12 +28,13 @@ class Index extends HookWidget {
         styles: [
           FL_FlexRow,
           FL_ItemCenter,
-          FL_Height(size: 60),
+          FL_Height(size: 40),
+          FL_JustifyCenter,
           FL_BackgroundColor(color: Colors.white),
-          FL_Absolute,
-          FL_AbsBottom(size: 0),
-          FL_AbsLeft(size: 0),
-          FL_AbsRight(size: 0)
+          // FL_Absolute,
+          // FL_AbsBottom(size: 0),
+          // FL_AbsLeft(size: 0),
+          // FL_AbsRight(size: 0)
         ],
         children: list
             .asMap()
