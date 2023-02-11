@@ -110,15 +110,10 @@ class TextView extends StatelessWidget {
 
   setStyle(dynamic newStyles) {
     if (newStyles.isNotEmpty) {
-      final type = newStyles.runtimeType.toString();
-      if (type == 'List<Map<String, dynamic>>' ||
-          type == 'List<Map<String, String>>') {
-        Map obj = {...(mergeStyle(newStyles)), ...mergeStyle(styles)};
-        mStyles = StylesMap.formMap(obj);
-      } else {
-        Map obj = {...newStyles, ...styles};
-        mStyles = StylesMap.formMap(obj);
-      }
+      Map obj = {};
+      obj.addAll(mergeStyle(newStyles));
+      obj.addAll(mergeStyle(styles));
+      mStyles = StylesMap.formMap(obj);
     }
   }
 

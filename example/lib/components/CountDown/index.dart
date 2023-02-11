@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:rlstyles/main.dart';
 
+typedef OnEnd = void Function();
+
 class CountDown extends HookWidget {
-  const CountDown({Key? key}) : super(key: key);
+  final OnEnd? onEnd;
+  const CountDown({Key? key, this.onEnd}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     // 格式化时间
@@ -13,16 +16,16 @@ class CountDown extends HookWidget {
       return {'hour': hour, 'minute': minute, 'second': second};
     }
 
-    final countTime = useState(30 * 60);
+    final countTime = useState(1 * 60);
     final countDownTime = useState(formatTime(countTime.value));
     final countDownText = useState('00:00:00');
     useEffect(() {
       var timeId;
       setInterval((periodicTime) {
-        print('输出定时器');
         if (countTime.value >= 1) {
           countTime.value -= 1;
         } else {
+          onEnd?.call();
           periodicTime.cancel();
         }
         countDownTime.value = formatTime(countTime.value);

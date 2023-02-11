@@ -8,6 +8,7 @@ class Seckill extends HookWidget {
   const Seckill({Key? key, this.data = const []}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final isEnd = useState(false);
     Widget renderImage(Map item) {
       return View(
         styles: style.image(),
@@ -100,7 +101,12 @@ class Seckill extends HookWidget {
             styles: style.killText(),
           ),
           renderSecOrder(),
-          CountDown()
+          CountDown(
+            onEnd: () {
+              isEnd.value = true;
+              return;
+            },
+          )
         ],
       );
     }
@@ -125,6 +131,7 @@ class Seckill extends HookWidget {
       );
     }
 
+    if (isEnd.value) return Container();
     return View(
       styles: style.main(),
       children: [renderHeader(), renderImageGroup()],

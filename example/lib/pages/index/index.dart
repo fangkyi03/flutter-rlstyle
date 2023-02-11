@@ -1,5 +1,4 @@
 import 'package:example/pages/home/index.dart';
-import 'package:example/pages/index/request.dart';
 import 'package:example/pages/search/index.dart';
 import 'package:flutter/material.dart';
 import 'package:rlstyles/main.dart';
@@ -10,8 +9,9 @@ class Index extends HookWidget {
   Widget build(BuildContext context) {
     final pages = useState<List<Widget>>([Home(), Search()]);
     final pagesIndex = useState(0);
-    final request = useRequest();
-    final tabs = request[IndexRequest.tabbar] as ValueNotifier<List>;
+    final tabs = useState([]);
+    // final request = useRequest();
+    // final tabs = request[IndexRequest.tabbar] as ValueNotifier<List>;
     Widget renderTabbarItem(int index, Map item) {
       return View(
         styles: [FL_Flex(size: 1), FL_ItemCenter, FL_JustifyCenter],
@@ -30,6 +30,7 @@ class Index extends HookWidget {
     }
 
     renderTabbar() {
+      print('tabs.value${tabs.value}');
       return View(
         styles: [
           FL_FlexRow,
