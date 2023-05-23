@@ -1,5 +1,5 @@
 // 组件
-export './Component/View.dart';
+export './Component/Frame.dart';
 export './Component/ImageView.dart';
 export './Component/TextView.dart';
 export './Component/Styles.dart';
