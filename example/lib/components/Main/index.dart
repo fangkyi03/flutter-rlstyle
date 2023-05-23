@@ -5,7 +5,7 @@ class AppBar extends HookWidget implements PreferredSizeWidget {
   const AppBar({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return View(
+    return Frame(
       children: [TextView('child')],
     );
   }

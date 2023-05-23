@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:rlstyles/main.dart';
 
 class TextInputView extends HookWidget {
@@ -54,7 +53,7 @@ class TextInputView extends HookWidget {
     }
 
     renderPlaceholder() {
-      return View(
+      return Frame(
         children: [TextView(placeholder!)],
       );
     }

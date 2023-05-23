@@ -9,7 +9,7 @@ class KingKong extends HookWidget {
   @override
   Widget build(BuildContext context) {
     Widget renderIcon(Map item) {
-      return View(
+      return Frame(
         styles: style.icon(item['color']),
         children: [
           ImageView(
@@ -21,7 +21,7 @@ class KingKong extends HookWidget {
       );
     }
 
-    return View(
+    return Frame(
       styles: style.main(),
       children: [
         Swiper(
@@ -37,7 +37,7 @@ class KingKong extends HookWidget {
             ),
           ),
           itemBuilder: (context, index) {
-            return View(
+            return Frame(
                 styles: style.group(),
                 children: data
                     .getRange(index * 10, (index + 1) * 10)

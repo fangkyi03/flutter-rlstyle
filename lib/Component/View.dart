@@ -5,14 +5,14 @@ import 'package:rlstyles/Tool/base.dart' as base;
 import 'package:rlstyles/main.dart';
 
 // ignore: must_be_immutable
-class View extends StatelessWidget {
+class Frame extends StatelessWidget {
   final List<Widget> children;
   final String? type;
   final GestureTapCallback? onClick;
   final Map<String, dynamic>? event;
   final dynamic styles;
   Styles mStyles = const Styles();
-  View(
+  Frame(
       {Key? key,
       this.children = const [],
       this.styles,

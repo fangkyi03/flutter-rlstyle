@@ -54,7 +54,7 @@ class ImageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return View(styles: styles, children: [
+    return Frame(styles: styles, children: [
       ClipRRect(
           borderRadius:
               getBorderRadius(mStyles) ?? BorderRadius.all(Radius.circular(0)),

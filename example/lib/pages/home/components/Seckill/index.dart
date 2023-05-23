@@ -10,14 +10,14 @@ class Seckill extends HookWidget {
   Widget build(BuildContext context) {
     final isEnd = useState(false);
     Widget renderImage(Map item) {
-      return View(
+      return Frame(
         styles: style.image(),
         children: [
           ImageView(
             url: item['img'],
             styles: style.scrollImage(),
           ),
-          View(
+          Frame(
             styles: style.text(),
             children: [
               TextView(
@@ -35,7 +35,7 @@ class Seckill extends HookWidget {
     }
 
     Widget renderMore() {
-      return View(
+      return Frame(
         styles: [
           FL_Width(size: 20),
           FL_BgColor(color: '#f5f5f5'),
@@ -47,14 +47,14 @@ class Seckill extends HookWidget {
     }
 
     Widget renderImageGroup() {
-      return View(
+      return Frame(
         styles: style.imageGroup(),
         children: [...data.map((e) => renderImage(e)).toList(), renderMore()],
       );
     }
 
     Widget renderKillMore() {
-      return View(
+      return Frame(
         styles: [
           FL_FlexRow,
           FL_AlignCenter,
@@ -76,7 +76,7 @@ class Seckill extends HookWidget {
     }
 
     Widget renderSecOrder() {
-      return View(
+      return Frame(
         styles: [FL_FlexRow, FL_AlignCenter, FL_MarginRight(size: 10)],
         children: [
           TextView(
@@ -93,7 +93,7 @@ class Seckill extends HookWidget {
     }
 
     Widget renderHeaderLeft() {
-      return View(
+      return Frame(
         styles: [FL_FlexRow, FL_AlignCenter],
         children: [
           TextView(
@@ -112,14 +112,14 @@ class Seckill extends HookWidget {
     }
 
     Widget renderHeaderView() {
-      return View(
+      return Frame(
         styles: style.headerView(),
         children: [renderHeaderLeft(), renderKillMore()],
       );
     }
 
     Widget renderHeader() {
-      return View(
+      return Frame(
         styles: style.header(),
         children: [
           ImageView(
@@ -132,7 +132,7 @@ class Seckill extends HookWidget {
     }
 
     if (isEnd.value) return Container();
-    return View(
+    return Frame(
       styles: style.main(),
       children: [renderHeader(), renderImageGroup()],
     );

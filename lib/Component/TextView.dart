@@ -140,7 +140,7 @@ class TextView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return View(
+    return Frame(
       styles: styles,
       onClick: onClick,
       children: [this.renderText()],

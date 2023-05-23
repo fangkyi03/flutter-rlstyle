@@ -8,10 +8,10 @@ class HomeSwiper extends HookWidget {
   const HomeSwiper({Key? key, this.data = const []}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return View(
+    return Frame(
       styles: style.swiper(),
       children: [
-        View(
+        Frame(
           styles: style.swiperContainer(),
           children: [
             Swiper(

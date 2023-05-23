@@ -46,7 +46,7 @@ class CountDown extends HookWidget {
     }, [countDownTime, countTime, countDownText]);
 
     Widget renderTime(String time, int index) {
-      return View(
+      return Frame(
         styles: [
           FL_FlexRow,
           FL_AlignCenter,
@@ -80,14 +80,14 @@ class CountDown extends HookWidget {
 
     Widget renderTimeGroup(String time) {
       final split = time.split(':');
-      return View(
+      return Frame(
         styles: [FL_FlexRow, FL_AlignCenter],
         children:
             split.asMap().keys.map((i) => renderTime(split[i], i)).toList(),
       );
     }
 
-    return View(
+    return Frame(
       children: [renderTimeGroup(countDownText.value)],
     );
   }

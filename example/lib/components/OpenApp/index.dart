@@ -13,7 +13,7 @@ class OpenApp extends HookWidget {
     final showModal = useState(true);
     final showModalOpacity = useState(true);
     renderSwiper() {
-      return View(styles: style.swiperView(), children: [
+      return Frame(styles: style.swiperView(), children: [
         Swiper(
           scrollDirection: Axis.vertical,
           loop: true,
@@ -31,10 +31,10 @@ class OpenApp extends HookWidget {
     }
 
     renderView() {
-      return View(
+      return Frame(
         styles: style.main(),
         children: [
-          View(
+          Frame(
             styles: [
               FL_Width(size: 186),
               FL_Height(size: 40),
@@ -46,7 +46,7 @@ class OpenApp extends HookWidget {
                 url:
                     'https://img12.360buyimg.com/img/s372x80_jfs/t1/169576/11/7635/6641/6035b6f3Eef97a89c/a6772680a123d8e3.png',
               ),
-              View(
+              Frame(
                 styles: style.swiper(),
                 children: [renderSwiper()],
               )
@@ -57,7 +57,7 @@ class OpenApp extends HookWidget {
     }
 
     if (!showModal.value) return Container();
-    return View(
+    return Frame(
       styles: [FL_JustifyCenter, FL_ItemCenter],
       onClick: () {
         showModalOpacity.value = false;

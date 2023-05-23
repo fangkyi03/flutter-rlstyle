@@ -19,7 +19,7 @@ class Home extends HookWidget {
   Widget build(BuildContext context) {
     final isFixHeader = useState(false);
     Widget renderSearch() {
-      return View(
+      return Frame(
         styles: style.getSearch(),
         onClick: () {
           Navigator.pushNamed(context, '/search');
@@ -29,7 +29,7 @@ class Home extends HookWidget {
             'JD',
             styles: {CssRule.color: Colors.red, CssRule.fontSize: 20},
           ),
-          View(
+          Frame(
             styles: {
               CssRule.backgroundColor: Colors.grey,
               CssRule.width: 1,
@@ -52,7 +52,7 @@ class Home extends HookWidget {
     }
 
     Widget renderHeader() {
-      return View(
+      return Frame(
         styles: style.getHeader(),
         children: [
           Icon(
@@ -223,13 +223,13 @@ class Home extends HookWidget {
     }
 
     Widget renderView() {
-      return View(
+      return Frame(
         styles: style.getMain(),
         event: {'scroll': onScroll},
         children: [
           renderFixHeader(),
           SafeArea(
-            child: View(
+            child: Frame(
               children: [
                 renderHeader(),
                 renderSwiper(),
@@ -239,7 +239,7 @@ class Home extends HookWidget {
               ],
             ),
           ),
-          View(
+          Frame(
             styles: style.openApp(),
             children: [OpenApp()],
           )
@@ -248,7 +248,7 @@ class Home extends HookWidget {
     }
 
     // return renderView();
-    // return View(
+    // return Frame(
     //   styles: [FL_Height(size: 600)],
     //   children: [Scaffold(body: renderView())],
     // );

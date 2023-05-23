@@ -9,11 +9,11 @@ class Search extends HookWidget {
   @override
   Widget build(BuildContext context) {
     renderSearch() {
-      return View(
+      return Frame(
         styles: style.search(),
         children: [
           Icon(Icons.search),
-          View(
+          Frame(
             styles: [FL_Width(size: 200), FL_MarginLeft(size: 5)],
             children: [
               TextInputView(
@@ -26,17 +26,17 @@ class Search extends HookWidget {
     }
 
     renderSearchButton() {
-      return View(
+      return Frame(
         styles: style.searchButton(),
         children: [TextView('搜索')],
       );
     }
 
     renderHeader() {
-      return View(
+      return Frame(
         styles: style.header(),
         children: [
-          View(
+          Frame(
             styles: style.icons(),
             onClick: () {
               Navigator.pop(context);
@@ -55,7 +55,7 @@ class Search extends HookWidget {
     }
 
     renderMenu(String name, dynamic right) {
-      return View(
+      return Frame(
         styles: [
           FL_ItemCenter,
           FL_JustifyBetween,
@@ -65,7 +65,7 @@ class Search extends HookWidget {
         ],
         children: [
           TextView(name),
-          View(
+          Frame(
             children: [
               right is String ? TextView(right) : Container(),
               right is Widget ? right : Container()
@@ -76,7 +76,7 @@ class Search extends HookWidget {
     }
 
     renderTextButton(String text) {
-      return View(
+      return Frame(
         styles: [
           FL_MarginTop(size: 5),
           FL_MarginRight(size: 10),
@@ -93,7 +93,7 @@ class Search extends HookWidget {
     }
 
     renderTextGroup(List<String> texts) {
-      return View(
+      return Frame(
         styles: [
           FL_FlexWrap,
           FL_WFull,
@@ -104,7 +104,7 @@ class Search extends HookWidget {
 
     renderRecentSearch() {
       final data = List.generate(10, (int index) => '测试');
-      return View(
+      return Frame(
         styles: [FL_MarginTop(size: 10)],
         children: [
           renderMenu(
@@ -120,20 +120,20 @@ class Search extends HookWidget {
 
     renderHotSearch() {
       final data = List.generate(10, (int index) => '测试');
-      return View(
+      return Frame(
           styles: [FL_MarginTop(size: 10)],
           children: [renderMenu('最近搜索', '隐藏'), renderTextGroup(data)]);
     }
 
     renderBody() {
-      return View(
+      return Frame(
         styles: [FL_Padding(size: 10), FL_BackgroundColor(color: 'white')],
         children: [renderRecentSearch(), renderHotSearch()],
       );
     }
 
     return MainView(
-      child: View(
+      child: Frame(
         styles: style.main(),
         children: [
           renderHeader(),

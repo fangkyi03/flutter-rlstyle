@@ -13,7 +13,7 @@ class Index extends HookWidget {
     // final request = useRequest();
     // final tabs = request[IndexRequest.tabbar] as ValueNotifier<List>;
     Widget renderTabbarItem(int index, Map item) {
-      return View(
+      return Frame(
         styles: [FL_Flex(size: 1), FL_ItemCenter, FL_JustifyCenter],
         onClick: () {
           pagesIndex.value = index;
@@ -31,7 +31,7 @@ class Index extends HookWidget {
 
     renderTabbar() {
       print('tabs.value${tabs.value}');
-      return View(
+      return Frame(
         styles: [
           FL_FlexRow,
           FL_ItemCenter,
