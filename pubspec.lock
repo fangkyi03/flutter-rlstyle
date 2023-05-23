@@ -66,10 +66,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_screenutil
-      sha256: "304177f2f96803d20de751fd6a8c50285110238e9b3326c85b8cdcc05267b055"
+      sha256: b3e155ee4f2cf5b21a2e15182d1c49c848147ed47f62083fc9a9beccb85f59f9
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "5.4.0"
+    version: "5.8.2"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -178,4 +178,4 @@ packages:
     version: "2.1.4"
 sdks:
   dart: ">=3.0.0-0 <4.0.0"
-  flutter: ">=3.0.0"
+  flutter: ">=3.10.0"

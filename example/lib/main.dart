@@ -24,9 +24,7 @@ class Main extends HookWidget {
       designSize: const Size(375, 667),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (
-        BuildContext context,
-      ) {
+      builder: (context, child) {
         return MaterialApp(
           routes: getRouter(),
           debugShowCheckedModeBanner: false,
@@ -37,7 +35,7 @@ class Main extends HookWidget {
           home: Home(),
           initialRoute: '/home',
           builder: (context, child) {
-            ScreenUtil.setContext(context);
+            // ScreenUtil.setContext(context);
             return MediaQuery(
                 data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
                 child: child!);
