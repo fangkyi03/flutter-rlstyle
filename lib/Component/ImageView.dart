@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:rlstyles/Tool/Tool.dart';
 import 'package:rlstyles/main.dart';
@@ -33,6 +35,13 @@ class ImageView extends StatelessWidget {
       if (url.indexOf('http') != -1) {
         return Image.network(
           url,
+          fit: getImageFit(),
+          width: getSize(size: width ?? mStyles.width, defValue: null),
+          height: getSize(size: height ?? mStyles.height, defValue: null),
+        );
+      } else if (url is File) {
+        return Image.file(
+          url as File,
           fit: getImageFit(),
           width: getSize(size: width ?? mStyles.width, defValue: null),
           height: getSize(size: height ?? mStyles.height, defValue: null),
