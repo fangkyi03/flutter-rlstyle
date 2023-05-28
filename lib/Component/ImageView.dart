@@ -22,7 +22,7 @@ class ImageView extends StatelessWidget {
   final dynamic styles;
   // final BoxFit backgroundSize;
   Styles mStyles = Styles();
-  final String url;
+  final dynamic url;
   final String? className;
   final List<Widget> children;
 
